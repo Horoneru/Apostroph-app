@@ -1,0 +1,155 @@
+<template>
+  <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
+    <div slot="playground">
+      <isotope :list="tab" :options="options" ref="isotope" class="p-5" v-images-loaded:on.progress="redrawLayout">
+        <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
+      </isotope>
+    </div>
+  </game-view>
+</template>
+
+<script>
+import GameView from '../GameView';
+import games from '../../../service/GameProvider';
+import VueIntro from 'vue-introjs';
+import imagesLoaded from 'vue-images-loaded';
+import Isotope from 'vueisotope';
+import debounce from 'lodash-es/debounce';
+import utils from '../../../utils/cryptography';
+
+export default {
+  name: 'Cryptography',
+  props: ['levelid'],
+  directives: { imagesLoaded },
+  components: { GameView, Isotope, VueIntro },
+  data () {
+    return {
+      tutorialMode: false,
+      setupInit: false,
+      tutorialSteps: [
+        {
+          element: null,
+          text: 'Ton aventure commence !'
+        },
+        {
+          element: 'playgroundStage',
+          text: 'Voici un exemple d\'une oeuvre.<br>Souviens toi de sa disposition car elle sera chiffrée à la prochaine étape !'
+        },
+        {
+          element: 'playgroundStage',
+          text: 'L\'exemple d’œuvre a été chiffrée. Voyons voir comment on peut la restaurer !'
+        },
+        {
+          element: 'toolbar',
+          text: 'Tu peux décaler chacun des blocs en appuyant sur l\'un des deux boutons directionnels ici !'
+        },
+        {
+          element: null,
+          text: 'À toi de jouer !'
+        }
+      ],
+      tools: [
+        {
+          icon: '../../../../static/assets/left-arrow.png',
+          action: debounce(this.popBack, 500, { maxWait: 700, leading: true })
+        },
+        {
+          action: debounce(this.pushBack, 500, { maxWait: 700, leading: true }),
+          icon: '../../../../static/assets/right-arrow.png'
+        }
+      ],
+      levelData: games.cryptography.levels[this.levelid],
+      artist: games.cryptography.levels[this.levelid].artist,
+      artwork: games.cryptography.levels[this.levelid].artwork,
+      tab: [],
+      options: {
+        getSortData: {
+          id: 'el'
+        },
+        sortBy: 'el'
+      }
+    };
+  },
+  created: function() {
+    for(let i = 0; i < 20; i++) {
+      this.tab.push(
+        {
+          id: i,
+          image: '../../../../static/assets/cryptography/' + this.levelid + '/img-' + i + '.jpg'
+        });
+    }
+    this.levelData.mixins.created(this);
+    if(this.tutorialMode) {
+      console.log('Launch tutorial');
+    }
+    else {
+      this.arrayInit();
+    }
+  },
+  mounted: function() {
+    this.$on('tutorialStepChange', this.tutorialStepChange);
+    this.$on('tutorialFinished', this.tutorialFinished);
+  },
+  methods: {
+    pushBack: function() {
+      let newArray = utils.pushBack(this.tab);
+      this.arrangeArray(newArray);
+    },
+    popBack: function() {
+      let newArray = utils.popBack(this.tab);
+      this.arrangeArray(newArray);
+    },
+    arrayInit: function() {
+      if(!this.setupInit) {
+        const callback = this.levelData.permutations.direction === 'right'
+          ? utils.popBack
+          : utils.pushBack;
+        let newArray = this.tab;
+        for(let i = 0; i < this.levelData.permutations.count; i++) {
+          newArray = callback(newArray);
+        }
+        this.arrangeArray(newArray);
+        this.setupInit = true;
+      }
+    },
+    arrangeArray: function(newArray) {
+      // Isotope (le module pour les anims) ne voit pas la modif sinon.
+      this.tab.splice(0, 20);
+      setTimeout(() => {
+        this.tab = newArray;
+        this.checkArray();
+      }, 0);
+    },
+    checkArray: function() {
+      if(this.tab.every((value, index) => value.id === index)) {
+        setTimeout(() => {
+          this.$router.push({ name: 'levelcomplete', params: { game: 'cryptography', level: this.levelid } });
+        }, 500);
+      }
+    },
+    redrawLayout: function() {
+      this.$refs.isotope.layout('masonry');
+    },
+    tutorialStepChange: function(newStep) {
+      if(newStep === 2) {
+        this.arrayInit();
+      }
+    },
+    tutorialFinished: function() {
+      if(!this.setupInit) {
+        this.arrayInit();
+      }
+    }
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.original-piece {
+  display: block;
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+</style>
