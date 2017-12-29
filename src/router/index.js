@@ -8,6 +8,8 @@ import Cryptography from '@/components/games/cryptography/main';
 import Programming from '@/components/games/programming/main';
 import LevelIntro from '@/components/LevelIntro';
 import LevelComplete from '@/components/LevelComplete';
+import AboutArtist from '@/components/AboutArtist';
+import AboutApp from '@/components/AboutApp';
 
 Vue.use(Router);
 
@@ -51,6 +53,17 @@ export default new Router({
       path: '/game/:game/:levelid/complete',
       name: 'levelcomplete',
       component: LevelComplete,
+      props: true
+    },
+    {
+      path: '/about/app',
+      name: 'aboutapp',
+      component: AboutApp
+    },
+    {
+      path: '/about/:artistId',
+      name: 'aboutartist',
+      component: AboutArtist,
       props: true
     }
   ]
