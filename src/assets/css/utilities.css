@@ -349,3 +349,11 @@
 .mx-auto {
   margin-left: auto !important;
 }
+
+.o-0 {
+  opacity: 0;
+}
+
+.o-1 {
+  opacity: 1;
+}
