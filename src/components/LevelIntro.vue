@@ -1,21 +1,18 @@
 <template>
-  <el-row class="h-100 w-100" type="flex" justify="center" align="middle" style="background-color: white;">
-    <el-col :span="16">
-      <img :src="'../../static/assets/logo-' + theme + '.png'" />
-    </el-col>
-      <el-col :class="this.themeClasses">
-        <h1>{{ title }}</h1>
-        <hr class="mx-auto">
+  <double-pane-layout :leftImage="'../../static/assets/logo-' + theme + '.png'" :title="title" imageAlign="middle" :contentClasses="this.themeClasses">
+    <div slot="rightContent">
         <h2 class="half-gutter"> Niveau {{ this.levelid }}</h2>
         <img id="picto" :src="'../../static/assets/picto-' + game + '.png'">
-      </el-col>
-  </el-row>
+    </div>
+  </double-pane-layout>
 </template>
 
 <script>
 import games from '../service/GameProvider.js';
+import DoublePaneLayout from './DoublePaneLayout';
 export default {
   name: 'LevelIntro',
+  components: { DoublePaneLayout },
   props: ['game', 'levelid'],
   created: function() {
     if(this.game in games) {
@@ -46,16 +43,7 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  margin-top: 10%;
-}
-
 #picto {
   margin-top: 1%;
-}
-
-.half-gutter {
-  margin: 10% auto auto auto;
-  max-width: 66%;
 }
 </style>
