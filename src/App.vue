@@ -24,7 +24,7 @@ export default {
           this.$store.commit('changeGame', to.params.game);
         }, 500);
       }
-      else if(!to.path.includes('game')) {
+      else if(!to.path.includes('game') && !to.path.includes('about')) {
         this.$store.commit('changeGame', null);
       }
     }
