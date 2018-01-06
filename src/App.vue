@@ -41,8 +41,8 @@ export default {
   --secondary-color: #1bd6a4;
   --accent-color-light: #00efe6;
   --accent-color-dark: #0085bd;
-  --primary-color-inverse: #eb7588;
-  --secondary-color-inverse: #e40136;
+  --primary-color-inverse: rgba(191, 127, 235, 0.7);
+  --primary-color-inverse-accent: rgba(57, 49, 228, 0.7);
 }
 
 body, html {
@@ -112,7 +112,7 @@ hr {
 }
 
 .gradient-color-inverse {
-  background: linear-gradient(0, var(--primary-color-inverse), var(--secondary-color-inverse));
+  background: linear-gradient(0, var(--primary-color-inverse), var(--primary-color-inverse-accent));
 }
 
 .fade-enter-active, .fade-leave-active {
