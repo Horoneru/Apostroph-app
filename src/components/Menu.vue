@@ -34,6 +34,7 @@
 <style scoped>
   .bordered-menu {
     border: 1px white solid;
+    border-radius: 5px;
   }
 
   .game-icon {
@@ -44,6 +45,7 @@
   .el-button--text {
     font-size: 18px;
     color: white;
+    text-shadow: 0px 1px 20px rgba(0, 0, 0, 0.25);
   }
 
   a {
