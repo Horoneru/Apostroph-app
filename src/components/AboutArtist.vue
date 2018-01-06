@@ -1,6 +1,6 @@
 <template>
   <double-pane-layout :title="artist.name" :leftImage="artist.image" imageAlign="bottom" :contentClasses="'gradient-' + this.artist.theme">
-    <p slot="rightContent">{{ artist.desc }}</p>
+    <p slot="rightContent" v-html="artist.desc"></p>
   </double-pane-layout>
 </template>
 
