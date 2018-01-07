@@ -56,6 +56,10 @@ export default {
         {
           action: debounce(this.pushBack, 500, { maxWait: 700, leading: true }),
           icon: '../../../../static/assets/right-arrow.png'
+        },
+        {
+          action: debounce(this.pushBack, 500, { maxWait: 700, leading: true }),
+          icon: '../../../../static/assets/apn-tool.png'
         }
       ],
       levelData: games.cryptography.levels[this.levelid],
