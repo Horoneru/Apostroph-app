@@ -1,6 +1,6 @@
 <template>
   <router-link tag="a" :to="to">
-    <el-row :class="['flex-column','p-4', 'm-x-3', 'bordered-menu', classes]" type="flex" justify="center" align="middle">
+    <el-row :class="['flex-column','p-4', 'm-x-3', 'bordered-menu', 'nav', classes]" type="flex" justify="center" align="middle">
       <slot name="content">
         <img v-if="icon" class="nav-icon" :src="icon">
         <el-button v-if="text" type="text">{{ text }}</el-button>
@@ -32,6 +32,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .nav {
+    min-height: 142px;
+    min-width: 142px;
+    margin-bottom: 40px;
+  }
+
   .bordered-menu {
     border: 1px white solid;
   }
