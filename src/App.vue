@@ -123,6 +123,11 @@ hr {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
 }
 
+.menu-container {
+  width: 40%;
+  flex-wrap: wrap;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .25s
 }
