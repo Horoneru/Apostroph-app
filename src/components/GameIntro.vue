@@ -8,16 +8,6 @@
                 Touchez pour continuer
           </h2>
         <img id="picto" :src="'../../static/assets/picto-' + gameid + '.png'">
-      <el-dialog title="Un instant !" :visible.sync="visibility.tutorialDialog" width="40%" center>
-        <p>Il semble que vous n'ayez pas encore fait le tutoriel de ce jeu !</p>
-        <p>Souhaitez-vous faire le tutoriel d'abord ?</p>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="rejectTutorial">Non, c'est bon !</el-button>
-          <router-link tag="a" :to="{ name: gameid, params: { levelid: 'tutorial' } }">
-            <el-button type="primary">Oui, c'est parti !</el-button>
-          </router-link>
-        </span>
-      </el-dialog>
     </div>
   </double-pane-layout>
 </template>
@@ -50,8 +40,7 @@ export default {
       desc: null,
       theme: null,
       visibility: {
-        touchToContinue: false,
-        tutorialDialog: false
+        touchToContinue: false
       }
     };
   },
@@ -62,26 +51,9 @@ export default {
   },
   methods: {
     goToLevel: function () {
-      if (!this.$store.state[this.gameid].doneTutorial) {
-        this.visibility.tutorialDialog = true;
-      }
-      else {
-        this.$router.push({
-          name: this.gameid,
-          params: {
-            levelid: '1'
-          }
-        });
-      }
-    },
-    rejectTutorial: function () {
-      // Won't bother the user again
-      this.$store.commit('tutorialDone', this.gameid);
-      console.log(this.gameid);
       this.$router.push({
-        name: 'levelintro',
+        name: this.gameid,
         params: {
-          gameid: this.gameid,
           levelid: '1'
         }
       });
