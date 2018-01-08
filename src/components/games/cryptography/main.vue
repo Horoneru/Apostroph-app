@@ -123,7 +123,7 @@ export default {
     checkArray: function() {
       if(this.tab.every((value, index) => value.id === index)) {
         setTimeout(() => {
-          this.$router.push({ name: 'levelcomplete', params: { game: 'cryptography', level: this.levelid } });
+          this.$router.push({ name: 'levelcomplete', params: { gameid: 'cryptography', level: this.levelid } });
         }, 500);
       }
     },

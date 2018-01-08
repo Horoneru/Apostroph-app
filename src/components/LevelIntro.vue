@@ -2,7 +2,7 @@
   <double-pane-layout :leftImage="'../../static/assets/logo-' + theme + '.png'" :title="title" imageAlign="middle" :contentClasses="this.themeClasses">
     <div slot="rightContent">
         <h2 class="half-gutter"> Niveau {{ this.levelid }}</h2>
-        <img id="picto" :src="'../../static/assets/picto-' + game + '.png'">
+        <img id="picto" :src="'../../static/assets/picto-' + gameid + '.png'">
     </div>
   </double-pane-layout>
 </template>
@@ -13,11 +13,11 @@ import DoublePaneLayout from './DoublePaneLayout';
 export default {
   name: 'LevelIntro',
   components: { DoublePaneLayout },
-  props: ['game', 'levelid'],
+  props: ['gameid', 'levelid'],
   created: function() {
-    if(this.game in games) {
-      this.title = games[this.game].name;
-      this.theme = games[this.game].theme;
+    if(this.gameid in games) {
+      this.title = games[this.gameid].name;
+      this.theme = games[this.gameid].theme;
     }
     else {
       console.log('whoopsie there. Nope !');
@@ -25,7 +25,7 @@ export default {
     }
 
     setTimeout(() => {
-      this.$router.push({ name: this.game, params: { levelid: this.levelid } });
+      this.$router.push({ name: this.gameid, params: { levelid: this.levelid } });
     }, 1500);
   },
   data () {

@@ -7,13 +7,13 @@
               style="animation-iteration-count: infinite;">
                 Touchez pour continuer
           </h2>
-        <img id="picto" :src="'../../static/assets/picto-' + game + '.png'">
+        <img id="picto" :src="'../../static/assets/picto-' + gameid + '.png'">
       <el-dialog title="Un instant !" :visible.sync="visibility.tutorialDialog" width="40%" center>
         <p>Il semble que vous n'ayez pas encore fait le tutoriel de ce jeu !</p>
         <p>Souhaitez-vous faire le tutoriel d'abord ?</p>
         <span slot="footer" class="dialog-footer">
           <el-button @click="rejectTutorial">Non, c'est bon !</el-button>
-          <router-link tag="a" :to="{ name: game, params: { levelid: 'tutorial' } }">
+          <router-link tag="a" :to="{ name: gameid, params: { levelid: 'tutorial' } }">
             <el-button type="primary">Oui, c'est parti !</el-button>
           </router-link>
         </span>
@@ -28,12 +28,12 @@ import DoublePaneLayout from './DoublePaneLayout';
 export default {
   name: 'GameIntro',
   components: { DoublePaneLayout },
-  props: ['game'],
+  props: ['gameid'],
   created: function() {
-    if(this.game in games) {
-      this.title = games[this.game].name;
-      this.desc = games[this.game].desc;
-      this.theme = games[this.game].theme;
+    if(this.gameid in games) {
+      this.title = games[this.gameid].name;
+      this.desc = games[this.gameid].desc;
+      this.theme = games[this.gameid].theme;
     }
     else {
       console.log('whoopsie there. Nope !');
@@ -62,12 +62,12 @@ export default {
   },
   methods: {
     goToLevel: function () {
-      if (!this.$store.state[this.game].doneTutorial) {
+      if (!this.$store.state[this.gameid].doneTutorial) {
         this.visibility.tutorialDialog = true;
       }
       else {
         this.$router.push({
-          name: this.game,
+          name: this.gameid,
           params: {
             levelid: '1'
           }
@@ -76,12 +76,12 @@ export default {
     },
     rejectTutorial: function () {
       // Won't bother the user again
-      this.$store.commit('tutorialDone', this.game);
-      console.log(this.game);
+      this.$store.commit('tutorialDone', this.gameid);
+      console.log(this.gameid);
       this.$router.push({
         name: 'levelintro',
         params: {
-          game: this.game,
+          gameid: this.gameid,
           levelid: '1'
         }
       });

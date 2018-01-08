@@ -37,8 +37,8 @@ export default new Vuex.Store({
     changeGame: function(state, currentGame) {
       state.currentGame = currentGame;
     },
-    tutorialDone: function(state, game) {
-      state[game].tutorialDone = true;
+    tutorialDone: function(state, gameid) {
+      state[gameid].tutorialDone = true;
     }
   }
 });

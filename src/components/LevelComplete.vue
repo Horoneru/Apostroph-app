@@ -5,7 +5,7 @@
       <p v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé.</p>
       <div v-else>
       <p>Tutoriel terminé ! </p>
-      <router-link tag="a" :to="{ name: 'levelintro', params: { game, levelid: '1' } }">
+      <router-link tag="a" :to="{ name: 'levelintro', params: { gameid, levelid: '1' } }">
         <el-button type="primary">Continuer au niveau 1</el-button>
       </router-link>
       </div>
@@ -17,14 +17,14 @@
 <script>
   export default {
     name: 'LevelComplete',
-    props: ['game', 'levelid'],
+    props: ['gameid', 'levelid'],
     data() {
       return {
       };
     },
     created: function() {
       if(this.levelid === 'tutorial') {
-        this.$store.commit('tutorialDone', this.game);
+        this.$store.commit('tutorialDone', this.gameid);
       }
     }
   };
