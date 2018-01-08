@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     themeClasses: function() {
-      return 'h-100 gradient-' + this.theme;
+      return 'gradient-' + this.theme;
     }
   },
   methods: {
