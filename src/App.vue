@@ -115,12 +115,12 @@ hr {
   background: linear-gradient(0, var(--primary-color-inverse), var(--primary-color-inverse-accent));
 }
 
-.gradient-cryptography-nav {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
+.gradient-accent-color-nav {
+  background: linear-gradient(180deg,  rgba(255, 255, 255, 0.25), rgb(121, 191, 227));
 }
 
-.gradient-programming-nav {
-  background: linear-gradient(180deg,  rgba(255, 255, 255, 0.25), rgb(121, 191, 227));
+.gradient-color-inverse-nav {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
 }
 
 .fade-enter-active, .fade-leave-active {

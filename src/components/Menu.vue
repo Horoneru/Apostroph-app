@@ -7,13 +7,13 @@
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around" >
       <router-link tag="a" :to="{ name: 'gameintro', params: { game: 'cryptography' } }">
-        <el-row class="flex-column p-4 m-x-3 bordered-menu gradient-cryptography-nav" type="flex" justify="center" align="middle">
+        <el-row class="flex-column p-4 m-x-3 bordered-menu gradient-color-inverse-nav" type="flex" justify="center" align="middle">
           <img class="game-icon" src="/../static/assets/icon-chiffr.png">
           <el-button type="text">Cryptographie</el-button>
         </el-row>
       </router-link>
       <router-link tag="a" :to="{ name: 'gameintro', params: { game: 'programming' } }">
-        <el-row class="flex-column p-4 m-x-3 bordered-menu gradient-programming-nav" type="flex" justify="center" align="middle">
+        <el-row class="flex-column p-4 m-x-3 bordered-menu gradient-accent-color-nav" type="flex" justify="center" align="middle">
           <img class="game-icon" src="/../static/assets/icon-prog.png">
           <el-button type="text">Programmation</el-button>
         </el-row>
