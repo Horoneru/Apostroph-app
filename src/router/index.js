@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Home from '@/components/Home';
 import Menu from '@/components/Menu';
 import GameIntro from '@/components/GameIntro';
+import LevelSelect from '@/components/LevelSelect';
 import Cryptography from '@/components/games/cryptography/main';
 import Programming from '@/components/games/programming/main';
 import LevelIntro from '@/components/LevelIntro';
@@ -30,6 +31,12 @@ export default new Router({
       path: '/intro/:gameid',
       name: 'gameintro',
       component: GameIntro,
+      props: true
+    },
+    {
+      path: '/:gameid/levels',
+      name: 'levelselect',
+      component: LevelSelect,
       props: true
     },
     {
