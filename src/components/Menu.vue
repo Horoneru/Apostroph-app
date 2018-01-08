@@ -7,11 +7,11 @@
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around" >
       <nav-button text="Cryptographie" :to="{ name: 'gameintro', params: { game: 'cryptography' } }"
-      classes="gradient-cryptography-nav" icon="/../static/assets/icon-chiffr.png">
+      classes="gradient-color-inverse-nav" icon="/../static/assets/icon-chiffr.png">
       </nav-button>
       <nav-button
       text="Programmation" :to="{ name: 'gameintro', params: { game: 'programming' } }"
-      classes="gradient-programming-nav" icon="/../static/assets/icon-prog.png">
+      classes="gradient-accent-color-nav" icon="/../static/assets/icon-prog.png">
       </nav-button>
     </el-row>
   </el-row>
