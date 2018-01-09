@@ -1,11 +1,9 @@
 <template>
-  <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
     <div class="burgerMenu">
       <hr>
       <hr>
       <hr>
     </div>
-    <el-row>
   <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
     <div slot="playground">
       <isotope :list="tab" :options="options" ref="isotope" class="p-5" v-images-loaded:on.progress="redrawLayout">
@@ -179,5 +177,5 @@ export default {
     height : 6px ; 
     margin-bottom: 10px;
   }
-  
+
 </style>
