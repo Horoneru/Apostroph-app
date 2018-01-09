@@ -116,7 +116,7 @@ hr {
 }
 
 .gradient-accent-color-nav {
-  background: linear-gradient(180deg,  rgba(255, 255, 255, 0.25), rgb(121, 191, 227));
+  background: linear-gradient(180deg,  rgba(255, 255, 255, 0.25), rgb(68, 177, 233));
 }
 
 .gradient-color-inverse-nav {
