@@ -1,15 +1,15 @@
 <template>
   <el-row class="h-100 w-100" type="flex" justify="center" align="middle">
     <div>
-      <h1>Amazing ! </h1>
-      <p v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé.</p>
-      <div v-else>
-      <p>Tutoriel terminé ! </p>
-      <router-link tag="a" :to="{ name: 'levelintro', params: { game, levelid: '1' } }">
-        <el-button type="primary">Continuer au niveau 1</el-button>
-      </router-link>
-      </div>
+      <h1 v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé.</h1>
+      <h1 v-else>Tutoriel terminé ! </h1>
+      <hr>
       <small v-if="levelid === '1'">Preview terminée aussi</small>
+      <div class="btnLvlComplete">
+         <el-button type="text"><img src="../../static/assets/artiste.png"></el-button>
+         <el-button type="text"><img src="../../static/assets/home.png"></el-button>
+         <el-button type="text"><img src="../../static/assets/suite.png"></el-button>
+      </div>
     </div>
   </el-row>
 </template>
@@ -33,5 +33,19 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+hr {
+  width : 40% ; 
+  margin : auto ;
+  margin-top : 20px ;
+}
+
+.btnLvlComplete {
+  margin-top : 30px ; 
+}
+
+.btnLvlComplete img{
+  width : 75px ; 
+  height :  auto ; 
+}
 
 </style>
