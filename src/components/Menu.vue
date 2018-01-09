@@ -63,14 +63,16 @@
 
   .burgerMenu {
     position: absolute ; 
-    top : 10px ;
-    left : 10px ; 
+    top : 15px ;
+    left : 25px ; 
+    width : 125px ; 
+    height : auto ; 
   }
 
-  .burgerMenu img{
-    width : 72px ; 
-    height : 14px ; 
-    margin-bottom : 10px ;
+  .burgerMenu hr{
+    width : 50px ; 
+    height : 6px ; 
+    margin-bottom: 10px;
   }
 
 </style>
