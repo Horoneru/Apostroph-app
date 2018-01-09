@@ -33,7 +33,8 @@ export default {
         },
         {
           element: 'playgroundStage',
-          text: 'Voici un exemple d\'une oeuvre.<br>Souviens toi de sa disposition car elle sera chiffrée à la prochaine étape !'
+          text: 'Voici un exemple d\'une oeuvre.<br>' +
+          'Souviens toi de sa disposition car elle sera chiffrée à la prochaine étape !'
         },
         {
           element: 'playgroundStage',
