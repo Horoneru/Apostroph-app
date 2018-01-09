@@ -1,5 +1,10 @@
 <template>
   <el-row class="h-100 w-100" type="flex" justify="center" align="middle">
+    <div class="burgerMenu">
+      <hr>
+      <hr>
+      <hr>
+    </div>
     <div>
       <h1 v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé.</h1>
       <h1 v-else>Tutoriel terminé ! </h1>
@@ -47,5 +52,22 @@ hr {
   width : 75px ; 
   height :  auto ; 
 }
+
+ /*Burger Menu */
+
+  .burgerMenu {
+    position: absolute ; 
+    top : 15px ;
+    left : 25px ; 
+    width : 125px ; 
+    height : auto ; 
+  }
+
+  .burgerMenu hr{
+    width : 50px ; 
+    height : 6px ; 
+    margin-bottom: 10px;
+  }
+
 
 </style>
