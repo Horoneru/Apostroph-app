@@ -19,11 +19,11 @@ export default new Vuex.Store({
     currentGame: null,
     cryptography: {
       currentLevel: null,
-      doneTutorial: false
+      tutorialDone: false,
     },
     programming: {
       currentLevel: null,
-      doneTutorial: false
+      tutorialDone: false,
     }
   },
   getters: {
