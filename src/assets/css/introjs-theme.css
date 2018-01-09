@@ -44,6 +44,22 @@
     bottom: 20px;
 }
 
+.introjs-arrow.left {
+  float : left ; 
+}
+
+.introjs-nextbutton {
+  float : right ; 
+}
+
+.introjs-tooltiptext {
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+}
+
+.introjs-skipbutton {
+  display : none ; 
+}
+
 .introjs-arrow.left, .introjs-arrow.left-bottom {
   left: -20px;
   border-color: rgba(000, 0, 0, 0.5) transparent transparent transparent;
@@ -56,4 +72,8 @@
 .introjs-button {
   font-size: 14px;
   border: 1px RGBA(255, 255, 255, 0.5) solid;
+}
+
+.introjs-tooltip {
+  padding : 20px ; 
 }
