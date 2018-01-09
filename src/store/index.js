@@ -20,10 +20,12 @@ export default new Vuex.Store({
     cryptography: {
       currentLevel: null,
       tutorialDone: false,
+      introDone: false
     },
     programming: {
       currentLevel: null,
       tutorialDone: false,
+      introDone: false
     }
   },
   getters: {
@@ -39,6 +41,9 @@ export default new Vuex.Store({
     },
     tutorialDone: function(state, gameid) {
       state[gameid].tutorialDone = true;
+    },
+    introDone: function(state, gameid) {
+      state[gameid].introDone = true;
     }
   }
 });
