@@ -3,8 +3,10 @@ const games = {
   programming: {
     name: 'Programmation',
     theme: 'accent-color',
-    desc: 'Qu\'est-ce que la <em>programmation</em> ?<br/>' +
-          'C\'est ce que nous allons voir avec ce jeu ! '
+    desc: 'La programmation, c’est quoi ?<br>' +
+    'C’est simplement ce qui permet l’écriture de sites internets, de logiciel, comme le jeu auquel tu joues actuellement par exemple !<br>' +
+    'Ici, on va se pencher sur le fonctionnement basique de l’algorithme, rien de bien compliqué tu verras !<br>' +
+    'C’est parti !'
   },
   cryptography: {
     name: 'Cryptographie',
