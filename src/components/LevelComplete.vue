@@ -67,6 +67,7 @@ hr {
     width : 50px ; 
     height : 6px ; 
     margin-bottom: 10px;
+    margin-top: 10px;
   }
 
 
