@@ -1,10 +1,10 @@
 <template>
-    <div class="burgerMenu">
+  <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
+     <div class="burgerMenu">
       <hr>
       <hr>
       <hr>
     </div>
-  <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
     <div slot="playground">
       <isotope :list="tab" :options="options" ref="isotope" class="p-5" v-images-loaded:on.progress="redrawLayout">
         <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
