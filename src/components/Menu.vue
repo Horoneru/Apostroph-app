@@ -13,8 +13,6 @@
         </el-row>
       </router-link>
       <router-link tag="a" :to="{ name: 'gameintro', params: { game: 'programming' } }">
-        <el-row class="flex-column p-4 m-x-3 bordered-menu" type="flex" justify="center" align="middle"
-        style="background: linear-gradient(180deg,  rgba(255, 255, 255, 0.25), rgb(92, 177, 221));">
         <el-row class="flex-column p-4 m-x-3 bordered-menu gradient-accent-color-nav" type="flex" justify="center" align="middle">
           <img class="game-icon" src="/../static/assets/icon-prog.png">
           <el-button type="text">Programmation</el-button>
