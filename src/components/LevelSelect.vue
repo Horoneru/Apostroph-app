@@ -7,11 +7,11 @@
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around">
       <!-- Assume there is always a tutorial and make it always the first entry -->
-      <nav-button text="Tutoriel" :to="{ name: gameid, params: { levelid: 'tutorial' } }"
+      <nav-button text="Tutoriel" :to="{ name: 'levelintro', params: { gameid, levelid: 'tutorial' } }"
       :classes="[gameNavTheme, 'level-nav']" :icon="game.levels.tutorial.icon">
       </nav-button>
       <nav-button v-for="(level, levelId) in game.levels" v-if="levelId != 'tutorial'"
-      :key="levelId" :text="level.name" :to="{ name: gameid, params: { levelid: levelId } }"
+      :key="levelId" :text="level.name" :to="{ name: 'levelintro', params: { gameid, levelid: levelId } }"
       :classes="gameNavTheme" :icon="level.icon">
       </nav-button>
     </el-row>
