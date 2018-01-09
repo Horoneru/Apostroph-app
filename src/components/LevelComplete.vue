@@ -58,7 +58,7 @@ hr {
   .burgerMenu {
     position: absolute ; 
     top : 15px ;
-    left : 25px ; 
+    left: -10px;
     width : 125px ; 
     height : auto ; 
   }
