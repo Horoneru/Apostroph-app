@@ -3,7 +3,7 @@
     <div slot="rightContent">
       <p v-html="desc"></p>
       <h2 :class="[{ 'o-1': visibility.touchToContinue, 'o-0': !visibility.touchToContinue}, 'fade-enter-active', 'animated pulse']"
-      @click="goToLevel"
+      @click="goToLevelSelect"
               style="animation-iteration-count: infinite;">
                 Touchez pour continuer
           </h2>
@@ -50,11 +50,12 @@ export default {
     }
   },
   methods: {
-    goToLevel: function () {
+    goToLevelSelect: function () {
+      this.$store.commit('introDone', this.gameid);
       this.$router.push({
-        name: this.gameid,
+        name: 'levelselect',
         params: {
-          levelid: '1'
+          gameid: this.gameid
         }
       });
     }
