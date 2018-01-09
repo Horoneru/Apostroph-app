@@ -1,5 +1,10 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
+    <div class="burgerMenu">
+      <hr>
+      <hr>
+      <hr>
+    </div>
     <el-row>
       <img src="../../static/assets/logo.png" />
     </el-row>
@@ -52,6 +57,20 @@
 
   .menu-container {
     width: 40%;
+  }
+
+  /*Burger Menu */
+
+  .burgerMenu {
+    position: absolute ; 
+    top : 10px ;
+    left : 10px ; 
+  }
+
+  .burgerMenu img{
+    width : 72px ; 
+    height : 14px ; 
+    margin-bottom : 10px ;
   }
 
 </style>
