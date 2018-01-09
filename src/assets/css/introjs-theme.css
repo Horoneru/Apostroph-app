@@ -84,5 +84,18 @@
 }
 
 .introjs-tooltip {
-  padding : 20px ; 
+  padding: 20px;
+}
+
+.introjs-helperNumberLayer {
+  background: transparent;
+}
+
+.introjs-bullets ul li a {
+  background: #6d828a;
+  width: 16px;
+}
+
+.introjs-bullets ul li a.active {
+  background: white;
 }
