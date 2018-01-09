@@ -1,5 +1,10 @@
 <template>
   <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
+     <div class="burgerMenu">
+      <hr>
+      <hr>
+      <hr>
+    </div>
     <div slot="playground">
       <isotope :list="tab" :options="options" ref="isotope" class="p-5" v-images-loaded:on.progress="redrawLayout">
         <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
@@ -156,5 +161,21 @@ export default {
   width: 100px;
   height: 100px;
 }
+
+/*Burger Menu */
+
+  .burgerMenu {
+    position: absolute ; 
+    top : 15px ;
+    left : 25px ; 
+    width : 125px ; 
+    height : auto ; 
+  }
+
+  .burgerMenu hr{
+    width : 50px ; 
+    height : 6px ; 
+    margin-bottom: 10px;
+  }
 
 </style>
