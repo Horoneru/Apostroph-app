@@ -46,18 +46,30 @@
 
 .introjs-prevbutton {
   float : left ; 
+  font-size: 20px;
 }
 
 .introjs-nextbutton {
   float : right ; 
+  font-size: 20px;
 }
 
 .introjs-tooltiptext {
   font-family: 'Raleway', Helvetica, Arial, sans-serif;
 }
 
-.introjs-skipbutton {
+.introjs-skipbutton:not(.introjs-donebutton) {
   display : none ; 
+}
+
+.introjs-donebutton {
+  float : right ; 
+  margin-right: 15px;
+  font-size : 15px ;
+}
+
+.introjs-disabled {
+  display : none ;
 }
 
 .introjs-arrow.left, .introjs-arrow.left-bottom {
