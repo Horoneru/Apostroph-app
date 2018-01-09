@@ -6,11 +6,11 @@
     <h2 class="subtitle">Choisissez un mini jeu</h2>
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around" >
-      <nav-button text="Cryptographie" :to="{ name: 'gameintro', params: { gameid: 'cryptography' } }"
+      <nav-button text="Cryptographie" :to="getRoute('cryptography')"
       classes="gradient-color-inverse-nav" icon="/../static/assets/icon-chiffr.png">
       </nav-button>
       <nav-button
-      text="Programmation" :to="{ name: 'gameintro', params: { gameid: 'programming' } }"
+      text="Programmation" :to="getRoute('programming')"
       classes="gradient-accent-color-nav" icon="/../static/assets/icon-prog.png">
       </nav-button>
     </el-row>
@@ -23,6 +23,32 @@ export default {
   components: {
     NavButton
   },
-  name: 'Menu'
+  name: 'Menu',
+  computed: {
+    cryptographyRoute: function() {
+      return this.getRoute(this.gameid);
+    },
+
+    programmingRoute: function() {
+      return this.getRoute(this.gameid);
+    }
+  },
+  methods: {
+    getRoute: function(gameid) {
+      let route = {
+        params: {
+          gameid
+        }
+      };
+      if(this.$store.state[gameid].introDone) {
+        route.name = 'levelselect';
+      }
+      else {
+        route.name = 'gameintro';
+      }
+
+      return route;
+    }
+  }
 };
 </script>
