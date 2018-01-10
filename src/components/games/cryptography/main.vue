@@ -127,6 +127,9 @@ export default {
     },
     checkArray: function() {
       if(this.tab.every((value, index) => value.id === index)) {
+        if(this.tutorialMode) {
+          this.$store.commit('tutorialDone', 'cryptography');
+        }
         setTimeout(() => {
           this.$router.push({ name: 'levelcomplete', params: { game: 'cryptography', level: this.levelid } });
         }, 500);
