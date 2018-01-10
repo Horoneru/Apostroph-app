@@ -6,6 +6,8 @@
     <h2 class="subtitle">Choisissez un niveau</h2>
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around">
+      <!-- Use template to avoid rendering a real tag. -->
+      <!-- Because there's only a difference in wrapper -->
       <!-- Assume there is always a tutorial and make it always the first entry -->
       <template v-if="!this.$store.state[this.gameid].tutorialDone">
       <el-badge is-dot>
