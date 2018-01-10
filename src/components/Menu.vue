@@ -1,5 +1,6 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
+    <el-button type="text" class="apropos-btn"><img src="../../static/assets/a-propos.png"></el-button>
     <div class="burgerMenu">
       <hr>
       <hr>
@@ -73,6 +74,15 @@
     width : 50px ; 
     height : 6px ; 
     margin-bottom: 10px;
+  }
+  
+/* Btn a propos */
+  .apropos-btn {
+    position: absolute; 
+    right: 15px;
+    top: 10px;
+    width: 50px;
+    height: auto; 
   }
 
 </style>
