@@ -116,16 +116,39 @@ hr {
 }
 
 .gradient-accent-color-nav {
-  background: linear-gradient(180deg,  rgba(255, 255, 255, 0.25), rgb(121, 191, 227));
+  background: linear-gradient(180deg,  rgba(255, 255, 255, 0.25), rgb(68, 177, 233));
 }
 
 .gradient-color-inverse-nav {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
 }
 
-.menu-container {
-  width: 40%;
-  flex-wrap: wrap;
+.back-button {
+  position: absolute;
+  margin: auto !important;
+  top: 25px;
+  left: 15px;
+  width: 50px;
+  height: 30px;
+  font-size: 32px !important;
+  color: white;
+  text-decoration: none;
+}
+
+.info-button {
+  position: absolute;
+  margin: auto !important;
+  right: 15px;
+  top: 27px;
+  width: 50px;
+  font-size: 28px !important;
+  color: white;
+  font-weight: bold;
+  border: 3px solid rgb(240, 240, 240) !important;
+  border-radius: 25px;
+  height: 50px;
+  padding-top: 10px;
+  text-decoration: none;
 }
 
 .fade-enter-active, .fade-leave-active {

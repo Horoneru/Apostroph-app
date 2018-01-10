@@ -44,6 +44,31 @@
     bottom: 20px;
 }
 
+.introjs-prevbutton {
+  float: left ;
+}
+
+.introjs-nextbutton {
+  float: right ;
+}
+
+.introjs-tooltiptext {
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+}
+
+.introjs-skipbutton:not(.introjs-donebutton) {
+  display: none ;
+}
+
+.introjs-donebutton {
+  float: right;
+  font-size: 15px;
+}
+
+.introjs-disabled {
+  display: none ;
+}
+
 .introjs-arrow.left, .introjs-arrow.left-bottom {
   left: -20px;
   border-color: rgba(000, 0, 0, 0.5) transparent transparent transparent;
@@ -54,6 +79,23 @@
 }
 
 .introjs-button {
-  font-size: 14px;
+  font-size: 19px;
   border: 1px RGBA(255, 255, 255, 0.5) solid;
+}
+
+.introjs-tooltip {
+  padding: 20px;
+}
+
+.introjs-helperNumberLayer {
+  background: transparent;
+}
+
+.introjs-bullets ul li a {
+  background: #6d828a;
+  width: 16px;
+}
+
+.introjs-bullets ul li a.active {
+  background: white;
 }
