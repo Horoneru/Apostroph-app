@@ -123,18 +123,32 @@ hr {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
 }
 
-.burger-menu {
+.back-button {
   position: absolute;
-  top: 15px;
-  left: 25px;
-  width: 125px;
-  height: auto;
+  margin: auto !important;
+  top: 25px;
+  left: 15px;
+  width: 50px;
+  height: 30px;
+  font-size: 32px !important;
+  color: white;
+  text-decoration: none;
 }
 
-.burger-menu hr{
+.info-button {
+  position: absolute;
+  margin: auto !important;
+  right: 15px;
+  top: 27px;
   width: 50px;
-  height: 6px;
-  margin-bottom: 10px;
+  font-size: 28px !important;
+  color: white;
+  font-weight: bold;
+  border: 3px solid rgb(240, 240, 240) !important;
+  border-radius: 25px;
+  height: 50px;
+  padding-top: 10px;
+  text-decoration: none;
 }
 
 .fade-enter-active, .fade-leave-active {
