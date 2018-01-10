@@ -1,12 +1,16 @@
 <template>
   <double-pane-layout title="Apostroph" leftImage="../../static/assets/logo-accent-color.png" contentClasses="gradient-primary-color">
-    <p slot="rightContent">
-      Pariatur hic corrupti alias iure ab. Doloribus quaerat sed non sed dolore quia harum. Officiis velit fugit ut qui expedita fugiat hic. Magnam harum sequi aut et et a. Eum dicta ut voluptas deleniti sit quos.
-
-      Ut voluptas non accusantium consequuntur. Qui debitis cupiditate ut reiciendis vitae dolor autem nostrum. Et omnis et placeat vel. Ea dolor illum id deleniti aut aut alias.
-
-      Repellendus ut et sed rerum vero voluptatem sequi. Qui aut ullam fuga aut consectetur eos voluptatem. Voluptas voluptas eveniet pariatur incidunt quod excepturi qui.
-    </p>
+    <div slot="rightContent">
+      <h2>Notre équipe</h2>
+      <ul>
+        <li>Quentin « <pre style="display:inline">Horoneru</pre> » Delpy <br><small><em>Développeur Full-Stack</em></small></li>
+        <li>Thomas « <pre style="display:inline">el-macron</pre> »  Wils <br><small><em>Web-Designer / Graphiste</em></small></li>
+        <li>Nicolaï « <pre style="display:inline">Nikiloma</pre> » Magniadas <br><small><em>Web-Designer</em></small></li>
+        <li>Anthony « <pre style="display:inline">Sratuke</pre> » Buisson <br><small><em>Chargé de communication</em></small></li>
+      </ul>
+      <h2>À propos</h2>
+      <p>L’agence a été créée pour la création d’une application pour la Fête du Code.</p>
+    </div>
   </double-pane-layout>
 </template>
 
