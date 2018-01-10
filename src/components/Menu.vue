@@ -1,11 +1,7 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
-    <el-button type="text" class="apropos-btn"><img src="../../static/assets/a-propos.png"></el-button>
-    <div class="burger-menu">
-      <hr>
-      <hr>
-      <hr>
-    </div>
+    <el-button type="text" class="info-button">i</el-button>
+    <el-button icon="el-icon-back" class="back-button" type="text"></el-button>
     <el-row>
       <img src="../../static/assets/logo.png" />
     </el-row>
@@ -59,13 +55,4 @@
   .menu-container {
     width: 40%;
   }
-
-  .apropos-btn {
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    width: 50px;
-    height: auto;
-  }
-
 </style>

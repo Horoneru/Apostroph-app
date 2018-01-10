@@ -1,10 +1,6 @@
 <template>
   <el-row class="h-100 w-100" type="flex" justify="center" align="middle">
-    <div class="burger-menu">
-      <hr>
-      <hr>
-      <hr>
-    </div>
+    <el-button type="text" icon="el-icon-back"></el-button>
     <div>
       <h1 v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé</h1>
       <h1 v-else>Tutoriel terminé ! </h1>

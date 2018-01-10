@@ -1,22 +1,14 @@
 <template>
   <div>
-      <div class="burger-menu">
-      <hr>
-      <hr>
-      <hr>
-    </div>
-  <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
-     <div class="burger-menu">
-      <hr>
-      <hr>
-      <hr>
-    </div>
-    <div slot="playground">
-      <isotope :list="tab" :options="options" ref="isotope" class="p-5" v-images-loaded:on.progress="redrawLayout">
-        <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
-      </isotope>
-    </div>
-  </game-view>
+    <router-link style :to="{ name: 'menu'}" class="el-icon-back back-button">
+    </router-link>
+    <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
+      <div slot="playground">
+        <isotope :list="tab" :options="options" ref="isotope" class="p-5" v-images-loaded:on.progress="redrawLayout">
+          <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
+        </isotope>
+      </div>
+    </game-view>
   </div>
 </template>
 
