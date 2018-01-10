@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link style :to="{ name: 'menu'}" class="el-icon-back back-button">
+    <router-link style :to="{ name: 'levelselect', params: { gameid: 'cryptography' }}" class="el-icon-back back-button">
     </router-link>
     <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
       <div slot="playground">
