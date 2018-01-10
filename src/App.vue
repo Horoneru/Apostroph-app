@@ -123,6 +123,20 @@ hr {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
 }
 
+.burger-menu {
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  width: 125px;
+  height: auto;
+}
+
+.burger-menu hr{
+  width: 50px;
+  height: 6px;
+  margin-bottom: 10px;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .25s
 }

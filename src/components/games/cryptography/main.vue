@@ -1,6 +1,12 @@
 <template>
+  <div>
+      <div class="burger-menu">
+      <hr>
+      <hr>
+      <hr>
+    </div>
   <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
-     <div class="burgerMenu">
+     <div class="burger-menu">
       <hr>
       <hr>
       <hr>
@@ -11,6 +17,7 @@
       </isotope>
     </div>
   </game-view>
+  </div>
 </template>
 
 <script>
@@ -161,21 +168,4 @@ export default {
   width: 100px;
   height: 100px;
 }
-
-/*Burger Menu */
-
-  .burgerMenu {
-    position: absolute ; 
-    top : 15px ;
-    left : 25px ; 
-    width : 125px ; 
-    height : auto ; 
-  }
-
-  .burgerMenu hr{
-    width : 50px ; 
-    height : 6px ; 
-    margin-bottom: 10px;
-  }
-
 </style>

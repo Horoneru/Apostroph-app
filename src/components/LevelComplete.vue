@@ -1,6 +1,6 @@
 <template>
   <el-row class="h-100 w-100" type="flex" justify="center" align="middle">
-    <div class="burgerMenu">
+    <div class="burger-menu">
       <hr>
       <hr>
       <hr>

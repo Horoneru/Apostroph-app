@@ -1,7 +1,11 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
+<<<<<<< HEAD
     <el-button type="text" class="apropos-btn"><img src="../../static/assets/a-propos.png"></el-button>
     <div class="burgerMenu">
+=======
+    <div class="burger-menu">
+>>>>>>> Corrige le burger menu
       <hr>
       <hr>
       <hr>
@@ -59,6 +63,7 @@
   .menu-container {
     width: 40%;
   }
+<<<<<<< HEAD
 
   /*Burger Menu */
 
@@ -85,4 +90,6 @@
     height: auto; 
   }
 
+=======
+>>>>>>> Corrige le burger menu
 </style>
