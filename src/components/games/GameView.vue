@@ -1,5 +1,5 @@
 <template>
-    <el-row class="h-100 w-100 mt-3" type="flex" justify="center" ref="gameContainer" align="middle">
+    <el-row class="h-100 w-100 mt-2" type="flex" justify="center" ref="gameContainer" align="middle">
         <el-col class="h-100">
           <h2>{{ artwork }} - {{ artist }}</h2>
           <div id="playground-stage" ref="playgroundStage" class="w-75">

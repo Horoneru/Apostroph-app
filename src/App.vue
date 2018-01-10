@@ -157,4 +157,8 @@ hr {
 .fade-enter, .fade-leave-to {
   opacity: 0
 }
+
+.menu-container {
+    width: 40%;
+}
 </style>
