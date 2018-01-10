@@ -1,5 +1,5 @@
 <template>
-    <el-row class="h-100 w-100" type="flex" justify="center" ref="gameContainer" align="middle">
+    <el-row class="h-100 w-100 mt-3" type="flex" justify="center" ref="gameContainer" align="middle">
         <el-col class="h-100">
           <h2>{{ artwork }} - {{ artist }}</h2>
           <div id="playground-stage" ref="playgroundStage" class="w-75">
@@ -79,7 +79,6 @@ export default {
     padding-top: 1%;
     margin-top: 4%;
     margin-left: 10%;
-    margin-bottom: 10%;
     border-radius: 10px;
   }
 
