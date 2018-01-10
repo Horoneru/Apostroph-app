@@ -18,14 +18,14 @@
 <script>
   export default {
     name: 'LevelComplete',
-    props: ['game', 'levelid'],
+    props: ['gameid', 'levelid'],
     data() {
       return {
       };
     },
     created: function() {
       if(this.levelid === 'tutorial') {
-        this.$store.commit('tutorialDone', this.game);
+        this.$store.commit('tutorialDone', this.gameid);
       }
     }
   };

@@ -19,11 +19,13 @@ export default new Vuex.Store({
     currentGame: null,
     cryptography: {
       currentLevel: null,
-      doneTutorial: false
+      tutorialDone: false,
+      introDone: false
     },
     programming: {
       currentLevel: null,
-      doneTutorial: false
+      tutorialDone: false,
+      introDone: false
     }
   },
   getters: {
@@ -37,8 +39,11 @@ export default new Vuex.Store({
     changeGame: function(state, currentGame) {
       state.currentGame = currentGame;
     },
-    tutorialDone: function(state, game) {
-      state[game].tutorialDone = true;
+    tutorialDone: function(state, gameid) {
+      state[gameid].tutorialDone = true;
+    },
+    introDone: function(state, gameid) {
+      state[gameid].introDone = true;
     }
   }
 });

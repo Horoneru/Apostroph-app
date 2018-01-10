@@ -91,7 +91,10 @@ export default {
       console.log('Launch tutorial');
     }
     else {
-      this.arrayInit();
+      // Delay the init so the user can see the original piece beforehand
+      setTimeout(() => {
+        this.arrayInit();
+      }, 2000);
     }
   },
   mounted: function() {
@@ -104,8 +107,10 @@ export default {
       this.arrangeArray(newArray);
     },
     popBack: function() {
-      let newArray = utils.popBack(this.tab);
-      this.arrangeArray(newArray);
+      if(this.setupInit) {
+        let newArray = utils.popBack(this.tab);
+        this.arrangeArray(newArray);
+      }
     },
     arrayInit: function() {
       if(!this.setupInit) {
@@ -130,8 +135,11 @@ export default {
     },
     checkArray: function() {
       if(this.tab.every((value, index) => value.id === index)) {
+        if(this.tutorialMode) {
+          this.$store.commit('tutorialDone', 'cryptography');
+        }
         setTimeout(() => {
-          this.$router.push({ name: 'levelcomplete', params: { game: 'cryptography', level: this.levelid } });
+          this.$router.push({ name: 'levelcomplete', params: { gameid: 'cryptography', level: this.levelid } });
         }, 500);
       }
     },

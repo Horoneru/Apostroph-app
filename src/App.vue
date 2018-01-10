@@ -17,14 +17,14 @@ export default {
   watch: {
     '$route' (to, from) {
       // TODO Handle the possibility of directly going to the game
-      if (to.params.game) {
+      if (to.params.gameid) {
         // Avoid sudden gradient changes.
         // Do it after the game intro route set it's own theme
         setTimeout(() => {
-          this.$store.commit('changeGame', to.params.game);
+          this.$store.commit('changeGame', to.params.gameid);
         }, 500);
       }
-      else if(!to.path.includes('game')) {
+      else if(!to.path.includes('game') && !to.path.includes('about')) {
         this.$store.commit('changeGame', null);
       }
     }

@@ -4,13 +4,17 @@ import Router from 'vue-router';
 import Home from '@/components/Home';
 import Menu from '@/components/Menu';
 import GameIntro from '@/components/GameIntro';
+import LevelSelect from '@/components/LevelSelect';
 import Cryptography from '@/components/games/cryptography/main';
 import Programming from '@/components/games/programming/main';
 import LevelIntro from '@/components/LevelIntro';
 import LevelComplete from '@/components/LevelComplete';
+import AboutArtist from '@/components/AboutArtist';
+import AboutApp from '@/components/AboutApp';
 
 Vue.use(Router);
 
+// TODO make the routes more consistent. The most important prefix should be the game
 export default new Router({
   routes: [
     {
@@ -24,9 +28,15 @@ export default new Router({
       component: Menu
     },
     {
-      path: '/intro/:game',
+      path: '/intro/:gameid',
       name: 'gameintro',
       component: GameIntro,
+      props: true
+    },
+    {
+      path: '/:gameid/levels',
+      name: 'levelselect',
+      component: LevelSelect,
       props: true
     },
     {
@@ -36,21 +46,32 @@ export default new Router({
       props: true
     },
     {
-      path: '/game/programming/:levelid',
+      path: '/gameid/programming/:levelid',
       name: 'programming',
       component: Programming,
       props: true
     },
     {
-      path: '/intro/:game/:levelid',
+      path: '/intro/:gameid/:levelid',
       name: 'levelintro',
       component: LevelIntro,
       props: true
     },
     {
-      path: '/game/:game/:levelid/complete',
+      path: '/game/:gameid/:levelid/complete',
       name: 'levelcomplete',
       component: LevelComplete,
+      props: true
+    },
+    {
+      path: '/about/app',
+      name: 'aboutapp',
+      component: AboutApp
+    },
+    {
+      path: '/about/:artistId',
+      name: 'aboutartist',
+      component: AboutArtist,
       props: true
     }
   ]

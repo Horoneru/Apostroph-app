@@ -12,6 +12,7 @@ const games = {
     desc: 'La cryptographie, c’est quoi ?<br> Rien de très compliqué ! Cela consiste simplement au remplacement de caractères, de formes, par d’autres.<br> Grâce à notre jeu, tu vas pouvoir apprendre rapidement le fonctionnement basique du chiffrement ! <br><em>Amuse toi !</em>',
     levels: {
       'tutorial': {
+        name: 'Tutoriel',
         permutations: {
           direction: 'right',
           count: 2
@@ -25,6 +26,7 @@ const games = {
         }
       },
       '1': {
+        name: 'Niveau 1',
         permutations: {
           direction: 'left',
           count: 1
