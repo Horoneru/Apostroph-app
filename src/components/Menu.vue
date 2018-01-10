@@ -1,5 +1,7 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
+    <el-button type="text" class="info-button">i</el-button>
+    <el-button icon="el-icon-back" class="back-button" type="text"></el-button>
     <el-row>
       <img src="../../static/assets/logo.png" />
     </el-row>
@@ -7,15 +9,13 @@
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around" >
       <router-link tag="a" :to="{ name: 'gameintro', params: { game: 'cryptography' } }">
-        <el-row class="flex-column p-4 m-x-3 bordered-menu" type="flex" justify="center" align="middle"
-        style="background: linear-gradient(0, #eb7588, #e40136b3)">
+        <el-row class="flex-column p-4 m-x-3 bordered-menu gradient-color-inverse-nav" type="flex" justify="center" align="middle">
           <img class="game-icon" src="/../static/assets/icon-chiffr.png">
           <el-button type="text">Cryptographie</el-button>
         </el-row>
       </router-link>
       <router-link tag="a" :to="{ name: 'gameintro', params: { game: 'programming' } }">
-        <el-row class="flex-column p-4 m-x-3 bordered-menu" type="flex" justify="center" align="middle"
-        style="background: linear-gradient(180deg, #0084bd67, #00efe769);">
+        <el-row class="flex-column p-4 m-x-3 bordered-menu gradient-accent-color-nav" type="flex" justify="center" align="middle">
           <img class="game-icon" src="/../static/assets/icon-prog.png">
           <el-button type="text">Programmation</el-button>
         </el-row>
@@ -34,6 +34,7 @@
 <style scoped>
   .bordered-menu {
     border: 1px white solid;
+    border-radius: 5px;
   }
 
   .game-icon {
@@ -44,6 +45,7 @@
   .el-button--text {
     font-size: 18px;
     color: white;
+    text-shadow: 0px 1px 20px rgba(0, 0, 0, 0.25);
   }
 
   a {
@@ -53,5 +55,4 @@
   .menu-container {
     width: 40%;
   }
-
 </style>

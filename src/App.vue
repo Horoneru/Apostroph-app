@@ -41,8 +41,8 @@ export default {
   --secondary-color: #1bd6a4;
   --accent-color-light: #00efe6;
   --accent-color-dark: #0085bd;
-  --primary-color-inverse: #eb7588;
-  --secondary-color-inverse: #e40136;
+  --primary-color-inverse: rgba(191, 127, 235, 0.7);
+  --primary-color-inverse-accent: rgba(57, 49, 228, 0.7);
 }
 
 body, html {
@@ -112,7 +112,43 @@ hr {
 }
 
 .gradient-color-inverse {
-  background: linear-gradient(0, var(--primary-color-inverse), var(--secondary-color-inverse));
+  background: linear-gradient(0, var(--primary-color-inverse), var(--primary-color-inverse-accent));
+}
+
+.gradient-accent-color-nav {
+  background: linear-gradient(180deg,  rgba(255, 255, 255, 0.25), rgb(68, 177, 233));
+}
+
+.gradient-color-inverse-nav {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
+}
+
+.back-button {
+  position: absolute;
+  margin: auto !important;
+  top: 25px;
+  left: 15px;
+  width: 50px;
+  height: 30px;
+  font-size: 32px !important;
+  color: white;
+  text-decoration: none;
+}
+
+.info-button {
+  position: absolute;
+  margin: auto !important;
+  right: 15px;
+  top: 27px;
+  width: 50px;
+  font-size: 28px !important;
+  color: white;
+  font-weight: bold;
+  border: 3px solid rgb(240, 240, 240) !important;
+  border-radius: 25px;
+  height: 50px;
+  padding-top: 10px;
+  text-decoration: none;
 }
 
 .fade-enter-active, .fade-leave-active {
