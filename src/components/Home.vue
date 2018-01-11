@@ -1,6 +1,6 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
-      <el-button type="text" class="info-button">i</el-button>
+  <router-link :to="{ name: 'aboutapp' }" class="info-button">i</router-link>
       <el-row>
         <img src="../../static/assets/logo.png"/>
         <h2 class="teaser">Le code tout simplement</h2>

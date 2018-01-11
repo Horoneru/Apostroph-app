@@ -1,4 +1,4 @@
-// import eventBus from './EventBus';
+import artists from './ArtistProvider';
 const games = {
   programming: {
     name: 'Programmation',
@@ -23,7 +23,7 @@ const games = {
           count: 2
         },
         artwork: '- Tutoriel',
-        artist: '',
+        artist: { name: '' },
         mixins: {
           created: (vm) => {
             vm.tutorialMode = true;
@@ -37,7 +37,7 @@ const games = {
           count: 1
         },
         artwork: 'Construction du volume des couleurs',
-        artist: 'André Lemonnier',
+        artist: artists.lemonnier,
         mixins: {
           created: function() {
           }

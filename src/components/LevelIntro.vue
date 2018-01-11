@@ -1,7 +1,7 @@
 <template>
   <double-pane-layout :leftImage="'../../static/assets/logo-' + theme + '.png'" :title="title" imageAlign="middle" :contentClasses="this.themeClasses">
     <div slot="rightContent">
-        <h2 class="half-gutter"> Niveau {{ this.levelid }}</h2>
+        <h2 class="half-gutter"> {{ this.level.name }}</h2>
         <img id="picto" :src="'../../static/assets/picto-' + gameid + '.png'">
     </div>
   </double-pane-layout>
@@ -18,6 +18,7 @@ export default {
     if(this.gameid in games) {
       this.title = games[this.gameid].name;
       this.theme = games[this.gameid].theme;
+      this.level = games[this.gameid].levels[this.levelid];
     }
     else {
       console.log('whoopsie there. Nope !');
@@ -31,7 +32,8 @@ export default {
   data () {
     return {
       title: null,
-      theme: null
+      theme: null,
+      level: null
     };
   },
   computed: {

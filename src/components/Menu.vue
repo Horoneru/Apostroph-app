@@ -1,7 +1,7 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
-    <el-button type="text" class="info-button">i</el-button>
-    <el-button icon="el-icon-back" class="back-button" type="text"></el-button>
+    <router-link style :to="{ name: 'home' }" class="el-icon-back back-button">
+    </router-link>
     <el-row>
       <img src="../../static/assets/logo.png" />
     </el-row>

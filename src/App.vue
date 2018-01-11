@@ -133,22 +133,24 @@ hr {
   font-size: 32px !important;
   color: white;
   text-decoration: none;
+  z-index: 10;
 }
 
 .info-button {
-  position: absolute;
-  margin: auto !important;
-  right: 15px;
-  top: 27px;
-  width: 50px;
-  font-size: 28px !important;
-  color: white;
-  font-weight: bold;
-  border: 3px solid rgb(240, 240, 240) !important;
-  border-radius: 25px;
-  height: 50px;
-  padding-top: 10px;
-  text-decoration: none;
+position: absolute;
+margin: auto !important;
+right: 15px;
+top: 27px;
+width: 50px;
+font-size: 32px !important;
+color: white;
+font-weight: bold;
+border: 3px solid rgb(240, 240, 240) !important;
+border-radius: 30px;
+height: 20px;
+text-decoration: none;
+z-index: 10;
+padding: 10px 0 19px 0;
 }
 
 .fade-enter-active, .fade-leave-active {

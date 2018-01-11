@@ -1,32 +1,35 @@
 <template>
   <el-row class="h-100 w-100" type="flex" justify="center" align="middle">
-    <el-button type="text" icon="el-icon-back"></el-button>
+    <router-link style :to="{ name: 'menu' }" class="el-icon-back back-button">
+    </router-link>
     <div>
       <h1 v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé</h1>
       <h1 v-else>Tutoriel terminé ! </h1>
       <hr>
       <small v-if="levelid === '1'">Preview terminée aussi</small>
       <div class="btnLvlComplete">
-         <el-button type="text"><img src="../../static/assets/artiste.png"></el-button>
-         <el-button type="text"><img src="../../static/assets/home.png"></el-button>
-         <el-button type="text"><img src="../../static/assets/suite.png"></el-button>
+        <router-link tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
+        <router-link tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>
+        <router-link tag="a" :to="{ name: 'levelintro', params: { gameid, 'levelid': '1' } }"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
       </div>
     </div>
   </el-row>
 </template>
 
 <script>
+import games from '../service/GameProvider';
   export default {
     name: 'LevelComplete',
     props: ['gameid', 'levelid'],
     data() {
       return {
+        game: null,
+        artistId: null
       };
     },
     created: function() {
-      if(this.levelid === 'tutorial') {
-        this.$store.commit('tutorialDone', this.gameid);
-      }
+      this.game = games[this.gameid];
+      this.artistId = this.game.levelid[this.levelid]
     }
   };
 </script>
@@ -35,17 +38,17 @@
 <style scoped>
 
 hr {
-  width : 40% ;
-  margin : auto ;
-  margin-top : 20px ;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
 }
 
-.btnLvlComplete {
-  margin-top : 30px ;
+.btn-lvl-complete {
+  margin-top: 30px;
 }
 
-.btnLvlComplete img{
-  width : 75px ;
-  height :  auto ;
+.btn-lvl-complete img{
+  width: 75px;
+  height:  auto;
 }
 </style>
