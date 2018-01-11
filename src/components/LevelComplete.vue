@@ -38,17 +38,17 @@ import games from '../service/GameProvider';
 <style scoped>
 
 hr {
-  width : 40% ;
-  margin : auto ;
-  margin-top : 20px ;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
 }
 
-.btnLvlComplete {
-  margin-top : 30px ;
+.btn-lvl-complete {
+  margin-top: 30px;
 }
 
-.btnLvlComplete img{
-  width : 75px ;
-  height :  auto ;
+.btn-lvl-complete img{
+  width: 75px;
+  height:  auto;
 }
 </style>
