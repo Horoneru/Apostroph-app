@@ -2225,6 +2225,10 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
+fi-ripple@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/fi-ripple/-/fi-ripple-0.1.3.tgz#c7a4a677c70d20a5e90aa03001c398c789155041"
+
 figures@^1.3.5:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-1.7.0.tgz#cbe1e3affcf1cd44b80cadfed28dc793a9701d2e"
