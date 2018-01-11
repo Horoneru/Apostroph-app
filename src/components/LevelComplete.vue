@@ -7,7 +7,7 @@
       <h1 v-else>Tutoriel terminé ! </h1>
       <hr>
       <small v-if="levelid === '1'">Preview terminée aussi</small>
-      <div class="btnLvlComplete">
+      <div class="btn-level-complete">
         <router-link tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
         <router-link tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>
         <router-link tag="a" :to="{ name: 'levelintro', params: { gameid, 'levelid': '1' } }"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
