@@ -69,7 +69,7 @@ export default new Router({
       component: AboutApp
     },
     {
-      path: '/about/:artistId',
+      path: '/about/:artistid',
       name: 'aboutartist',
       component: AboutArtist,
       props: true

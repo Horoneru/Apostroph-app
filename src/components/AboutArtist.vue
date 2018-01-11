@@ -10,7 +10,7 @@ import artists from '../service/ArtistProvider.js';
 
 export default {
   name: 'AboutArtist',
-  props: ['artistId'],
+  props: ['artistid'],
   components: { DoublePaneLayout },
   data: function() {
     return {
@@ -18,7 +18,7 @@ export default {
     };
   },
   created: function() {
-    this.artist = artists[this.artistId];
+    this.artist = artists[this.artistid];
   }
 };
 </script>
