@@ -3,24 +3,28 @@
     <router-link style :to="{ name: 'menu' }" class="el-icon-back back-button">
     </router-link>
     <div>
+      <div class="animated bounce">
       <h1 v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé</h1>
       <h1 v-else>Tutoriel terminé ! </h1>
-      <hr>
+      </div>
+      <hr class="animated flip">
       <small v-if="levelid === '1'">Preview terminée aussi</small>
-      <div class="btn-lvl-complete">
-        <router-link tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
-        <router-link tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>
-        <router-link tag="a" :to="{ name: 'levelintro', params: { gameid, 'levelid': '1' } }"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
+      <div class="btn-lvl-complete animated fadeInUpBig">
+        <router-link v-ripple tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
+        <router-link v-ripple tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>
+        <router-link v-ripple tag="a" :to="{ name: 'levelintro', params: { gameid, 'levelid': '1' } }"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
       </div>
     </div>
   </el-row>
 </template>
 
 <script>
-import games from '../service/GameProvider';
+  import games from '../service/GameProvider';
+  import Ripple from 'fi-ripple';
   export default {
     name: 'LevelComplete',
     props: ['gameid', 'levelid'],
+    directives: { Ripple },
     data() {
       return {
         game: null,
@@ -29,7 +33,7 @@ import games from '../service/GameProvider';
     },
     created: function() {
       this.game = games[this.gameid];
-      this.artistId = this.game.levelid[this.levelid]
+      this.artistId = this.game.levelid[this.levelid];
     }
   };
 </script>

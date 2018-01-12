@@ -8,7 +8,7 @@
         </el-col>
         <el-col :span="7">
           <div id="toolbar" ref="toolbar">
-            <div class="tool" v-for="tool in tools" :key="tool.icon">
+            <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon">
               <img :src="tool.icon" @click="tool.action"/>
             </div>
             <p v-if="!tools">Toolbar container</p>
@@ -21,9 +21,11 @@
 import { introJs } from 'intro.js';
 import 'intro.js/introjs.css';
 import '../../../src/assets/css/introjs-theme.css';
+import Ripple from 'fi-ripple';
 export default {
   name: 'GameView',
   props: ['tools', 'artwork', 'artist', 'tutorialMode', 'tutorialSteps'],
+  directives: { Ripple },
   data () {
     return {
     };

@@ -1,12 +1,11 @@
 <template>
-  <double-pane-layout :leftImage="'../../static/assets/logo-' + theme + '.png'" :title="title" imageAlign="middle" :contentClasses="themeClasses">
+  <double-pane-layout :leftImage="'../../static/assets/logo-' + theme + '.png'" :title="title" imageAlign="middle" :contentClasses="themeClasses" @click.native="goToLevelSelect" v-ripple>
     <div slot="rightContent">
       <p v-html="desc"></p>
       <h2 :class="[{ 'o-1': visibility.touchToContinue, 'o-0': !visibility.touchToContinue}, 'fade-enter-active', 'animated pulse']"
-      @click="goToLevelSelect"
-              style="animation-iteration-count: infinite;">
-                Touchez pour continuer
-          </h2>
+      style="animation-iteration-count: infinite;">
+        Touchez pour continuer
+      </h2>
         <img id="picto" :src="'../../static/assets/picto-' + gameid + '.png'">
     </div>
   </double-pane-layout>
@@ -15,9 +14,11 @@
 <script>
 import games from '../service/GameProvider.js';
 import DoublePaneLayout from './DoublePaneLayout';
+import Ripple from 'fi-ripple';
 export default {
   name: 'GameIntro',
   components: { DoublePaneLayout },
+  directives: { Ripple },
   props: ['gameid'],
   created: function() {
     if(this.gameid in games) {

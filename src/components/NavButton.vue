@@ -1,6 +1,6 @@
 <template>
   <router-link tag="a" :to="to">
-    <el-row :class="['flex-column','p-4', 'm-x-3', 'bordered-menu', 'nav', classes]" type="flex" justify="center" align="middle">
+    <el-row v-ripple :class="['flex-column','p-4', 'm-x-3', 'bordered-menu', 'nav', classes]" type="flex" justify="center" align="middle">
       <slot name="content">
         <img v-if="icon" class="nav-icon" :src="icon">
         <el-button v-if="text" type="text">{{ text }}</el-button>
@@ -10,8 +10,10 @@
 </template>
 
 <script>
+  import Ripple from 'fi-ripple';
   export default {
     name: 'NavButton',
+    directives: { Ripple },
     props: {
       to: {
         type: Object,
