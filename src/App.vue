@@ -131,7 +131,7 @@ hr {
   width: 50px;
   height: 30px;
   font-size: 32px !important;
-  color: white;
+  color: rgb(240, 240, 240);
   text-decoration: none;
   z-index: 10;
 }
