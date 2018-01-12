@@ -3,11 +3,13 @@
     <router-link style :to="{ name: 'menu' }" class="el-icon-back back-button">
     </router-link>
     <div>
+      <div class="animated bounce">
       <h1 v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé</h1>
       <h1 v-else>Tutoriel terminé ! </h1>
-      <hr>
+      </div>
+      <hr class="animated flip">
       <small v-if="levelid === '1'">Preview terminée aussi</small>
-      <div class="btn-lvl-complete">
+      <div class="btn-lvl-complete animated fadeInUpBig">
         <router-link tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
         <router-link tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>
         <router-link tag="a" :to="{ name: 'levelintro', params: { gameid, 'levelid': '1' } }"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
