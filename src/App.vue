@@ -137,13 +137,13 @@ hr {
 }
 
 .info-button {
-position: absolute;
+position: absolute !important;
 margin: auto !important;
 right: 15px;
 top: 27px;
 width: 50px;
 font-size: 32px !important;
-color: white;
+color: rgb(240, 240, 240);
 font-weight: bold;
 border: 3px solid rgb(240, 240, 240) !important;
 border-radius: 30px;
