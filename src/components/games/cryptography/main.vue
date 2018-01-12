@@ -104,8 +104,10 @@ export default {
   },
   methods: {
     pushBack: function() {
-      let newArray = utils.pushBack(this.tab);
-      this.arrangeArray(newArray);
+      if(this.setupInit) {
+        let newArray = utils.pushBack(this.tab);
+        this.arrangeArray(newArray);
+      }
     },
     popBack: function() {
       if(this.setupInit) {
