@@ -10,19 +10,21 @@
       <hr class="animated flip">
       <small v-if="levelid === '1'">Preview terminée aussi</small>
       <div class="btn-lvl-complete animated fadeInUpBig">
-        <router-link tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
-        <router-link tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>
-        <router-link tag="a" :to="{ name: 'levelintro', params: { gameid, 'levelid': '1' } }"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
+        <router-link v-ripple tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
+        <router-link v-ripple tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>
+        <router-link v-ripple tag="a" :to="{ name: 'levelintro', params: { gameid, 'levelid': '1' } }"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
       </div>
     </div>
   </el-row>
 </template>
 
 <script>
-import games from '../service/GameProvider';
+  import games from '../service/GameProvider';
+  import Ripple from 'fi-ripple';
   export default {
     name: 'LevelComplete',
     props: ['gameid', 'levelid'],
+    directives: { Ripple },
     data() {
       return {
         game: null,
