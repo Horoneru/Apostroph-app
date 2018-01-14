@@ -20,10 +20,18 @@ import imagesLoaded from 'vue-images-loaded';
 import Isotope from 'vueisotope';
 import debounce from 'lodash-es/debounce';
 import utils from '../../../utils/cryptography';
-
+import validators from '../../../service/ValidatorProvider';
 export default {
   name: 'Cryptography',
-  props: ['levelid'],
+  props: {
+    levelid: {
+      type: String,
+      required: true,
+      validator: function(value) {
+        return validators.level('cryptography', value);
+      }
+    }
+  },
   directives: { imagesLoaded },
   components: { GameView, Isotope, VueIntro },
   data () {

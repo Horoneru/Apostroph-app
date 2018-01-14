@@ -35,6 +35,7 @@
 import NavButton from './NavButton';
 import games from '../service/GameProvider';
 import Ripple from 'fi-ripple';
+import validators from '../service/ValidatorProvider';
 export default {
   components: {
     NavButton
@@ -44,9 +45,7 @@ export default {
   props: {
     gameid: {
       type: String,
-      validator: function(value) {
-        return value in games;
-      }
+      validator: validators.game
     }
   },
   data: function() {

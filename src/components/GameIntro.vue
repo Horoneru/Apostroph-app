@@ -19,7 +19,15 @@ export default {
   name: 'GameIntro',
   components: { DoublePaneLayout },
   directives: { Ripple },
-  props: ['gameid'],
+  props: {
+    gameid: {
+      type: String,
+      required: true,
+      validator: function(value) {
+        return value in games;
+      }
+    }
+  },
   created: function() {
     if(this.gameid in games) {
       this.title = games[this.gameid].name;
