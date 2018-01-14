@@ -149,14 +149,14 @@ hr {
 }
 
 .info-button {
-width: 50px;
+  width: 50px;
   height: 20px;
-font-size: 32px !important;
-color: rgb(240, 240, 240);
-font-weight: bold;
-border: 3px solid rgb(240, 240, 240) !important;
-border-radius: 30px;
-padding: 10px 0 19px 0;
+  font-size: 32px !important;
+  color: rgb(240, 240, 240);
+  font-weight: bold;
+  border: 3px solid rgb(240, 240, 240) !important;
+  border-radius: 30px;
+  padding: 10px 0 19px 0;
 }
 
 .fade-enter-active, .fade-leave-active {
