@@ -28,7 +28,8 @@ const games = {
           created: (vm) => {
             vm.tutorialMode = true;
           }
-        }
+        },
+        next: '1'
       },
       '1': {
         name: 'Niveau 1',

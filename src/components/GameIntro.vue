@@ -61,7 +61,7 @@ export default {
   methods: {
     goToLevelSelect: function () {
       this.$store.commit('introDone', this.gameid);
-      this.$router.push({
+      this.$router.replace({
         name: 'levelselect',
         params: {
           gameid: this.gameid

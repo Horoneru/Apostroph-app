@@ -33,11 +33,11 @@ export default {
     }
     else {
       console.log('whoopsie there. Nope !');
-      this.$router.push({ name: 'menu' });
+      this.$router.replace({ name: 'menu' });
     }
 
     setTimeout(() => {
-      this.$router.push({ name: this.gameid, params: { levelid: this.levelid } });
+      this.$router.replace({ name: this.gameid, params: { levelid: this.levelid } });
     }, 1500);
   },
   data () {
