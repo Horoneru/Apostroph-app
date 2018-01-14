@@ -3,10 +3,10 @@
     <div slot="rightContent">
       <h2>Notre équipe</h2>
       <ul>
-        <li>Quentin « <pre style="display:inline">Horoneru</pre> » Delpy <br><small><em>Développeur Full-Stack</em></small></li>
-        <li>Thomas « <pre style="display:inline">el-macron</pre> »  Wils <br><small><em>Web-Designer / Graphiste</em></small></li>
-        <li>Nicolaï « <pre style="display:inline">Nikiloma</pre> » Magniadas <br><small><em>Web-Designer</em></small></li>
-        <li>Anthony « <pre style="display:inline">Sratuke</pre> » Buisson <br><small><em>Chargé de communication</em></small></li>
+        <li>Quentin « <pre>Horoneru</pre> » Delpy <br><small><em>Développeur Full-Stack</em></small></li>
+        <li>Thomas « <pre>el-macron</pre> »  Wils <br><small><em>Web-Designer / Graphiste</em></small></li>
+        <li>Nicolaï « <pre>Nikiloma</pre> » Magniadas <br><small><em>Web-Designer</em></small></li>
+        <li>Anthony « <pre>Sratuke</pre> » Buisson <br><small><em>Chargé de communication</em></small></li>
       </ul>
       <h2>À propos</h2>
       <p>L’agence a été créée pour la création d’une application pour la Fête du Code.</p>
@@ -23,4 +23,7 @@ export default {
 </script>
 
 <style scoped>
+  pre {
+    display: inline;
+  }
 </style>

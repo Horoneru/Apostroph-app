@@ -8,12 +8,23 @@
 </template>
 
 <script>
-import games from '../service/GameProvider.js';
+import games from '../service/GameProvider';
 import DoublePaneLayout from './DoublePaneLayout';
+import validators from '../service/ValidatorProvider';
 export default {
   name: 'LevelIntro',
   components: { DoublePaneLayout },
-  props: ['gameid', 'levelid'],
+  props: {
+    gameid: {
+      type: String,
+      required: true,
+      validator: validators.game
+    },
+    levelid: {
+      type: String,
+      required: true
+    }
+  },
   created: function() {
     if(this.gameid in games) {
       this.title = games[this.gameid].name;
