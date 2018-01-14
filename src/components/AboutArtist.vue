@@ -6,11 +6,18 @@
 
 <script>
 import DoublePaneLayout from './DoublePaneLayout';
-import artists from '../service/ArtistProvider.js';
+import artists from '../service/ArtistProvider';
+import validators from '../service/ValidatorProvider';
 
 export default {
   name: 'AboutArtist',
-  props: ['artistid'],
+  props: {
+    artistid: {
+      type: String,
+      required: true,
+      validator: validators.artist
+    }
+  },
   components: { DoublePaneLayout },
   data: function() {
     return {

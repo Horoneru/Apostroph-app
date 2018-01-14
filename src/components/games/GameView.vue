@@ -24,7 +24,28 @@ import '../../../src/assets/css/introjs-theme.css';
 import Ripple from 'fi-ripple';
 export default {
   name: 'GameView',
-  props: ['tools', 'artwork', 'artist', 'tutorialMode', 'tutorialSteps'],
+  props: {
+    tools: {
+      type: Array,
+      required: true
+    },
+    artwork: {
+      type: String,
+      required: true
+    },
+    artist: {
+      type: Object,
+      required: true
+    },
+    tutorialMode: {
+      type: Boolean,
+      default: false
+    },
+    tutorialSteps: {
+      type: Array,
+      required: true
+    }
+  },
   directives: { Ripple },
   data () {
     return {

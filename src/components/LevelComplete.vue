@@ -21,9 +21,20 @@
 <script>
   import games from '../service/GameProvider';
   import Ripple from 'fi-ripple';
+  import validators from '../service/ValidatorProvider';
   export default {
     name: 'LevelComplete',
-    props: ['gameid', 'levelid'],
+    props: {
+      gameid: {
+        type: String,
+        required: true,
+        validator: validators.game
+      },
+      levelid: {
+        type: String,
+        required: true
+      }
+    },
     directives: { Ripple },
     data() {
       return {
