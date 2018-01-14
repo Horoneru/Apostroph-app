@@ -14,7 +14,6 @@ import AboutApp from '@/components/AboutApp';
 
 Vue.use(Router);
 
-// TODO make the routes more consistent. The most important prefix should be the game
 export default new Router({
   routes: [
     {
@@ -28,7 +27,7 @@ export default new Router({
       component: Menu
     },
     {
-      path: '/intro/:gameid',
+      path: '/:gameid/intro',
       name: 'gameintro',
       component: GameIntro,
       props: true
@@ -40,25 +39,25 @@ export default new Router({
       props: true
     },
     {
-      path: '/game/cryptography/:levelid',
+      path: '/cryptography/:levelid',
       name: 'cryptography',
       component: Cryptography,
       props: true
     },
     {
-      path: '/gameid/programming/:levelid',
+      path: '/programming/:levelid',
       name: 'programming',
       component: Programming,
       props: true
     },
     {
-      path: '/intro/:gameid/:levelid',
+      path: '/:gameid/:levelid/intro',
       name: 'levelintro',
       component: LevelIntro,
       props: true
     },
     {
-      path: '/game/:gameid/:levelid/complete',
+      path: '/:gameid/:levelid/complete',
       name: 'levelcomplete',
       component: LevelComplete,
       props: true
