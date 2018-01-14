@@ -1,6 +1,6 @@
 <template>
   <el-row class="h-100 w-100" type="flex" justify="center" align="middle">
-    <router-link style :to="{ name: 'menu' }" class="el-icon-back back-button">
+    <router-link style :to="{ name: 'menu' }" class="el-icon-back back-button top-left-element">
     </router-link>
     <div>
       <div class="animated bounce">
