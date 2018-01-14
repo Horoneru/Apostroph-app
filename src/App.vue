@@ -123,33 +123,39 @@ hr {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
 }
 
-.back-button {
+.top-left-element {
   position: absolute;
   margin: auto !important;
   top: 25px;
   left: 15px;
-  width: 50px;
-  height: 30px;
-  font-size: 32px !important;
-  color: rgb(240, 240, 240);
   text-decoration: none;
   z-index: 10;
 }
 
+.top-right-element {
+  position: absolute !important;
+  margin: auto !important;
+  right: 15px;
+  top: 27px;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.back-button {
+  width: 50px;
+  height: 30px;
+  font-size: 32px !important;
+  color: rgb(240, 240, 240);
+}
+
 .info-button {
-position: absolute !important;
-margin: auto !important;
-right: 15px;
-top: 27px;
 width: 50px;
+  height: 20px;
 font-size: 32px !important;
 color: rgb(240, 240, 240);
 font-weight: bold;
 border: 3px solid rgb(240, 240, 240) !important;
 border-radius: 30px;
-height: 20px;
-text-decoration: none;
-z-index: 10;
 padding: 10px 0 19px 0;
 }
 
