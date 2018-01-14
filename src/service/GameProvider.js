@@ -4,8 +4,8 @@ const games = {
     name: 'Programmation',
     theme: 'accent-color',
     desc: 'La programmation, c’est quoi ?<br>' +
-    'C’est simplement ce qui permet l’écriture de sites internets, de logiciel, comme le jeu auquel tu joues actuellement par exemple !<br>' +
-    'Ici, on va se pencher sur le fonctionnement basique de l’algorithme, rien de bien compliqué tu verras !<br>' +
+    'C’est simplement ce qui permet l’écriture de sites internets, de logiciels, comme le jeu auquel tu joues actuellement par exemple !<br>' +
+    'Ici, on va se pencher sur le fonctionnement basique des algorithmes, rien de bien compliqué tu verras !<br>' +
     'C’est parti !'
   },
   cryptography: {
