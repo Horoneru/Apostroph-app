@@ -34,12 +34,14 @@
 <script>
 import NavButton from './NavButton';
 import games from '../service/GameProvider';
+import Ripple from 'fi-ripple';
 import validators from '../service/ValidatorProvider';
 export default {
   components: {
     NavButton
   },
   name: 'LevelSelect',
+  directives: { Ripple },
   props: {
     gameid: {
       type: String,

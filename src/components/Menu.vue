@@ -21,10 +21,12 @@
 
 <script>
 import NavButton from './NavButton';
+import Ripple from 'fi-ripple';
 export default {
   components: {
     NavButton
   },
+  directives: { Ripple },
   name: 'Menu',
   computed: {
     cryptographyRoute: function() {
