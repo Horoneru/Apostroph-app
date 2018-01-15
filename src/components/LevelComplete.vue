@@ -44,7 +44,6 @@
     },
     created: function() {
       this.game = games[this.gameid];
-      this.artistId = this.game.levelid[this.levelid];
     }
   };
 </script>
