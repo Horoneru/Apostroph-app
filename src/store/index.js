@@ -6,6 +6,20 @@ import games from '../service/GameProvider.js';
 
 Vue.use(Vuex);
 
+const defaultState = {
+  currentGame: null,
+  cryptography: {
+    currentLevel: null,
+    tutorialDone: false,
+    introDone: false
+  },
+  programming: {
+    currentLevel: null,
+    tutorialDone: false,
+    introDone: false
+  }
+};
+
 export default new Vuex.Store({
   plugins: [
     createPersistedState(
@@ -15,19 +29,7 @@ export default new Vuex.Store({
       }
     )
   ],
-  state: {
-    currentGame: null,
-    cryptography: {
-      currentLevel: null,
-      tutorialDone: false,
-      introDone: false
-    },
-    programming: {
-      currentLevel: null,
-      tutorialDone: false,
-      introDone: false
-    }
-  },
+  state: defaultState,
   getters: {
     // See l-36
     currentTheme: function({ currentGame }) {
