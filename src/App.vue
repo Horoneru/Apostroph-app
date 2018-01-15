@@ -159,6 +159,15 @@ hr {
   padding: 10px 0 19px 0;
 }
 
+.more-button {
+  font-size: 32px;
+  color: rgb(240, 240, 240);
+}
+
+.el-dropdown-menu__item [class*=" el-icon-"], .el-dropdown-menu__item [class^="el-icon-"]{
+  margin-right: 10px;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .25s
 }
