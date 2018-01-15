@@ -73,10 +73,7 @@ export default {
         this.$router.push({ name: 'gameintro', params: { gameid: this.gameid } });
       }
       else if(command === 'reset') {
-        this.$message({
-          type: 'warning',
-          message: 'Cela ne fonctionne pas encore !'
-        });
+        this.$store.commit('reset', this.gameid);
       }
     }
   }

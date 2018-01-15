@@ -46,6 +46,9 @@ export default new Vuex.Store({
     },
     introDone: function(state, gameid) {
       state[gameid].introDone = true;
+    },
+    reset: function(state, gameid) {
+      state[gameid] = defaultState[gameid];
     }
   }
 });
