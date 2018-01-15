@@ -29,7 +29,7 @@ export default new Vuex.Store({
       }
     )
   ],
-  state: defaultState,
+  state: JSON.parse(JSON.stringify(defaultState)),
   getters: {
     // See l-36
     currentTheme: function({ currentGame }) {
@@ -48,7 +48,8 @@ export default new Vuex.Store({
       state[gameid].introDone = true;
     },
     reset: function(state, gameid) {
-      state[gameid] = defaultState[gameid];
+      console.log(JSON.stringify(defaultState[gameid]));
+      state[gameid] = JSON.parse(JSON.stringify(defaultState[gameid]));
     }
   }
 });
