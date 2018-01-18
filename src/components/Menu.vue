@@ -1,6 +1,6 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
-    <router-link style :to="{ name: 'home' }" v-ripple class="el-icon-back back-button">
+    <router-link style :to="{ name: 'home' }" v-ripple class="el-icon-back back-button top-left-element">
     </router-link>
     <el-row>
       <img src="../../static/assets/logo.png" />

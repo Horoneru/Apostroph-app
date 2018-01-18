@@ -5,7 +5,7 @@ const validators = {
     return game in games;
   },
   level: function(game, level) {
-    return level in games[game];
+    return level in games[game].levels;
   },
   artist: function(artist) {
     return artist in artists;
