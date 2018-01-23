@@ -17,12 +17,22 @@ export default {
   watch: {
     '$route' (to, from) {
       // TODO Handle the possibility of directly going to the game
-      if (to.params.gameid) {
+      if (to.params.gameid || to.params.levelid) {
         let game = to.params.gameid;
+
+        if(!game) {
+          if(to.path.includes('cryptography')) {
+            game = 'cryptography';
+          }
+          else if(to.path.includes('programming')) {
+            game = 'programming';
+          }
+        }
 
         this.$store.commit('changeGame', game);
       }
-      else if(!to.path.includes('game') && !to.path.includes('about')) {
+
+      else if(!to.path.includes('about')) {
         this.$store.commit('changeGame', null);
       }
     }
