@@ -19,6 +19,13 @@ const artists = {
     'L\'illusion de la lumière est l\'une des choses avec laquelle un peintre travaille, pour lui, c\'est comme cela que l’on obtient une image.<br>' +
     'Sans lumière, il n\'y a pas de couleur visible et l’art ne s’exprime pas.',
     theme: 'accent-color'
+  },
+  cane: {
+    id: 'cane',
+    name: 'Louis Cane',
+    image: '../../static/assets/logo-accent-color.png',
+    desc: '',
+    theme: 'accent-color'
   }
 };
 
