@@ -224,10 +224,16 @@ export default {
       }
     },
     backAndForthMove: function(originalPos, moveInfo) {
+      // Store the previous block state to recover it after we're done
+      const originalBlockState = this.blockMoves;
+
+      // Block moves to avoid the user moving while temporarily not in the grid
+      this.blockMoves = true;
       this.moveTarget.style[moveInfo.property] = originalPos + moveInfo.errorAmount + 'px';
       // Go back, set a low timeout to have a quick motion
       setTimeout(() => {
         this.moveTarget.style[moveInfo.property] = originalPos + 'px';
+        this.blockMoves = originalBlockState;
       }, 150);
     },
     canMove: function(moveInfo) {
