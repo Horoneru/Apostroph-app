@@ -14,8 +14,8 @@
       <el-col :span="20">
         <programing-timeline-item v-for="(el, index) in moveHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
       </el-col>
-      <el-col :span="3" v-if="moveHistory.length !== 0">
-        <el-button type="primary" @click="executeMoves">Exécuter</el-button>
+      <el-col :span="3">
+        <el-button type="primary" :disabled="moveHistory.length === 0 || blockMoves" @click="executeMoves">Exécuter</el-button>
       </el-col>
     </el-row>
   </div>
@@ -72,7 +72,7 @@ export default {
             transition: 'transform 0.25s ease-out'
           },
           action: () => {
-            if(!this.moving) {
+            if(!this.blockMoves) {
               this.move();
               this.moveHistory.push({
                 type: 'move',
@@ -87,7 +87,7 @@ export default {
         {
           icon: '../../../../static/assets/programming/rotate-clockwise.png',
           action: () => {
-            if(!this.moving) {
+            if(!this.blockMoves) {
               this.rotate(this.cursorDegrees + 90);
               this.moveHistory.push({
                 type: 'directionChange',
@@ -159,7 +159,8 @@ export default {
       },
       moveHistory: [],
       cursorDegrees: 0,
-      goalReached: false
+      goalReached: false,
+      blockMoves: false
     };
   },
   created: function() {
@@ -223,13 +224,10 @@ export default {
       }
     },
     backAndForthMove: function(originalPos, moveInfo) {
-      // Locking the moves so that there is at least a bit of cooldown
-      this.moving = true;
       this.moveTarget.style[moveInfo.property] = originalPos + moveInfo.errorAmount + 'px';
       // Go back, set a low timeout to have a quick motion
       setTimeout(() => {
         this.moveTarget.style[moveInfo.property] = originalPos + 'px';
-        this.moving = false;
       }, 150);
     },
     canMove: function(moveInfo) {
@@ -280,7 +278,7 @@ export default {
     executeMoves: function() {
       this.reset('soft');
       this.moveTarget = this.gridElements.cursor;
-
+      this.blockMoves = true;
       const executeFunction = (times) => {
         const move = this.moveHistory[times];
         move.active = true;
@@ -315,6 +313,7 @@ export default {
             }
             else {
               this.reset('hard');
+              this.blockMoves = false;
             }
           }, 250);
         }
