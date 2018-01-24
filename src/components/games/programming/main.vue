@@ -26,7 +26,6 @@ import GameView from '../GameView.vue';
 import ProgramingTimelineItem from './ProgrammingTimelineItem';
 import games from '../../../service/GameProvider';
 import validators from '../../../service/ValidatorProvider';
-import utils from '../../../utils/utils';
 import Wall from '../../../entity/Wall';
 import merge from 'lodash-es/merge';
 // TODO : Add docs
@@ -345,47 +344,47 @@ export default {
       let leftWalls = {};
       for(let i = 0; i <= this.rowCount; i++) {
         const row = 4 * i;
-        if(!utils.isObject(leftWalls[row])) {
-          leftWalls[row] = new Wall();
-        }
-
-        leftWalls[row].position.left = true;
+        leftWalls[row] = true;
       }
 
       let rightWalls = {};
       for(let i = 0; i <= this.rowCount; i++) {
         const row = 4 * i + 3;
-        if(!utils.isObject(rightWalls[row])) {
-          rightWalls[row] = new Wall();
-        }
-
-        rightWalls[row].position.right = true;
+        rightWalls[row] = true;
       }
 
       let upperWalls = {};
       for(let i = 0; i < 0 + this.columnCount - 1; i++) {
-        if(!utils.isObject(upperWalls[i])) {
-          upperWalls[i] = new Wall();
-        }
-
-        upperWalls[i].position.up = true;
+        upperWalls[i] = true;
       }
 
       let downWalls = {};
       for(let i = columnTotal - 1; i > (columnTotal - this.columnCount); i--) {
-        if(!utils.isObject(downWalls[i])) {
-          downWalls[i] = new Wall();
-        }
-
-        downWalls[i].position.down = true;
+        downWalls[i] = true;
       }
 
+      let walls = {};
+
       // Merge all objects
-      let walls = merge({}, downWalls, rightWalls, upperWalls, leftWalls);
+      // Must go custom because properties would be overwritten by subsequent walls if trying to merge them
+      for(let i = 0; i < columnTotal; i++) {
+        walls[i] = new Wall();
+        if(leftWalls[i]) {
+          walls[i].position.left = true;
+        }
+        if(rightWalls[i]) {
+          walls[i].position.right = true;
+        }
+        if(upperWalls[i]) {
+          walls[i].position.up = true;
+        }
+        if(downWalls[i]) {
+          walls[i].position.down = true;
+        }
+      }
 
-      // TODO Fetch and merge the level data's additional walls
+      merge(walls, this.levelData.walls);
 
-      // Object with id with walls as properties
       return walls;
     },
     calculatePosition: function(gridPosition) {
