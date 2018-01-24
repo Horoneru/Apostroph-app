@@ -71,7 +71,7 @@ export default {
           style: {
             transform: null,
             transition: 'transform 0.25s ease-out'
-        },
+          },
           action: () => {
             if(!this.moving) {
               this.move();
@@ -97,7 +97,7 @@ export default {
                 icon: '../../../../static/assets/programming/rotate-clockwise.png',
                 active: false
               });
-        }
+            }
           }
         }
       ],
@@ -200,11 +200,11 @@ export default {
 
       if(oldMoveTarget === this.gridElements.ghost) {
         this.gridElements.ghost.style.opacity = '0';
-    }
+      }
       else if(newMoveTarget === this.gridElements.ghost) {
         this.gridElements.ghost.style.opacity = '0.5';
       }
-  },
+    },
     cursorDegrees: function(newCursorDegrees, oldCursorDegrees) {
       this.moveTarget.style.transform = 'rotate(' + newCursorDegrees + 'deg)';
       this.tools[0].style.transform = 'rotate(' + newCursorDegrees + 'deg)';
@@ -283,7 +283,7 @@ export default {
           }
         }
         else if(move.type === 'move') {
-        this.move();
+          this.move();
         }
         else if(move.type === 'loop') {
           // TODO do loop logic !
