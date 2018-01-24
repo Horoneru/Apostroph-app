@@ -406,7 +406,7 @@ export default {
     getGridPosition: function(coordinates) {
       const row = (parseInt(coordinates.top)) / 100 - 1;
       const column = (parseInt(coordinates.left)) / 100 - 0.75;
-      return row * this.rowCount + column;
+      return Math.round(row * this.rowCount + column);
     }
   }
 };
