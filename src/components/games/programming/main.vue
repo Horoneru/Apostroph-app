@@ -134,7 +134,6 @@ export default {
       },
       direction: 'up',
       directions: ['up', 'right', 'down', 'left'],
-      useErrorAmount: false,
       moveTarget: null,
       gridElements: {
         cursor: {
@@ -211,32 +210,44 @@ export default {
   },
   methods: {
     move: function() {
-      // Locking the moves so that there is at least a bit of cooldown
-      this.moving = true;
-
       const moveInfo = this.moveInfo[this.direction];
       const currentPos = parseInt(this.moveTarget.style[moveInfo.property]);
-      // If the errorAmount flag is set, use it
-      const canMove = !this.useErrorAmount ? this.canMove() : false;
-      const moveAmount = canMove ? moveInfo.amount : moveInfo.errorAmount;
-      this.moveTarget.style[moveInfo.property] = currentPos + moveAmount + 'px';
-
-      // Cooldown reset
-      setTimeout(() => {
-        if(!canMove && !this.useErrorAmount) {
-          // Go back to the other direction
-          this.direction = this.moveInfo[this.direction].opposite;
-          // Flag that we should move back with the little move
-          this.useErrorAmount = true;
-          this.move();
-          // Reset the flag. We did the back and forth move
-          this.useErrorAmount = false;
-        }
-        this.moving = false;
+      const canMove = this.canMove(moveInfo);
+      if(canMove) {
+        const moveAmount = moveInfo.amount;
+        this.moveTarget.style[moveInfo.property] = currentPos + moveAmount + 'px';
         this.checkPosition();
-      }, 0);
+      }
+      else {
+        this.backAndForthMove(currentPos, moveInfo);
+      }
     },
-    canMove: function() {
+    backAndForthMove: function(originalPos, moveInfo) {
+      // Locking the moves so that there is at least a bit of cooldown
+      this.moving = true;
+      this.moveTarget.style[moveInfo.property] = originalPos + moveInfo.errorAmount + 'px';
+      // Go back, set a low timeout to have a quick motion
+      setTimeout(() => {
+        this.moveTarget.style[moveInfo.property] = originalPos + 'px';
+        this.moving = false;
+      }, 150);
+    },
+    canMove: function(moveInfo) {
+      const currentRow = this.getGridPosition(this.moveTarget.style);
+      // If there is a wall on the side of the row we have to go to when moving
+      if(this.tab[currentRow].wall.position[this.direction]) {
+        return false;
+      }
+
+      const destinationCoordinates = this.moveTarget.style;
+      destinationCoordinates[moveInfo.property] =
+        parseInt(destinationCoordinates[moveInfo.property]) + moveInfo.amount + 'px';
+      const destinationRow = this.getGridPosition(destinationCoordinates);
+      // If there is a wall when crossing the row we'll be at when moving
+      if(this.tab[destinationRow].wall.position[moveInfo.opposite]) {
+        return false;
+      }
+
       return true;
     },
     rotate: function(degrees) {
