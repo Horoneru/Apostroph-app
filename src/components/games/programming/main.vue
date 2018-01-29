@@ -15,9 +15,19 @@
         <programing-timeline-item v-for="(el, index) in moveHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
       </el-col>
       <el-col :span="3">
-        <el-button type="primary" :disabled="moveHistory.length === 0 || blockUserMoves" @click="executeMoves">Exécuter</el-button>
+        <el-row type="flex" justify="space-between">
+          <el-button type="primary" :disabled="moveHistory.length === 0 || blockUserMoves" @click="executeMoves">Exécuter</el-button>
+          <el-button type="text" id="reset-button" v-show="moveHistory.length !== 0 && !blockUserMoves" @click="resetDialogVisible = true"  icon="el-icon-delete"></el-button>
+        </el-row>
       </el-col>
     </el-row>
+    <el-dialog title="Recommencer à zéro ?" :visible.sync="resetDialogVisible">
+      <span>Es-tu sûr de recommencer à zéro ?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="resetDialogVisible = false">Non</el-button>
+        <el-button type="primary" @click="reset('hard');resetDialogVisible= false">Oui ! </el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -160,7 +170,8 @@ export default {
       moveHistory: [],
       cursorDegrees: 0,
       goalReached: false,
-      blockUserMoves: false
+      blockUserMoves: false,
+      resetDialogVisible: false
     };
   },
   created: function() {
@@ -453,6 +464,11 @@ export default {
     height: 80px;
     background-color: rgba(0, 0, 0, 0.7);
     margin: auto;
+  }
+
+  #reset-button {
+    color:white;
+    font-size:18px;
   }
 
 </style>
