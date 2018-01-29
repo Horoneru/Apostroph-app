@@ -16,16 +16,16 @@
       </el-col>
       <el-col :span="3">
         <el-row type="flex" justify="space-between">
-          <el-button type="primary" :disabled="moveHistory.length === 0 || blockUserMoves" @click="executeMoves">Exécuter</el-button>
-          <el-button type="text" id="reset-button" v-show="moveHistory.length !== 0 && !blockUserMoves" @click="resetDialogVisible = true"  icon="el-icon-delete"></el-button>
+          <el-button v-ripple type="primary" :disabled="moveHistory.length === 0 || blockUserMoves" @click="executeMoves">Exécuter</el-button>
+          <el-button v-ripple type="text" id="reset-button" v-show="moveHistory.length !== 0 && !blockUserMoves" @click="resetDialogVisible = true"  icon="el-icon-delete"></el-button>
         </el-row>
       </el-col>
     </el-row>
     <el-dialog title="Recommencer à zéro ?" :visible.sync="resetDialogVisible">
       <span>Es-tu sûr de recommencer à zéro ?</span>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="resetDialogVisible = false">Non</el-button>
-        <el-button type="primary" @click="reset('hard');resetDialogVisible= false">Oui ! </el-button>
+        <el-button v-ripple @click="resetDialogVisible = false">Non</el-button>
+        <el-button v-ripple type="primary" @click="reset('hard');resetDialogVisible= false">Oui ! </el-button>
       </span>
     </el-dialog>
   </div>
@@ -38,6 +38,7 @@ import games from '../../../service/GameProvider';
 import validators from '../../../service/ValidatorProvider';
 import Wall from '../../../entity/Wall';
 import merge from 'lodash-es/merge';
+import Ripple from 'fi-ripple';
 // TODO : Add docs
 export default {
   props: {
@@ -50,6 +51,7 @@ export default {
     }
   },
   components: { GameView, ProgramingTimelineItem },
+  directives: { Ripple },
   name: 'Programming',
   data () {
     return {
