@@ -12,12 +12,12 @@
     </game-view>
     <el-row type="flex" justify="center" align="middle" id="timeline-container">
       <el-col :span="20">
-        <programing-timeline-item v-for="(el, index) in moveHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
+        <programing-timeline-item v-for="(el, index) in actionHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
       </el-col>
       <el-col :span="3">
         <el-row type="flex" justify="space-between">
-          <el-button v-ripple type="primary" :disabled="moveHistory.length === 0 || blockUserMoves" @click="executeMoves">Exécuter</el-button>
-          <el-button v-ripple type="text" id="reset-button" v-show="moveHistory.length !== 0 && !blockUserMoves" @click="resetDialogVisible = true"  icon="el-icon-delete"></el-button>
+          <el-button v-ripple type="primary" :disabled="actionHistory.length === 0 || blockUserInput" @click="executeMoves">Exécuter</el-button>
+          <el-button v-ripple type="text" id="reset-button" v-show="actionHistory.length !== 0 && !blockUserInput" @click="resetDialogVisible = true"  icon="el-icon-delete"></el-button>
         </el-row>
       </el-col>
     </el-row>
@@ -84,31 +84,25 @@ export default {
             transition: 'transform 0.25s ease-out'
           },
           action: () => {
-            if(!this.blockUserMoves) {
-              this.move();
-              this.moveHistory.push({
-                type: 'move',
-                value: this.$data.direction,
-                text: this.$data.direction,
-                icon: '../../../../static/assets/programming/' + this.$data.direction + '-arrow.png',
-                active: false
-              });
-            }
+            this.userInput({
+              type: 'move',
+              value: this.$data.direction,
+              text: this.$data.direction,
+              icon: '../../../../static/assets/programming/' + this.$data.direction + '-arrow.png',
+              active: false
+            });
           }
         },
         {
           icon: '../../../../static/assets/programming/rotate-clockwise.png',
           action: () => {
-            if(!this.blockUserMoves) {
-              this.rotate(this.cursorDegrees + 90);
-              this.moveHistory.push({
-                type: 'directionChange',
-                value: 'clockwise',
-                text: 'rotate',
-                icon: '../../../../static/assets/programming/rotate-clockwise.png',
-                active: false
-              });
-            }
+            this.userInput({
+              type: 'directionChange',
+              value: 'clockwise',
+              text: 'rotate',
+              icon: '../../../../static/assets/programming/rotate-clockwise.png',
+              active: false
+            });
           }
         }
       ],
@@ -146,7 +140,7 @@ export default {
       },
       direction: 'up',
       directions: ['up', 'right', 'down', 'left'],
-      moveTarget: null,
+      actionTarget: null,
       gridElements: {
         cursor: {
           style: {
@@ -169,11 +163,12 @@ export default {
           }
         }
       },
-      moveHistory: [],
+      actionHistory: [],
       cursorDegrees: 0,
       goalReached: false,
-      blockUserMoves: false,
-      resetDialogVisible: false
+      blockUserInput: false,
+      resetDialogVisible: false,
+      maxActions: 14
     };
   },
   created: function() {
@@ -199,37 +194,63 @@ export default {
 
     this.tools[0].style.transform = 'rotate(' + this.cursorDegrees + ' deg)';
 
-    this.moveTarget = this.gridElements.ghost;
+    this.actionTarget = this.gridElements.ghost;
 
     this.reset('hard');
   },
   watch: {
-    moveTarget: function(newMoveTarget, oldMoveTarget) {
-      if(oldMoveTarget) {
-        oldMoveTarget.style.transform = 'rotate(0deg)';
+    actionTarget: function(newActionTarget, oldActionTarget) {
+      if(oldActionTarget) {
+        oldActionTarget.style.transform = 'rotate(0deg)';
       }
-      newMoveTarget.style.transform = 'rotate(' + this.cursorDegrees + 'deg)';
+      newActionTarget.style.transform = 'rotate(' + this.cursorDegrees + 'deg)';
 
-      if(oldMoveTarget === this.gridElements.ghost) {
+      if(oldActionTarget === this.gridElements.ghost) {
         this.gridElements.ghost.style.opacity = '0';
       }
-      else if(newMoveTarget === this.gridElements.ghost) {
+      else if(newActionTarget === this.gridElements.ghost) {
         this.gridElements.ghost.style.opacity = '0.5';
       }
     },
     cursorDegrees: function(newCursorDegrees, oldCursorDegrees) {
-      this.moveTarget.style.transform = 'rotate(' + newCursorDegrees + 'deg)';
+      this.actionTarget.style.transform = 'rotate(' + newCursorDegrees + 'deg)';
       this.tools[0].style.transform = 'rotate(' + newCursorDegrees + 'deg)';
     }
   },
   methods: {
+    userInput: function(actionObject) {
+      if(this.actionHistory.length !== this.maxActions) {
+        if(!this.blockUserInput) {
+          if(actionObject.type === 'move') {
+            this.move();
+          }
+          else if(actionObject.type === 'directionChange') {
+            if(actionObject.value === 'clockwise') {
+              this.rotate(this.cursorDegrees + 90);
+            }
+            else {
+              this.rotate(this.cursorDegrees - 90);
+            }
+          }
+
+          this.actionHistory.push(actionObject);
+        }
+      }
+      else {
+        this.$message({
+          type: 'warning',
+          message: 'Tu as atteint la limite d\'actions.<br>Appuie sur la poubelle en bas à droite pour recommencer !',
+          dangerouslyUseHTMLString: true
+        });
+      }
+    },
     move: function() {
       const moveInfo = this.moveInfo[this.direction];
-      const currentPos = parseInt(this.moveTarget.style[moveInfo.property]);
+      const currentPos = parseInt(this.actionTarget.style[moveInfo.property]);
       const canMove = this.canMove(moveInfo);
       if(canMove) {
         const moveAmount = moveInfo.amount;
-        this.moveTarget.style[moveInfo.property] = currentPos + moveAmount + 'px';
+        this.actionTarget.style[moveInfo.property] = currentPos + moveAmount + 'px';
         this.checkPosition();
       }
       else {
@@ -238,25 +259,25 @@ export default {
     },
     backAndForthMove: function(originalPos, moveInfo) {
       // Store the previous block state to recover it after we're done
-      const originalBlockState = this.blockUserMoves;
+      const originalBlockState = this.blockUserInput;
 
       // Block moves to avoid the user moving while temporarily not in the grid
-      this.blockUserMoves = true;
-      this.moveTarget.style[moveInfo.property] = originalPos + moveInfo.errorAmount + 'px';
+      this.blockUserInput = true;
+      this.actionTarget.style[moveInfo.property] = originalPos + moveInfo.errorAmount + 'px';
       // Go back, set a low timeout to have a quick motion
       setTimeout(() => {
-        this.moveTarget.style[moveInfo.property] = originalPos + 'px';
-        this.blockUserMoves = originalBlockState;
+        this.actionTarget.style[moveInfo.property] = originalPos + 'px';
+        this.blockUserInput = originalBlockState;
       }, 150);
     },
     canMove: function(moveInfo) {
-      const currentRow = this.getGridPosition(this.moveTarget.style);
+      const currentRow = this.getGridPosition(this.actionTarget.style);
       // If there is a wall on the side of the row we have to go to when moving
       if(this.tab[currentRow].wall.position[this.direction]) {
         return false;
       }
 
-      const destinationCoordinates = this.moveTarget.style;
+      const destinationCoordinates = this.actionTarget.style;
       destinationCoordinates[moveInfo.property] =
         parseInt(destinationCoordinates[moveInfo.property]) + moveInfo.amount + 'px';
       const destinationRow = this.getGridPosition(destinationCoordinates);
@@ -268,6 +289,7 @@ export default {
       return true;
     },
     rotate: function(degrees) {
+      // TODO : Being able to change direction by degrees other than 90 or -90
       const mode = degrees > 0 ? 'clockwise' : 'counter-clockwise';
       this.direction = this.rotateDirection(mode);
       this.cursorDegrees = degrees;
@@ -296,10 +318,10 @@ export default {
     },
     executeMoves: function() {
       this.reset('soft');
-      this.moveTarget = this.gridElements.cursor;
-      this.blockUserMoves = true;
+      this.actionTarget = this.gridElements.cursor;
+      this.blockUserInput = true;
       const executeFunction = (times) => {
-        const move = this.moveHistory[times];
+        const move = this.actionHistory[times];
         move.active = true;
         if(move.type === 'directionChange') {
           if(move.value === 'clockwise') {
@@ -315,7 +337,7 @@ export default {
         else if(move.type === 'loop') {
           // TODO do loop logic !
         }
-        if(times !== this.moveHistory.length - 1) {
+        if(times !== this.actionHistory.length - 1) {
           setTimeout(() => {
             move.active = false;
             executeFunction(times + 1);
@@ -332,7 +354,7 @@ export default {
             }
             else {
               this.reset('hard');
-              this.blockUserMoves = false;
+              this.blockUserInput = false;
             }
           }, 250);
         }
@@ -343,7 +365,7 @@ export default {
     reset: function(mode) {
       this.cursorDegrees = 0;
       this.direction = 'up'; // TODO use the level data's initial direction
-      this.moveTarget = this.gridElements.ghost;
+      this.actionTarget = this.gridElements.ghost;
 
       if(mode === 'hard') {
         this.gridElements.cursor.style =
@@ -356,14 +378,14 @@ export default {
           Object.assign(this.gridElements.goal.style,
             this.calculatePosition(this.levelData.goal));
 
-        this.moveHistory = [];
+        this.actionHistory = [];
       }
     },
     checkPosition: function() {
       // We could do something for the ghost, too.
-      if(this.getGridPosition(this.moveTarget.style) === parseInt(this.levelData.goal)) {
+      if(this.getGridPosition(this.actionTarget.style) === parseInt(this.levelData.goal)) {
         // But right now, we only care about the actual cursor
-        if(this.moveTarget === this.gridElements.cursor) {
+        if(this.actionTarget === this.gridElements.cursor) {
           this.goalReached = true;
         }
       }
