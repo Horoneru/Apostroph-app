@@ -34,9 +34,35 @@ const games = {
         name: 'Niveau 1',
         permutations: {
           direction: 'left',
-          count: 1
+          count: 3
         },
         artwork: 'Construction du volume des couleurs',
+        artist: artists.lemonnier,
+        mixins: {
+          created: function() {
+          }
+        }
+      },
+      '2': {
+        name: 'Niveau 2',
+        permutations: {
+          direction: 'left',
+          count: 6
+        },
+        artwork: 'Jeu chromatique 1',
+        artist: artists.lemonnier,
+        mixins: {
+          created: function() {
+          }
+        }
+      },
+      '3': {
+        name: 'Niveau 3',
+        permutations: {
+          direction: 'left',
+          count: 9
+        },
+        artwork: 'l\'Harmonisateur n°3',
         artist: artists.lemonnier,
         mixins: {
           created: function() {
