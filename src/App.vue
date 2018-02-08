@@ -162,5 +162,6 @@ padding: 10px 0 19px 0;
 
 .menu-container {
     width: 40%;
+    flex-wrap: wrap;
 }
 </style>
