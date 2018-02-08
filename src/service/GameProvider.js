@@ -10,7 +10,7 @@ const games = {
     levels: {
       'tutorial': {
         name: 'Tutoriel',
-        artwork: 'Sol-mur',
+        artwork: 'Sol-mur (sol)',
         artist: artists.cane,
         goal: '1',
         start: '17',
@@ -18,7 +18,8 @@ const games = {
           created: function(vm) {
             vm.tutorialMode = true;
           }
-        }
+        },
+        next: '1'
       }
     }
   },
