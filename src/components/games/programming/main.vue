@@ -104,6 +104,18 @@ export default {
               active: false
             });
           }
+        },
+        {
+          icon: '../../../../static/assets/programming/rotate-counter-clockwise.png',
+          action: () => {
+            this.userInput({
+              type: 'directionChange',
+              value: 'counter-clockwise',
+              text: 'rotate',
+              icon: '../../../../static/assets/programming/rotate-counter-clockwise.png',
+              active: false
+            });
+          }
         }
       ],
       levelData: games.programming.levels[this.levelid],
@@ -290,7 +302,7 @@ export default {
     },
     rotate: function(degrees) {
       // TODO : Being able to change direction by degrees other than 90 or -90
-      const mode = degrees > 0 ? 'clockwise' : 'counter-clockwise';
+      const mode = this.cursorDegrees < degrees ? 'clockwise' : 'counter-clockwise';
       this.direction = this.rotateDirection(mode);
       this.cursorDegrees = degrees;
     },
