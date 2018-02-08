@@ -8,7 +8,6 @@
       <h1 v-else>Tutoriel terminé ! </h1>
       </div>
       <hr class="animated flip">
-      <small v-if="levelid === '1'">Preview terminée aussi</small>
       <div class="btn-lvl-complete animated fadeInUpBig">
         <router-link v-ripple tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
         <router-link v-ripple tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>

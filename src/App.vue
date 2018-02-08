@@ -185,5 +185,6 @@ hr {
 
 .menu-container {
     width: 40%;
+    flex-wrap: wrap;
 }
 </style>
