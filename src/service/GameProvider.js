@@ -28,7 +28,8 @@ const games = {
           created: (vm) => {
             vm.tutorialMode = true;
           }
-        }
+        },
+        next: '1'
       },
       '1': {
         name: 'Niveau 1',
@@ -41,7 +42,8 @@ const games = {
         mixins: {
           created: function() {
           }
-        }
+        },
+        next: '2'
       },
       '2': {
         name: 'Niveau 2',
@@ -54,7 +56,8 @@ const games = {
         mixins: {
           created: function() {
           }
-        }
+        },
+        next: '3'
       },
       '3': {
         name: 'Niveau 3',
@@ -67,7 +70,8 @@ const games = {
         mixins: {
           created: function() {
           }
-        }
+        },
+        next: '4'
       }
     }
   }
