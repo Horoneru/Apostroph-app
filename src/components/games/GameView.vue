@@ -9,7 +9,7 @@
         <el-col :span="7">
           <div id="toolbar" ref="toolbar">
             <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon">
-              <img :src="tool.icon" @click="tool.action"/>
+              <img :src="tool.icon" @click="tool.action" :style="tool.style"/>
             </div>
             <p v-if="!tools">Toolbar container</p>
           </div>
