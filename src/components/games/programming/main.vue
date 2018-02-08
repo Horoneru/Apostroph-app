@@ -78,7 +78,7 @@ export default {
       ],
       tools: [
         {
-          icon: '../../../../static/assets/programming/up-arrow.png',
+          icon: '../../../../static/assets/up-arrow.png',
           style: {
             transform: null,
             transition: 'transform 0.25s ease-out'
@@ -88,7 +88,7 @@ export default {
               type: 'move',
               value: this.$data.direction,
               text: this.$data.direction,
-              icon: '../../../../static/assets/programming/' + this.$data.direction + '-arrow.png',
+              icon: '../../../../static/assets/' + this.$data.direction + '-arrow.png',
               active: false
             });
           }
