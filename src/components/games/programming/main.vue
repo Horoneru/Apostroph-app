@@ -7,7 +7,7 @@
         <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         <span class="grid-element" id="cursor" :style="gridElements.cursor.style"></span>
         <span class="grid-element" id="ghost" :style="gridElements.ghost.style"></span>
-        <span class="grid-element animated pulse infinite" id="goal" :style="gridElements.goal.style"></span>
+        <span class="grid-element animated pulse infinite el-icon-location" id="goal" :style="gridElements.goal.style"></span>
       </div>
     </game-view>
     <el-row type="flex" justify="center" align="middle" id="timeline-container">
@@ -471,10 +471,18 @@ export default {
 
   #cursor, #ghost {
     background-image: url('../../../../static/assets/programming/cursor.png');
+    z-index: 10;
+    background-size: cover;
   }
 
   #goal {
-    background-image: url('../../../../static/assets/programming/goal.png');
+    border-radius: 50%;
+    background-color: var(--accent-color-dark);
+    font-size: 32px;
+    line-height: 45px;
+    border: 2px rgba(0, 0, 0, 0.7) outset;
+    box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+    animation: goal-pulse 1.5s infinite;
   }
 
   #ghost {
@@ -493,6 +501,23 @@ export default {
   #reset-button {
     color:white;
     font-size:18px;
+  }
+
+  .original-piece > img {
+    height: 100px;
+    width: 100px;
+  }
+
+  @keyframes goal-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 153, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(0, 153, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 153, 255, 0);
+    }
   }
 
 </style>
