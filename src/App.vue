@@ -179,6 +179,7 @@ hr {
 .fade-enter-active, .fade-leave-active {
   transition: opacity .25s
 }
+
 .fade-enter, .fade-leave-to {
   opacity: 0
 }
@@ -186,5 +187,9 @@ hr {
 .menu-container {
     width: 40%;
     flex-wrap: wrap;
+}
+
+.el-message__content {
+  font-size: 16px;
 }
 </style>
