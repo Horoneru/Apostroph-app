@@ -11,13 +11,13 @@
       </div>
     </game-view>
     <el-row type="flex" justify="center" align="middle" id="timeline-container">
-      <el-col :span="20">
+      <el-col :span="19">
         <programing-timeline-item v-for="(el, index) in actionHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
       </el-col>
-      <el-col :span="3">
-        <el-row type="flex" justify="space-between">
+      <el-col :span="4">
+        <el-row type="flex" justify="space-around">
           <el-button v-ripple type="primary" :disabled="actionHistory.length === 0 || blockUserInput" @click="executeMoves">Exécuter</el-button>
-          <el-button v-ripple type="text" id="reset-button" v-show="actionHistory.length !== 0 && !blockUserInput" @click="resetDialogVisible = true"  icon="el-icon-delete"></el-button>
+          <el-button v-ripple type="text" id="reset-button" v-show="actionHistory.length !== 0 && !blockUserInput" @click="resetDialogVisible = true" icon="el-icon-delete"></el-button>
         </el-row>
       </el-col>
     </el-row>
