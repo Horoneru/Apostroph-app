@@ -132,7 +132,7 @@ hr {
 }
 
 .top-left-element {
-  position: absolute;
+  position: absolute !important;
   margin: auto !important;
   top: 25px;
   left: 15px;
