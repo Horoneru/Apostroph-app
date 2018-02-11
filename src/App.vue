@@ -111,8 +111,7 @@ hr {
 }
 
 .gradient-primary-color {
-  /* background: linear-gradient(180deg, #54f5ed, #65d8b9); */
-  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(90deg, #bf7feb, #00efe6);
 }
 
 .gradient-accent-color {
