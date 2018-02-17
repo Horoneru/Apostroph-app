@@ -37,10 +37,6 @@ export default {
       type: Object,
       required: true
     },
-    tutorialMode: {
-      type: Boolean,
-      default: false
-    },
     tutorialSteps: {
       type: Array,
       required: true
@@ -52,7 +48,7 @@ export default {
     };
   },
   mounted: function() {
-    if(this.tutorialMode) {
+    if(this.tutorialSteps.length !== 0) {
       setTimeout(() => {
         var introjs = introJs();
         let options =

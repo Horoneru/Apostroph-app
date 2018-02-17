@@ -2,7 +2,7 @@
   <div>
     <router-link style :to="{ name: 'levelselect', params: { gameid: 'cryptography' }}" class="el-icon-back back-button top-left-element">
     </router-link>
-    <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
+    <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialSteps="tutorialSteps">
       <div slot="playground">
         <isotope :list="tab" :options="options" ref="isotope" class="p-5" style="width: 400px; height: 500px;" v-images-loaded:on.progress="redrawLayout">
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
