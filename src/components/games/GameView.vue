@@ -8,7 +8,7 @@
         </el-col>
         <el-col :span="7">
           <div id="toolbar" ref="toolbar">
-            <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon">
+            <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
               <img :src="tool.icon" @click="tool.action" :style="tool.style"/>
             </div>
             <p v-if="!tools">Toolbar container</p>
@@ -85,6 +85,13 @@ export default {
 
         this.$parent.$emit('tutorialLaunch');
       }, 500);
+    }
+  },
+  methods: {
+    getToolRef: function(tool) {
+      let filename = tool.icon.split('/').pop();
+      // file name without extension
+      return filename.split('.')[0];
     }
   }
 };
