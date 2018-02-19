@@ -137,7 +137,7 @@ export default {
       this.$refs.isotope.layout('masonry');
     },
     tutorialStepChange: function(newStep) {
-      if(newStep === 2) {
+      if(newStep === 1 && this.levelid === 'tutorial') {
         this.arrayInit();
       }
     },
