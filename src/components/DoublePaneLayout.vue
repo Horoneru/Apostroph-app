@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import Ripple from 'fi-ripple';
 export default {
   name: 'DoublePaneLayout',
   props: {
@@ -42,7 +43,8 @@ export default {
         ].indexOf(value) !== -1;
       }
     }
-  }
+  },
+  directives: { Ripple }
 };
 </script>
 

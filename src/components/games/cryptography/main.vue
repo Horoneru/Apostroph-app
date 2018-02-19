@@ -148,9 +148,7 @@ export default {
       }
     },
     tutorialFinished: function() {
-      if(!this.setupInit) {
-        this.arrayInit();
-      }
+      this.arrayInit();
     }
   }
 };
