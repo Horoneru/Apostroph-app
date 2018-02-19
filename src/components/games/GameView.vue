@@ -63,8 +63,17 @@ export default {
           let intro = {
             intro: tutorial.text
           };
-          if(tutorial.element) {
+          // If it is a gameview general element
+          if(tutorial.element in this.$refs) {
             intro.element = this.$refs[tutorial.element];
+            // It seems dynamic refs produce an element put in an array with only one element
+            if(intro.element instanceof Array) {
+              intro.element = intro.element[0];
+            }
+          }
+          // If it is a game-specific element
+          else {
+            intro.element = this.$parent.$refs[tutorial.element];
           }
           steps.push(intro);
         });
