@@ -2,7 +2,7 @@
     <el-row class="h-100 w-100 mt-2" type="flex" justify="center" ref="gameContainer" align="middle">
         <el-col class="h-100">
           <h2>{{ artwork }} - {{ artist.name }}</h2>
-          <div id="playground-stage" ref="playgroundStage" class="w-75">
+          <div id="playground-stage" ref="playground-stage" class="w-75">
             <slot name="playground"><p>Playground</p></slot>
           </div>
         </el-col>
