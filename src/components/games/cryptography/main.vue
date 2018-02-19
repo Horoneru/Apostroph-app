@@ -36,31 +36,8 @@ export default {
   components: { GameView, Isotope, VueIntro },
   data () {
     return {
-      tutorialMode: false,
       setupInit: false,
-      tutorialSteps: [
-        {
-          element: null,
-          text: 'Ton aventure commence !'
-        },
-        {
-          element: 'playgroundStage',
-          text: 'Voici un exemple d\'une oeuvre.<br>' +
-          'Souviens toi de sa disposition car elle sera chiffrée à la prochaine étape !'
-        },
-        {
-          element: 'playgroundStage',
-          text: 'L\'exemple d’œuvre a été chiffrée. Voyons voir comment on peut la restaurer !'
-        },
-        {
-          element: 'toolbar',
-          text: 'Tu peux décaler chacun des blocs en appuyant sur l\'un des deux boutons directionnels ici !'
-        },
-        {
-          element: null,
-          text: 'À toi de jouer !'
-        }
-      ],
+      tutorialSteps: [],
       tools: [
         {
           icon: '../../../../static/assets/left-arrow.png',
@@ -95,9 +72,11 @@ export default {
           image: '../../../../static/assets/cryptography/' + this.levelid + '/img-' + i + '.jpg'
         });
     }
-    this.levelData.mixins.created(this);
-    if(this.tutorialMode) {
-      console.log('Launch tutorial');
+
+    const tutorialSteps = this.levelData.tutorialSteps;
+
+    if(tutorialSteps) {
+      this.tutorialSteps = this.tutorialSteps.concat(tutorialSteps);
     }
     else {
       // Delay the init so the user can see the original piece beforehand
