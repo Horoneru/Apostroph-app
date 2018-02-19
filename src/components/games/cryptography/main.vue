@@ -84,6 +84,12 @@ export default {
         this.arrayInit();
       }, 2000);
     }
+
+    if(this.levelData.mixins) {
+      if(this.levelData.mixins.created) {
+        this.levelData.mixins.created(this);
+      }
+    }
   },
   mounted: function() {
     this.$on('tutorialStepChange', this.tutorialStepChange);

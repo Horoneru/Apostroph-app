@@ -92,10 +92,6 @@ const games = {
         },
         artwork: 'Construction du volume des couleurs',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        },
         next: '2'
       },
       '2': {
@@ -106,10 +102,6 @@ const games = {
         },
         artwork: 'Jeu chromatique 1',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        },
         next: '3'
       },
       '3': {
@@ -120,10 +112,6 @@ const games = {
         },
         artwork: 'l\'Harmonisateur n°3',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        },
         next: '4'
       }
     }

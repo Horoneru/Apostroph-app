@@ -181,8 +181,6 @@ export default {
       );
     }
 
-    if(this.levelData.mixins.created) {
-      this.levelData.mixins.created(this);
     const tutorialSteps = this.levelData.tutorialSteps;
     if(tutorialSteps) {
       this.tutorialSteps = this.tutorialSteps.concat(tutorialSteps);
@@ -193,6 +191,12 @@ export default {
     this.actionTarget = this.gridElements.ghost;
 
     this.reset('hard');
+
+    if(this.levelData.mixins) {
+      if(this.levelData.mixins.created) {
+        this.levelData.mixins.created(this);
+      }
+    }
   },
   watch: {
     actionTarget: function(newActionTarget, oldActionTarget) {
