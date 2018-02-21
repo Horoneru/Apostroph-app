@@ -440,13 +440,13 @@ export default {
     },
     calculatePosition: function(gridPosition) {
       return {
-        top: 100 + (100 * (Math.floor(gridPosition / 4))) + 'px',
-        left: 75 + (100 * (gridPosition % 4)) + 'px'
+        top: 52 + (100 * (Math.floor(gridPosition / 4))) + 'px',
+        left: 25 + (100 * (gridPosition % 4)) + 'px'
       };
     },
     getGridPosition: function(coordinates) {
-      const row = (parseInt(coordinates.top)) / 100 - 1;
-      const column = (parseInt(coordinates.left)) / 100 - 0.75;
+      const row = (parseInt(coordinates.top)) / 100 - 0.52;
+      const column = (parseInt(coordinates.left)) / 100 - 0.25;
       return Math.round(row * this.rowCount + column);
     }
   }
