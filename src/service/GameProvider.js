@@ -14,11 +14,25 @@ const games = {
         artist: artists.cane,
         goal: '1',
         start: '17',
-        mixins: {
-          created: function(vm) {
-            vm.tutorialMode = true;
+        tutorialSteps: [
+          {
+            element: 'playgroundStage',
+            text: 'Voici une oeuvre.<br>' +
+            'Ce jeu te permet de naviguer à l\'intérieur de celle-ci !'
+          },
+          {
+            element: 'up-arrow',
+            text: 'Tu peux avancer dans l\'oeuvre en utilisant le bouton directionnel ici !'
+          },
+          {
+            element: null,
+            text: 'Essaie d\'avancer 4 fois, puis appuies sur le bouton bleu "exécuter"'
+          },
+          {
+            element: null,
+            text: 'À toi de jouer !'
           }
-        },
+        ],
         next: '1'
       }
     }
@@ -39,11 +53,35 @@ const games = {
         },
         artwork: '- Tutoriel',
         artist: { name: '' },
-        mixins: {
-          created: (vm) => {
-            vm.tutorialMode = true;
+        tutorialSteps: [
+          {
+            element: 'playground-stage',
+            text: 'Voici un exemple d\'une oeuvre.<br>' +
+            'Souviens toi de sa disposition car elle sera chiffrée à la prochaine étape !'
+          },
+          {
+            element: 'playground-stage',
+            text: 'L\'exemple d’œuvre a été chiffrée. Voyons voir comment on peut la restaurer !'
+          },
+          {
+            element: 'toolbar',
+            text: 'Tu peux décaler chacun des blocs en appuyant sur l\'un des deux boutons directionnels ici !'
+          },
+          {
+            element: 'left-arrow',
+            text: 'Ce bouton déplace les blocs à gauche.<br>' +
+            'Cela <u>descend</u> le premier élément'
+          },
+          {
+            element: 'right-arrow',
+            text: 'Ce bouton déplace les blocs à droite.<br>' +
+            'Cela <u>monte</u> le dernier élément'
+          },
+          {
+            element: null,
+            text: 'À toi de jouer !'
           }
-        },
+        ],
         next: '1'
       },
       '1': {
@@ -54,10 +92,6 @@ const games = {
         },
         artwork: 'Construction du volume des couleurs',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        },
         next: '2'
       },
       '2': {
@@ -68,10 +102,6 @@ const games = {
         },
         artwork: 'Jeu chromatique 1',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        },
         next: '3'
       },
       '3': {
@@ -82,10 +112,6 @@ const games = {
         },
         artwork: 'l\'Harmonisateur n°3',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        },
         next: '4'
       }
     }

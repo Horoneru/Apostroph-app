@@ -2,13 +2,13 @@
     <el-row class="h-100 w-100 mt-2" type="flex" justify="center" ref="gameContainer" align="middle">
         <el-col class="h-100">
           <h2>{{ artwork }} - {{ artist.name }}</h2>
-          <div id="playground-stage" ref="playgroundStage" class="w-75">
+          <div id="playground-stage" ref="playground-stage" class="w-75">
             <slot name="playground"><p>Playground</p></slot>
           </div>
         </el-col>
         <el-col :span="7">
           <div id="toolbar" ref="toolbar">
-            <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon">
+            <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
               <img :src="tool.icon" @click="tool.action" :style="tool.style"/>
             </div>
             <p v-if="!tools">Toolbar container</p>
@@ -37,10 +37,6 @@ export default {
       type: Object,
       required: true
     },
-    tutorialMode: {
-      type: Boolean,
-      default: false
-    },
     tutorialSteps: {
       type: Array,
       required: true
@@ -52,7 +48,7 @@ export default {
     };
   },
   mounted: function() {
-    if(this.tutorialMode) {
+    if(this.tutorialSteps.length !== 0) {
       setTimeout(() => {
         var introjs = introJs();
         let options =
@@ -67,8 +63,17 @@ export default {
           let intro = {
             intro: tutorial.text
           };
-          if(tutorial.element) {
+          // If it is a gameview general element
+          if(tutorial.element in this.$refs) {
             intro.element = this.$refs[tutorial.element];
+            // It seems dynamic refs produce an element put in an array with only one element
+            if(intro.element instanceof Array) {
+              intro.element = intro.element[0];
+            }
+          }
+          // If it is a game-specific element
+          else {
+            intro.element = this.$parent.$refs[tutorial.element];
           }
           steps.push(intro);
         });
@@ -89,6 +94,13 @@ export default {
 
         this.$parent.$emit('tutorialLaunch');
       }, 500);
+    }
+  },
+  methods: {
+    getToolRef: function(tool) {
+      let filename = tool.icon.split('/').pop();
+      // file name without extension
+      return filename.split('.')[0];
     }
   }
 };

@@ -2,7 +2,7 @@
   <div>
     <router-link style :to="{ name: 'levelselect', params: { gameid: 'programming' }}" class="el-icon-back back-button top-left-element">
     </router-link>
-    <game-view :tools="tools" :artist="artist" :artwork="artwork" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
+    <game-view :tools="tools" :artist="artist" :artwork="artwork" :tutorialSteps="tutorialSteps">
       <div slot="playground" style="position:relative;height:500px;max-width:400px" class="p-5">
         <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         <span class="grid-element" id="cursor" :style="gridElements.cursor.style"></span>
@@ -55,27 +55,8 @@ export default {
   name: 'Programming',
   data () {
     return {
-      tutorialMode: false,
+      tutorialSteps: [],
       setupInit: false,
-      tutorialSteps: [
-        {
-          element: 'playgroundStage',
-          text: 'Voici une oeuvre.<br>' +
-          'Ce jeu te permet de naviguer à l\'intérieur de celle-ci !'
-        },
-        {
-          element: 'toolbar',
-          text: 'Tu peux avancer dans l\'oeuvre en utilisant le bouton directionnel ici !'
-        },
-        {
-          element: null,
-          text: 'Essaie d\'avancer 4 fois, puis appuies sur le bouton bleu "exécuter"'
-        },
-        {
-          element: null,
-          text: 'À toi de jouer !'
-        }
-      ],
       tools: [
         {
           icon: '../../../../static/assets/up-arrow.png',
@@ -200,8 +181,9 @@ export default {
       );
     }
 
-    if(this.levelData.mixins.created) {
-      this.levelData.mixins.created(this);
+    const tutorialSteps = this.levelData.tutorialSteps;
+    if(tutorialSteps) {
+      this.tutorialSteps = this.tutorialSteps.concat(tutorialSteps);
     }
 
     this.tools[0].style.transform = 'rotate(' + this.cursorDegrees + ' deg)';
@@ -209,6 +191,12 @@ export default {
     this.actionTarget = this.gridElements.ghost;
 
     this.reset('hard');
+
+    if(this.levelData.mixins) {
+      if(this.levelData.mixins.created) {
+        this.levelData.mixins.created(this);
+      }
+    }
   },
   watch: {
     actionTarget: function(newActionTarget, oldActionTarget) {

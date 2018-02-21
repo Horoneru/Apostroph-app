@@ -2,7 +2,7 @@
   <div>
     <router-link style :to="{ name: 'levelselect', params: { gameid: 'cryptography' }}" class="el-icon-back back-button top-left-element">
     </router-link>
-    <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
+    <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialSteps="tutorialSteps">
       <div slot="playground">
         <isotope :list="tab" :options="options" ref="isotope" class="p-5" style="width: 400px; height: 500px;" v-images-loaded:on.progress="redrawLayout">
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
@@ -36,31 +36,8 @@ export default {
   components: { GameView, Isotope, VueIntro },
   data () {
     return {
-      tutorialMode: false,
       setupInit: false,
-      tutorialSteps: [
-        {
-          element: null,
-          text: 'Ton aventure commence !'
-        },
-        {
-          element: 'playgroundStage',
-          text: 'Voici un exemple d\'une oeuvre.<br>' +
-          'Souviens toi de sa disposition car elle sera chiffrée à la prochaine étape !'
-        },
-        {
-          element: 'playgroundStage',
-          text: 'L\'exemple d’œuvre a été chiffrée. Voyons voir comment on peut la restaurer !'
-        },
-        {
-          element: 'toolbar',
-          text: 'Tu peux décaler chacun des blocs en appuyant sur l\'un des deux boutons directionnels ici !'
-        },
-        {
-          element: null,
-          text: 'À toi de jouer !'
-        }
-      ],
+      tutorialSteps: [],
       tools: [
         {
           icon: '../../../../static/assets/left-arrow.png',
@@ -95,15 +72,23 @@ export default {
           image: '../../../../static/assets/cryptography/' + this.levelid + '/img-' + i + '.jpg'
         });
     }
-    this.levelData.mixins.created(this);
-    if(this.tutorialMode) {
-      console.log('Launch tutorial');
+
+    const tutorialSteps = this.levelData.tutorialSteps;
+
+    if(tutorialSteps) {
+      this.tutorialSteps = this.tutorialSteps.concat(tutorialSteps);
     }
     else {
       // Delay the init so the user can see the original piece beforehand
       setTimeout(() => {
         this.arrayInit();
       }, 2000);
+    }
+
+    if(this.levelData.mixins) {
+      if(this.levelData.mixins.created) {
+        this.levelData.mixins.created(this);
+      }
     }
   },
   mounted: function() {
@@ -158,14 +143,12 @@ export default {
       this.$refs.isotope.layout('masonry');
     },
     tutorialStepChange: function(newStep) {
-      if(newStep === 2) {
+      if(newStep === 1 && this.levelid === 'tutorial') {
         this.arrayInit();
       }
     },
     tutorialFinished: function() {
-      if(!this.setupInit) {
-        this.arrayInit();
-      }
+      this.arrayInit();
     }
   }
 };
