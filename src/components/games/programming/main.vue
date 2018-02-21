@@ -3,7 +3,7 @@
     <router-link style :to="{ name: 'levelselect', params: { gameid: 'programming' }}" class="el-icon-back back-button top-left-element">
     </router-link>
     <game-view :tools="tools" :artist="artist" :artwork="artwork" :tutorialSteps="tutorialSteps">
-      <div slot="playground" style="position:relative;height:500px;max-width:400px" class="p-5">
+      <div slot="playground" style="position:relative;height:500px;max-width:400px" class="m-auto">
         <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         <span class="grid-element" id="cursor" :style="gridElements.cursor.style"></span>
         <span class="grid-element" id="ghost" :style="gridElements.ghost.style"></span>

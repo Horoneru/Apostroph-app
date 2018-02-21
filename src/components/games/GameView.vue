@@ -110,10 +110,10 @@ export default {
 <style scoped>
   #playground-stage {
     background-color: rgba(255, 255, 255, 0.25);
-    padding-left: 10%;
-    padding-top: 1%;
+    padding-top: 5%;
     margin-top: 4%;
     margin-left: 10%;
+    padding-bottom: 5%;
     border-radius: 10px;
   }
 
