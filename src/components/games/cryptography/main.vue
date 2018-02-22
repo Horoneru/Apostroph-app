@@ -4,9 +4,9 @@
     </router-link>
     <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialSteps="tutorialSteps">
       <div slot="playground">
-        <isotope :list="tab" :options="options" ref="isotope" class="p-5" style="width: 400px; height: 500px;" v-images-loaded:on.progress="redrawLayout">
+        <transition-group class="p-5" style="width: 400px; height: 500px;" tag="div" name="pieces-list">
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
-        </isotope>
+        </transition-group>
       </div>
     </game-view>
   </div>
@@ -16,9 +16,6 @@
 import GameView from '../GameView';
 import games from '../../../service/GameProvider';
 import VueIntro from 'vue-introjs';
-import imagesLoaded from 'vue-images-loaded';
-import Isotope from 'vueisotope';
-import debounce from 'lodash-es/debounce';
 import utils from '../../../utils/cryptography';
 import validators from '../../../service/ValidatorProvider';
 export default {
@@ -32,8 +29,7 @@ export default {
       }
     }
   },
-  directives: { imagesLoaded },
-  components: { GameView, Isotope, VueIntro },
+  components: { GameView, VueIntro },
   data () {
     return {
       setupInit: false,
@@ -41,11 +37,11 @@ export default {
       tools: [
         {
           icon: '../../../../static/assets/left-arrow.png',
-          action: debounce(this.popBack, 500, { maxWait: 700, leading: true })
+          action: this.popBack
         },
         {
-          action: debounce(this.pushBack, 500, { maxWait: 700, leading: true }),
-          icon: '../../../../static/assets/right-arrow.png'
+          icon: '../../../../static/assets/right-arrow.png',
+          action: this.pushBack
         }
         // {
         //   action: debounce(this.pushBack, 500, { maxWait: 700, leading: true }),
@@ -55,13 +51,7 @@ export default {
       levelData: games.cryptography.levels[this.levelid],
       artist: games.cryptography.levels[this.levelid].artist,
       artwork: games.cryptography.levels[this.levelid].artwork,
-      tab: [],
-      options: {
-        getSortData: {
-          id: 'el'
-        },
-        sortBy: 'el'
-      }
+      tab: []
     };
   },
   created: function() {
@@ -122,12 +112,8 @@ export default {
       }
     },
     arrangeArray: function(newArray) {
-      // Isotope (le module pour les anims) ne voit pas la modif sinon.
-      this.tab.splice(0, 20);
-      setTimeout(() => {
-        this.tab = newArray;
-        this.checkArray();
-      }, 0);
+      this.tab = newArray;
+      this.checkArray();
     },
     checkArray: function() {
       if(this.tab.every((value, index) => value.id === index)) {
@@ -138,9 +124,6 @@ export default {
           this.$router.push({ name: 'levelcomplete', params: { gameid: 'cryptography', level: this.levelid } });
         }, 500);
       }
-    },
-    redrawLayout: function() {
-      this.$refs.isotope.layout('masonry');
     },
     tutorialStepChange: function(newStep) {
       if(newStep === 1 && this.levelid === 'tutorial') {
@@ -161,5 +144,9 @@ export default {
   float: left;
   width: 100px;
   height: 100px;
+}
+
+.pieces-list-move {
+  transition: transform .25s ease-out;
 }
 </style>
