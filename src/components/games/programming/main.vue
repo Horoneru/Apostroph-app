@@ -3,7 +3,7 @@
     <router-link style :to="{ name: 'levelselect', params: { gameid: 'programming' }}" class="el-icon-back back-button top-left-element">
     </router-link>
     <game-view :tools="tools" :artist="artist" :artwork="artwork" :tutorialSteps="tutorialSteps">
-      <div slot="playground" style="position:relative;height:500px;max-width:400px" class="p-5">
+      <div slot="playground" style="position:relative;height:500px;max-width:400px" class="m-auto">
         <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         <span class="grid-element" id="cursor" :style="gridElements.cursor.style"></span>
         <span class="grid-element" id="ghost" :style="gridElements.ghost.style"></span>
@@ -440,13 +440,13 @@ export default {
     },
     calculatePosition: function(gridPosition) {
       return {
-        top: 100 + (100 * (Math.floor(gridPosition / 4))) + 'px',
-        left: 75 + (100 * (gridPosition % 4)) + 'px'
+        top: 52 + (100 * (Math.floor(gridPosition / 4))) + 'px',
+        left: 25 + (100 * (gridPosition % 4)) + 'px'
       };
     },
     getGridPosition: function(coordinates) {
-      const row = (parseInt(coordinates.top)) / 100 - 1;
-      const column = (parseInt(coordinates.left)) / 100 - 0.75;
+      const row = (parseInt(coordinates.top)) / 100 - 0.52;
+      const column = (parseInt(coordinates.left)) / 100 - 0.25;
       return Math.round(row * this.rowCount + column);
     }
   }

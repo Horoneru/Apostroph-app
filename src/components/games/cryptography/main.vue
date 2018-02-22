@@ -4,7 +4,7 @@
     </router-link>
     <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialSteps="tutorialSteps">
       <div slot="playground">
-        <transition-group class="p-5" style="width: 400px; height: 500px;" tag="div" name="pieces-list">
+        <transition-group class="m-auto" style="width: 400px; height: 500px;" tag="div" name="pieces-list">
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         </transition-group>
       </div>
