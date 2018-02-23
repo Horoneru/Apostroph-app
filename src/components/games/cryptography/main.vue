@@ -8,6 +8,11 @@
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         </transition-group>
       </div>
+      <div slot="footer-left" v-if="levelData.usesQrcode">
+      </div>
+      <el-row type="flex" justify="space-around" slot="footer-right">
+        <el-button v-ripple type="primary" @click="checkArray" :disabled="!setupInit">Vérifier</el-button>
+      </el-row>
     </game-view>
   </div>
 </template>
