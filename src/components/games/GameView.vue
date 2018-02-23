@@ -1,20 +1,30 @@
 <template>
-    <el-row class="h-100 w-100 mt-2" type="flex" justify="center" ref="gameContainer" align="middle">
-        <el-col class="h-100">
-          <h2>{{ artwork }} - {{ artist.name }}</h2>
-          <div id="playground-stage" ref="playground-stage" class="w-75">
-            <slot name="playground"><p>Playground</p></slot>
-          </div>
-        </el-col>
-        <el-col :span="7">
-          <div id="toolbar" ref="toolbar">
-            <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
-              <img :src="tool.icon" @click="tool.action" :style="tool.style"/>
+  <div>
+      <el-row class="h-100 w-100 mt-2" type="flex" justify="center" ref="gameContainer" align="middle">
+          <el-col class="h-100">
+            <h2>{{ artwork }} - {{ artist.name }}</h2>
+            <div id="playground-stage" ref="playground-stage" class="w-75">
+              <slot name="playground"><p>Playground</p></slot>
             </div>
-            <p v-if="!tools">Toolbar container</p>
-          </div>
+          </el-col>
+          <el-col :span="7">
+            <div id="toolbar" ref="toolbar">
+              <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
+                <img :src="tool.icon" @click="tool.action" :style="tool.style"/>
+              </div>
+              <p v-if="!tools">Toolbar container</p>
+            </div>
+          </el-col>
+      </el-row>
+      <el-row type="flex" justify="center" align="middle" ref="footer" tag="footer">
+        <el-col :span="19">
+          <slot name="footer-left"></slot>
+        </el-col>
+        <el-col :span="4">
+          <slot name="footer-right"></slot>
         </el-col>
     </el-row>
+  </div>
 </template>
 
 <script>
@@ -127,5 +137,14 @@ export default {
 
   .tool:not(:last-child) {
     margin-bottom: 20%;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: auto;
   }
 </style>

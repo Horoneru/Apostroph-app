@@ -9,18 +9,12 @@
         <span class="grid-element" id="ghost" :style="gridElements.ghost.style"></span>
         <span class="grid-element animated pulse infinite el-icon-location" id="goal" :style="gridElements.goal.style"></span>
       </div>
+      <programing-timeline-item slot="footer-left" v-for="(el, index) in actionHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
+      <el-row type="flex" justify="space-around" slot="footer-right">
+        <el-button v-ripple type="primary" :disabled="actionHistory.length === 0 || blockUserInput" @click="executeMoves">Exécuter</el-button>
+        <el-button v-ripple type="text" id="reset-button" v-show="actionHistory.length !== 0 && !blockUserInput" @click="resetDialogVisible = true" icon="el-icon-delete"></el-button>
+      </el-row>
     </game-view>
-    <el-row type="flex" justify="center" align="middle" id="timeline-container">
-      <el-col :span="19">
-        <programing-timeline-item v-for="(el, index) in actionHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
-      </el-col>
-      <el-col :span="4">
-        <el-row type="flex" justify="space-around">
-          <el-button v-ripple type="primary" :disabled="actionHistory.length === 0 || blockUserInput" @click="executeMoves">Exécuter</el-button>
-          <el-button v-ripple type="text" id="reset-button" v-show="actionHistory.length !== 0 && !blockUserInput" @click="resetDialogVisible = true" icon="el-icon-delete"></el-button>
-        </el-row>
-      </el-col>
-    </el-row>
     <el-dialog title="Recommencer à zéro ?" :visible.sync="resetDialogVisible">
       <span>Es-tu sûr de recommencer à zéro ?</span>
       <span slot="footer" class="dialog-footer">
@@ -488,15 +482,6 @@ export default {
 
   #ghost {
     opacity: 0.5;
-  }
-
-  #timeline-container {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
-    background-color: rgba(0, 0, 0, 0.7);
-    margin: auto;
   }
 
   #reset-button {
