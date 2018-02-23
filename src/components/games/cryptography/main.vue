@@ -11,7 +11,7 @@
       <div slot="footer-left" v-if="levelData.usesQrcode">
       </div>
       <el-row type="flex" justify="space-around" slot="footer-right">
-        <el-button v-ripple type="primary" @click="checkArray" :disabled="!setupInit">Vérifier</el-button>
+        <el-button v-ripple type="primary" @click="checkSuccess" :disabled="!setupInit" id="check-button">Vérifier</el-button>
       </el-row>
     </game-view>
   </div>
@@ -58,6 +58,11 @@ export default {
       artwork: games.cryptography.levels[this.levelid].artwork,
       tab: []
     };
+  },
+  computed: {
+    success: function() {
+      return this.tab.every((value, index) => value.id === index);
+    }
   },
   created: function() {
     for(let i = 0; i < 20; i++) {
@@ -118,17 +123,22 @@ export default {
     },
     arrangeArray: function(newArray) {
       this.tab = newArray;
-      this.checkArray();
     },
-    checkArray: function() {
-      if(this.tab.every((value, index) => value.id === index)) {
-        if(this.tutorialMode) {
-          this.$store.commit('tutorialDone', 'cryptography');
-        }
-        setTimeout(() => {
-          this.$router.push({ name: 'levelcomplete', params: { gameid: 'cryptography', level: this.levelid } });
-        }, 500);
+    checkSuccess: function() {
+      if(this.success) {
+        this.levelComplete();
       }
+      else {
+        this.$message({
+          type: 'error',
+          message: 'Vous n\'avez pas reconstitué correctement l\'oeuvre'
+        })
+      }
+    },
+    levelComplete: function() {
+      setTimeout(() => {
+        this.$router.push({ name: 'levelcomplete', params: { gameid: 'cryptography', level: this.levelid } });
+      }, 250);
     },
     tutorialStepChange: function(newStep) {
       if(newStep === 1 && this.levelid === 'tutorial') {
