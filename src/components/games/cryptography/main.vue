@@ -4,7 +4,7 @@
     </router-link>
     <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialSteps="tutorialSteps">
       <div slot="playground">
-        <transition-group class="m-auto" style="width: 400px; height: 500px;" tag="div" name="pieces-list">
+        <transition-group class="m-auto" id="pieces-container" tag="div" name="pieces-list">
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         </transition-group>
       </div>
@@ -144,13 +144,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#pieces-container {
+  height: 500px;
+  width: 400px;
+}
 .original-piece {
   display: block;
   float: left;
   width: 100px;
   height: 100px;
 }
-
 .pieces-list-move {
   transition: transform .25s ease-out;
 }
