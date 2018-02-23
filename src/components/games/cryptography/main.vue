@@ -23,6 +23,8 @@ import games from '../../../service/GameProvider';
 import VueIntro from 'vue-introjs';
 import utils from '../../../utils/cryptography';
 import validators from '../../../service/ValidatorProvider';
+import { introJs } from 'intro.js';
+import 'intro.js/introjs.css';
 export default {
   name: 'Cryptography',
   props: {
@@ -62,6 +64,25 @@ export default {
   computed: {
     success: function() {
       return this.tab.every((value, index) => value.id === index);
+    }
+  },
+  watch: {
+    success: function(val) {
+      if(this.levelid === 'tutorial' && val) {
+        let introjs = introJs();
+        let options =
+          {
+            doneLabel: 'OK'
+          };
+        options.steps = [
+          {
+            element: document.getElementById('check-button'),
+            intro: 'Bravo ! Tu as réussi à reconstituer l\'oeuvre !<br>Appuie sur ce bouton pour vérifier et terminer le niveau '
+          }
+        ];
+        introjs.setOptions(options);
+        introjs.start();
+      }
     }
   },
   created: function() {
