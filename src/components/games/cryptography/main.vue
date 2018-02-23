@@ -14,6 +14,10 @@
         <el-button v-ripple type="primary" @click="checkSuccess" :disabled="!setupInit" id="check-button">Vérifier</el-button>
       </el-row>
     </game-view>
+    <el-dialog title="Scanneur de QR code" :visible.sync="qrCodeDialog">
+      <qrcode-reader v-loading="qrcodeReaderLoading"  @init="onInitQrCodeReader" @decode="onDecodeQrCode">
+      </qrcode-reader>
+    </el-dialog>
   </div>
 </template>
 
@@ -25,6 +29,7 @@ import utils from '../../../utils/cryptography';
 import validators from '../../../service/ValidatorProvider';
 import { introJs } from 'intro.js';
 import 'intro.js/introjs.css';
+import { QrcodeReader } from 'vue-qrcode-reader';
 export default {
   name: 'Cryptography',
   props: {
@@ -36,7 +41,7 @@ export default {
       }
     }
   },
-  components: { GameView, VueIntro },
+  components: { GameView, VueIntro, QrcodeReader },
   data () {
     return {
       setupInit: false,
@@ -58,7 +63,9 @@ export default {
       levelData: games.cryptography.levels[this.levelid],
       artist: games.cryptography.levels[this.levelid].artist,
       artwork: games.cryptography.levels[this.levelid].artwork,
-      tab: []
+      tab: [],
+      qrCodeDialog: false,
+      qrcodeReaderLoading: true
     };
   },
   computed: {
@@ -168,6 +175,44 @@ export default {
     },
     tutorialFinished: function() {
       this.arrayInit();
+    },
+    onDecodeQrCode: function(content) {
+      // TODO actually do something.
+      // Showing the number of permutations to the user, maybe ?
+      this.$message({
+        type: 'info',
+        message: content
+      });
+    },
+
+    async onInitQrCodeReader(promise) {
+      try {
+        await promise
+        // successfully initialized
+      }
+      catch (error) {
+        if (error.name === 'NotAllowedError') {
+          // user denied camera access permisson
+        } else if (error.name === 'NotFoundError') {
+          // no suitable camera device installed
+        } else if (error.name === 'NotSupportedError') {
+          // page is not served over HTTPS (or localhost)
+        } else if (error.name === 'NotReadableError') {
+          // maybe camera is already in use
+        } else if (error.name === 'OverconstrainedError') {
+          // passed constraints don't match any camera. Did you requested the front camera although there is none?
+        } else {
+          // browser is probably lacking features (WebRTC, Canvas)
+        }
+
+        this.$message({
+          type: 'error',
+          message: 'Erreur : ' + error.name
+        });
+      }
+      finally {
+        this.qrcodeReaderLoading = false;
+      }
     }
   }
 };
