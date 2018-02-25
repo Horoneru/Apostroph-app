@@ -148,7 +148,9 @@ export default {
 
     if(this.levelData.usesQrcode) {
       this.tools.push({
-        action: () => this.qrCodeDialog = true,
+        action: () => {
+          this.qrCodeDialog = true;
+        },
         icon: '../../../../static/assets/apn-tool.png'
       });
     }
@@ -202,7 +204,7 @@ export default {
         this.$message({
           type: 'error',
           message: 'Vous n\'avez pas reconstitué correctement l\'oeuvre'
-        })
+        });
       }
     },
     levelComplete: function() {
@@ -222,40 +224,45 @@ export default {
       // Keep it
       console.log(content);
       content = JSON.parse(content);
-      if(content.levelid == this.levelid) {
+      if(content.levelid === this.levelid) {
         // Welllll... We had it all along but now the user knows, too
         this.cipherKey = this.levelData.permutations.count;
         this.qrCodeDialog = false;
         this.$message({
           type: 'success',
           message: 'Le QR code a bien été scanné !'
-        })
+        });
       }
       else {
         this.$message({
           type: 'warning',
           message: 'Ce QR code n\'appartient pas à ce niveau'
-        })
+        });
       }
     },
 
     async onInitQrCodeReader(promise) {
       try {
-        await promise
+        await promise;
         // successfully initialized
       }
       catch (error) {
         if (error.name === 'NotAllowedError') {
           // user denied camera access permisson
-        } else if (error.name === 'NotFoundError') {
+        }
+        else if (error.name === 'NotFoundError') {
           // no suitable camera device installed
-        } else if (error.name === 'NotSupportedError') {
+        }
+        else if (error.name === 'NotSupportedError') {
           // page is not served over HTTPS (or localhost)
-        } else if (error.name === 'NotReadableError') {
+        }
+        else if (error.name === 'NotReadableError') {
           // maybe camera is already in use
-        } else if (error.name === 'OverconstrainedError') {
+        }
+        else if (error.name === 'OverconstrainedError') {
           // passed constraints don't match any camera. Did you requested the front camera although there is none?
-        } else {
+        }
+        else {
           // browser is probably lacking features (WebRTC, Canvas)
         }
 
