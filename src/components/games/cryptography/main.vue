@@ -292,6 +292,21 @@ export default {
   width: 100px;
   height: 100px;
 }
+
+.el-button--primary {
+  background-color: var(--primary-color-inverse);
+  border-color: var(--primary-color-inverse);
+}
+
+.el-button--primary.is-disabled {
+  background-color: rgba(191, 127, 235, 0.2);
+  border-color: rgba(191, 127, 235, 0.2);
+}
+
+.el-button--primary:hover {
+  background-color: rgba(191, 127, 235, 0.5);
+}
+
 .pieces-list-move {
   transition: transform .25s ease-out;
 }

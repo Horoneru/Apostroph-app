@@ -188,7 +188,14 @@ hr {
     flex-wrap: wrap;
 }
 
+/* Element CSS custom */
+
 .el-message__content {
   font-size: 16px;
+}
+
+.el-button--primary.is-disabled, .el-button--primary.is-disabled:active, .el-button--primary.is-disabled:focus {
+  background-color: rgb(64, 158, 255, 0.2);
+  border-color: rgb(64, 158, 255, 0.2);
 }
 </style>
