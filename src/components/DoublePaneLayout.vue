@@ -54,7 +54,7 @@ h1 {
 }
 
 .half-gutter {
-  margin: 10% auto auto auto;
+  margin: auto auto;
   max-width: 66%;
 }
 </style>
