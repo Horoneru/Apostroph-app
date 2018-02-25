@@ -1,7 +1,5 @@
 <template>
   <div>
-    <router-link style :to="{ name: 'levelselect', params: { gameid: 'cryptography' }}" class="el-icon-back back-button top-left-element">
-    </router-link>
     <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialSteps="tutorialSteps">
       <div slot="playground">
         <transition-group class="m-auto" id="pieces-container" tag="div" name="pieces-list">

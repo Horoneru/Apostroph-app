@@ -1,5 +1,15 @@
 <template>
   <div>
+    <a v-ripple class="el-icon-back back-button top-left-element" @click="leaveGameDialog = true"></a>
+    <el-dialog title="Quitter ?" :visible.sync="leaveGameDialog">
+      <span>Es-tu sûr de quitter le niveau ?<br>
+            Ta progression sera perdue !
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button v-ripple @click="leaveGameDialog = false">Non</el-button>
+        <el-button v-ripple type="primary" @click="leaveGame();leaveGameDialog = false">Oui ! </el-button>
+      </span>
+    </el-dialog>
       <el-row class="h-100 w-100 mt-2" type="flex" justify="center" ref="gameContainer" align="middle">
           <el-col class="h-100">
             <h2>{{ artwork }} - {{ artist.name }}</h2>
@@ -55,6 +65,7 @@ export default {
   directives: { Ripple },
   data () {
     return {
+      leaveGameDialog: false
     };
   },
   mounted: function() {
@@ -111,6 +122,9 @@ export default {
       let filename = tool.icon.split('/').pop();
       // file name without extension
       return filename.split('.')[0];
+    },
+    leaveGame: function() {
+      this.$router.push({ name: 'levelselect', params: { gameid: this.$store.state.currentGame }});
     }
   }
 };
