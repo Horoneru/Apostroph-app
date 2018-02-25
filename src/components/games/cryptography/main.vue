@@ -10,7 +10,7 @@
       </div>
       <div slot="footer-left" v-if="levelData.usesQrcode">
         <el-col :span="5">Clé de chiffrement : {{ cipherKey }}</el-col>
-        <p v-show="cipherKey === '?'">Utilise le bouton de qr code pour connaître la clé de chiffrement</p>
+        <p v-html="helpText"></p>
       </div>
       <el-row type="flex" justify="space-around" slot="footer-right">
         <el-button v-ripple type="primary" @click="checkSuccess" :disabled="!setupInit" id="check-button">Vérifier</el-button>
@@ -64,12 +64,46 @@ export default {
       tab: [],
       qrCodeDialog: false,
       qrcodeReaderLoading: true,
-      cipherKey: '?'
+      cipherKey: '?',
+      distanceFromGoal: games.cryptography.levels[this.levelid].permutations.count
     };
   },
   computed: {
     success: function() {
       return this.tab.every((value, index) => value.id === index);
+    },
+    helpText: function() {
+      if(this.cipherKey === '?') {
+        return 'Utilise le bouton photo pour scanner le QR code et connaître la clé de chiffrement';
+      }
+      else {
+        let directionToGo = this.levelData.permutations.direction;
+        let distanceToGo = this.distanceFromGoal;
+
+        if(distanceToGo < 0) {
+          directionToGo = 'right';
+          distanceToGo = -distanceToGo;
+        }
+        if(distanceToGo >= 20) {
+          distanceToGo -= 20;
+          this.distanceFromGoal = Math.abs(this.distanceFromGoal);
+          this.distanceFromGoal -= 20;
+        }
+        if((distanceToGo > 10)) {
+          // We go the opposite direction, because it's more efficient
+          directionToGo = directionToGo === 'right' ? 'left' : 'right';
+          console.log(distanceToGo);
+          // The distance is lessened from the switch of direction
+          // i.e. : distanceFromGoal = 14 with directionToGo left. Then the distanceToGo is 6 when going right.
+          distanceToGo = Math.abs((distanceToGo - 20));
+        }
+
+        // Localized string before displaying it
+        directionToGo = directionToGo === 'right' ? 'droite' : 'gauche';
+        return distanceToGo === 0
+        ? '<strong>Tu as résolu ce niveau !</strong> Appuie sur le bouton Vérifier pour continuer.'
+        : `Avec cette clé, va <strong>${distanceToGo} fois à ${directionToGo}</strong> et tu pourras déchiffrer l'œuvre.`;
+      }
     }
   },
   watch: {
@@ -133,12 +167,14 @@ export default {
     pushBack: function() {
       if(this.setupInit) {
         let newArray = utils.pushBack(this.tab);
+        this.distanceFromGoal += this.levelData.permutations.direction === 'right' ? -1 : 1;
         this.arrangeArray(newArray);
       }
     },
     popBack: function() {
       if(this.setupInit) {
         let newArray = utils.popBack(this.tab);
+        this.distanceFromGoal += this.levelData.permutations.direction === 'left' ? -1 : 1;
         this.arrangeArray(newArray);
       }
     },
