@@ -9,6 +9,8 @@
         </transition-group>
       </div>
       <div slot="footer-left" v-if="levelData.usesQrcode">
+        <el-col :span="5">Clé de chiffrement : {{ cipherKey }}</el-col>
+        <p v-show="cipherKey === '?'">Utilise le bouton de qr code pour connaître la clé de chiffrement</p>
       </div>
       <el-row type="flex" justify="space-around" slot="footer-right">
         <el-button v-ripple type="primary" @click="checkSuccess" :disabled="!setupInit" id="check-button">Vérifier</el-button>
@@ -55,17 +57,14 @@ export default {
           icon: '../../../../static/assets/right-arrow.png',
           action: this.pushBack
         }
-        // {
-        //   action: debounce(this.pushBack, 500, { maxWait: 700, leading: true }),
-        //   icon: '../../../../static/assets/apn-tool.png'
-        // }
       ],
       levelData: games.cryptography.levels[this.levelid],
       artist: games.cryptography.levels[this.levelid].artist,
       artwork: games.cryptography.levels[this.levelid].artwork,
       tab: [],
       qrCodeDialog: false,
-      qrcodeReaderLoading: true
+      qrcodeReaderLoading: true,
+      cipherKey: '?'
     };
   },
   computed: {
@@ -111,6 +110,13 @@ export default {
       setTimeout(() => {
         this.arrayInit();
       }, 2000);
+    }
+
+    if(this.levelData.usesQrcode) {
+      this.tools.push({
+        action: () => this.qrCodeDialog = true,
+        icon: '../../../../static/assets/apn-tool.png'
+      });
     }
 
     if(this.levelData.mixins) {
@@ -177,12 +183,24 @@ export default {
       this.arrayInit();
     },
     onDecodeQrCode: function(content) {
-      // TODO actually do something.
-      // Showing the number of permutations to the user, maybe ?
-      this.$message({
-        type: 'info',
-        message: content
-      });
+      // Keep it
+      console.log(content);
+      content = JSON.parse(content);
+      if(content.levelid == this.levelid) {
+        // Welllll... We had it all along but now the user knows, too
+        this.cipherKey = this.levelData.permutations.count;
+        this.qrCodeDialog = false;
+        this.$message({
+          type: 'success',
+          message: 'Le QR code a bien été scanné !'
+        })
+      }
+      else {
+        this.$message({
+          type: 'warning',
+          message: 'Ce QR code n\'appartient pas à ce niveau'
+        })
+      }
     },
 
     async onInitQrCodeReader(promise) {
