@@ -102,6 +102,7 @@ const games = {
         },
         artwork: 'Jeu chromatique 1',
         artist: artists.lemonnier,
+        usesQrcode: true,
         next: '3'
       },
       '3': {
@@ -112,6 +113,7 @@ const games = {
         },
         artwork: 'l\'Harmonisateur n°3',
         artist: artists.lemonnier,
+        usesQrcode: true,
         next: '4'
       }
     }
