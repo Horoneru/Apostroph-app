@@ -452,7 +452,7 @@ export default {
     },
     calculatePosition: function(gridPosition) {
       return {
-        top:  30 + (100 * (Math.floor(gridPosition / 4))) + 'px',
+        top: 30 + (100 * (Math.floor(gridPosition / 4))) + 'px',
         left: 25 + (100 * (gridPosition % 4)) + 'px'
       };
     },
