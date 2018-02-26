@@ -201,7 +201,7 @@ export default {
       else {
         this.$message({
           type: 'error',
-          message: 'Vous n\'avez pas reconstitué correctement l\'oeuvre'
+          message: 'Il semble que tu n\'as pas reconstitué correctement l\'oeuvre'
         });
       }
     },

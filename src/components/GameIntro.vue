@@ -3,7 +3,7 @@
     <div slot="rightContent">
       <p v-html="desc"></p>
       <h2 :class="[{ 'o-1': visibility.touchToContinue, 'o-0': !visibility.touchToContinue}, 'fade-enter-active', 'animated pulse infinite']">
-        Touchez pour continuer
+        Touche pour continuer
       </h2>
         <img id="picto" :src="'../../static/assets/picto-' + gameid + '.png'">
     </div>

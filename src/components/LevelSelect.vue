@@ -12,7 +12,7 @@
     <el-row>
       <img src="../../static/assets/logo.png" />
     </el-row>
-    <h2 class="subtitle">Choisissez un niveau</h2>
+    <h2 class="subtitle">Choisis un niveau</h2>
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around">
       <!-- Use template to avoid rendering a real tag. -->

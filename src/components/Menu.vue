@@ -5,7 +5,7 @@
     <el-row>
       <img src="../../static/assets/logo.png" />
     </el-row>
-    <h2 class="subtitle">Choisissez un mini jeu</h2>
+    <h2 class="subtitle">Choisis un mini jeu</h2>
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around" >
       <nav-button text="Cryptographie" :to="getRoute('cryptography')"
