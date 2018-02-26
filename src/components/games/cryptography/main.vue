@@ -6,7 +6,7 @@
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         </transition-group>
       </div>
-      <div slot="footer-left" v-if="levelData.usesQrcode">
+      <div slot="footer-left" v-if="levelData.usesQrcode && setupInit">
         <el-col :span="5">Clé de chiffrement : {{ cipherKey }}</el-col>
         <p v-html="helpText"></p>
       </div>
