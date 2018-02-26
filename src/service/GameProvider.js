@@ -34,6 +34,169 @@ const games = {
           }
         ],
         next: '1'
+      },
+      '1': {
+        name: 'Niveau 1',
+        artwork: 'Sol-mur (mur)',
+        artist: artists.cane,
+        goal: '3',
+        start: '18',
+        walls: {
+          '1': {
+            position: {
+              down: true
+            }
+          },
+          '2': {
+            position: {
+              down: true
+            }
+          },
+          '5': {
+            position: {
+              left: true
+            }
+          },
+          '6': {
+            position: {
+              right: true
+            }
+          },
+          '9': {
+            position: {
+              left: true
+            }
+          },
+          '10': {
+            position: {
+              right: true
+            }
+          },
+          '13': {
+            position: {
+              left: true
+            }
+          },
+          '14': {
+            position: {
+              right: true
+            }
+          },
+          '17': {
+            position: {
+              up: true
+            }
+          },
+          '18': {
+            position: {
+              up: true
+            }
+          }
+        },
+        next: '2'
+      },
+      '2': {
+        name: 'Niveau 2',
+        artwork: 'Thira (partie 1)',
+        artist: artists.marden,
+        goal: '19',
+        start: '16',
+        walls: {
+          '1': {
+            position: {
+              down: true
+            }
+          },
+          '2': {
+            position: {
+              down: true
+            }
+          },
+          '5': {
+            position: {
+              left: true
+            }
+          },
+          '6': {
+            position: {
+              right: true
+            }
+          },
+          '9': {
+            position: {
+              left: true
+            }
+          },
+          '10': {
+            position: {
+              right: true
+            }
+          },
+          '14': {
+            position: {
+              right: true
+            }
+          },
+          '13': {
+            position: {
+              left: true
+            }
+          },
+          '17': {
+            position: {
+              left: true
+            }
+          },
+          '18': {
+            position: {
+              right: true
+            }
+          }
+        },
+        next: '3'
+      },
+      '3': {
+        name: 'Niveau 3',
+        artwork: 'Thira (partie 2)',
+        artist: artists.marden,
+        goal: '3',
+        start: '7',
+        walls: {
+          '2': {
+            position: {
+              left: true
+            }
+          },
+          '3': {
+            position: {
+              down: true
+            }
+          },
+          '6': {
+            position: {
+              left: true,
+              right: true
+            }
+          },
+          '10': {
+            position: {
+              left: true,
+              right: true
+            }
+          },
+          '14': {
+            position: {
+              left: true,
+              right: true
+            }
+          },
+          '18': {
+            position: {
+              left: true
+            }
+          }
+        },
+        next: '4'
       }
     }
   },
