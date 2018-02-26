@@ -156,7 +156,7 @@ const games = {
         next: '3'
       },
       '3': {
-        name: 'niveau 3',
+        name: 'Niveau 3',
         artwork: 'Thira (partie 2)',
         artist: artists.marden,
         goal: '3',
