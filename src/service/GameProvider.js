@@ -37,8 +37,8 @@ const games = {
       },
       '1': {
         name: 'Niveau 1',
-        artwork: 'Thira',
-        artist: artists.marden,
+        artwork: 'Sol-mur (mur)',
+        artist: artists.cane,
         goal: '3',
         start: '18',
         walls: {
