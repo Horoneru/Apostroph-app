@@ -97,7 +97,7 @@ const games = {
       },
       '2': {
         name: 'Niveau 2',
-        artwork: 'Thira',
+        artwork: 'Thira (partie 1)',
         artist: artists.marden,
         goal: '19',
         start: '16',
@@ -157,7 +157,7 @@ const games = {
       },
       '3': {
         name: 'niveau 3',
-        artwork: 'Thira',
+        artwork: 'Thira (partie 2)',
         artist: artists.marden,
         goal: '3',
         start: '7',
