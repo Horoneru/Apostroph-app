@@ -452,12 +452,12 @@ export default {
     },
     calculatePosition: function(gridPosition) {
       return {
-        top: 52 + (100 * (Math.floor(gridPosition / 4))) + 'px',
+        top:  30 + (100 * (Math.floor(gridPosition / 4))) + 'px',
         left: 25 + (100 * (gridPosition % 4)) + 'px'
       };
     },
     getGridPosition: function(coordinates) {
-      const row = (parseInt(coordinates.top)) / 100 - 0.52;
+      const row = (parseInt(coordinates.top)) / 100 - 0.30;
       const column = (parseInt(coordinates.left)) / 100 - 0.25;
       return Math.round(row * this.rowCount + column);
     }
