@@ -4,7 +4,7 @@
     </router-link>
     <game-view :tools="tools" :artist="artist" :artwork="artwork" :tutorialSteps="tutorialSteps">
       <div slot="playground" style="position:relative;height:500px;max-width:400px" class="m-auto">
-        <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
+        <span v-for="el in tab" class="original-piece" :key="el.image" :style="getOriginalPieceBorders(el.wall.position)"><img :src="el.image"></span>
         <span class="grid-element" id="cursor" :style="gridElements.cursor.style"></span>
         <span class="grid-element" id="ghost" :style="gridElements.ghost.style"></span>
         <span class="grid-element animated pulse infinite el-icon-location" id="goal" :style="gridElements.goal.style"></span>
@@ -431,6 +431,24 @@ export default {
       merge(walls, this.levelData.walls);
 
       return walls;
+    },
+    getOriginalPieceBorders: function(wallPositions) {
+      let borders = {};
+      const style = '3px var(--accent-color-light) solid';
+      if(wallPositions.left) {
+        borders['border-left'] = style;
+      }
+      if(wallPositions.right) {
+        borders['border-right'] = style;
+      }
+      if(wallPositions.up) {
+        borders['border-top'] = style;
+      }
+      if(wallPositions.down) {
+        borders['border-bottom'] = style;
+      }
+
+      return borders;
     },
     calculatePosition: function(gridPosition) {
       return {
