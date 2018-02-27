@@ -117,7 +117,7 @@ export default {
         options.steps = [
           {
             element: document.getElementById('check-button'),
-            intro: 'Bravo ! Tu as réussi à reconstituer l\'oeuvre !<br>Appuie sur ce bouton pour vérifier et terminer le niveau '
+            intro: 'Bravo ! Tu as réussi à reconstituer l\'oeuvre !<br>Appuie sur ce bouton pour vérifier et terminer le niveau'
           }
         ];
         introjs.setOptions(options);

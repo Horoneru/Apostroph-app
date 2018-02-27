@@ -124,7 +124,9 @@ export default {
       return filename.split('.')[0];
     },
     leaveGame: function() {
-      this.$router.push({ name: 'levelselect', params: { gameid: this.$store.state.currentGame }});
+      this.$router.push({
+        name: 'levelselect', params: { gameid: this.$store.state.currentGame }
+      });
     }
   }
 };
