@@ -1,7 +1,11 @@
 <template>
-  <double-pane-layout :leftImage="'../../static/assets/logo-' + theme + '.png'" :title="title" imageAlign="middle" :contentClasses="this.themeClasses">
+  <double-pane-layout :leftImage="'../../static/assets/logo-' + theme + '.png'" :title="title" imageAlign="middle" :contentClasses="this.themeClasses" @click.native="goToLevel" v-ripple>
     <div slot="rightContent">
         <h2 class="half-gutter"> {{ this.level.name }}</h2>
+        <p v-html="intro"></p>
+        <h2 :class="[{ 'o-1': touchToContinue, 'o-0': !touchToContinue}, 'fade-enter-active', 'animated pulse infinite']">
+          Touche pour continuer
+        </h2>
         <img id="picto" :src="'../../static/assets/picto-' + gameid + '.png'">
     </div>
   </double-pane-layout>
@@ -11,9 +15,11 @@
 import games from '../service/GameProvider';
 import DoublePaneLayout from './DoublePaneLayout';
 import validators from '../service/ValidatorProvider';
+import Ripple from 'fi-ripple';
 export default {
   name: 'LevelIntro',
   components: { DoublePaneLayout },
+  directives: { Ripple },
   props: {
     gameid: {
       type: String,
@@ -35,21 +41,35 @@ export default {
       console.log('whoopsie there. Nope !');
       this.$router.replace({ name: 'menu' });
     }
-
-    setTimeout(() => {
-      this.$router.replace({ name: this.gameid, params: { levelid: this.levelid } });
-    }, 1500);
+    if(this.level.intro) {
+      this.intro = this.level.intro;
+      setTimeout(() => {
+        this.touchToContinue = true;
+      }, 3000);
+    }
+    else {
+      setTimeout(() => {
+        this.goToLevel();
+      }, 1500);
+    }
   },
   data () {
     return {
       title: null,
       theme: null,
-      level: null
+      level: null,
+      intro: '',
+      touchToContinue: false
     };
   },
   computed: {
     themeClasses: function() {
       return 'h-100 gradient-' + this.theme;
+    }
+  },
+  methods: {
+    goToLevel: function() {
+      this.$router.replace({ name: this.gameid, params: { levelid: this.levelid } });
     }
   }
 };
