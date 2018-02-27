@@ -19,7 +19,7 @@
           </el-col>
           <el-col :span="7">
             <div id="toolbar" ref="toolbar">
-              <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
+              <div v-ripple :class="['tool', { disabled: tool.disabled }]" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
                 <img :src="tool.icon" @click="tool.action" :style="tool.style"/>
               </div>
               <p v-if="!tools">Toolbar container</p>
@@ -151,6 +151,15 @@ export default {
 
   .tool:not(:last-child) {
     margin-bottom: 20%;
+  }
+
+  .tool img, .tool {
+    transition: all 1s ease-out;
+  }
+
+  .tool.disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
 
   footer {

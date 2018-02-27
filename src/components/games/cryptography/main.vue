@@ -49,11 +49,13 @@ export default {
       tools: [
         {
           icon: '../../../../static/assets/left-arrow.png',
-          action: this.popBack
+          action: this.popBack,
+          disabled: true
         },
         {
           icon: '../../../../static/assets/right-arrow.png',
-          action: this.pushBack
+          action: this.pushBack,
+          disabled: true
         }
       ],
       levelData: games.cryptography.levels[this.levelid],
@@ -189,6 +191,11 @@ export default {
         }
         this.arrangeArray(newArray);
         this.setupInit = true;
+
+        // WORKAROUND. I can't for the life of me get a computed toolStyle property
+        // Based on the value of setupInit
+        this.tools[0].disabled = false;
+        this.tools[1].disabled = false;
       }
     },
     arrangeArray: function(newArray) {
