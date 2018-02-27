@@ -17,20 +17,15 @@ const games = {
         tutorialSteps: [
           {
             element: 'playgroundStage',
-            text: 'Voici une oeuvre.<br>' +
-            'Ce jeu te permet de naviguer à l\'intérieur de celle-ci !'
+            text: 'Ce jeu te permet de naviguer à l\'intérieur des oeuvres'
           },
           {
             element: 'up-arrow',
-            text: 'Tu peux avancer dans l\'oeuvre en utilisant le bouton directionnel ici !'
+            text: 'Pour avancer, utilise le bouton directionnel ici !'
           },
           {
             element: null,
-            text: 'Essaie d\'avancer 4 fois, puis appuies sur le bouton bleu "exécuter"'
-          },
-          {
-            element: null,
-            text: 'À toi de jouer !'
+            text: 'Essaie d\'atteindre l\'objectif en bleu.<br>À toi de jouer !'
           }
         ],
         next: '1'

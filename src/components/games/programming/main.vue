@@ -9,7 +9,7 @@
       </div>
       <programing-timeline-item slot="footer-left" v-for="(el, index) in actionHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
       <el-row type="flex" justify="space-around" slot="footer-right">
-        <el-button v-ripple type="primary" :disabled="actionHistory.length === 0 || blockUserInput" @click="executeMoves">Exécuter</el-button>
+        <el-button v-ripple type="primary" id="exec-button" :disabled="actionHistory.length === 0 || blockUserInput" @click="executeMoves">Exécuter</el-button>
         <el-button v-ripple type="text" id="reset-button" v-show="actionHistory.length !== 0 && !blockUserInput" @click="resetDialogVisible = true" icon="el-icon-delete"></el-button>
       </el-row>
     </game-view>
@@ -31,6 +31,8 @@ import validators from '../../../service/ValidatorProvider';
 import Wall from '../../../entity/Wall';
 import merge from 'lodash-es/merge';
 import Ripple from 'fi-ripple';
+import { introJs } from 'intro.js';
+import 'intro.js/introjs.css';
 // TODO : Add docs
 export default {
   props: {
@@ -379,6 +381,23 @@ export default {
         // But right now, we only care about the actual cursor
         if(this.actionTarget === this.gridElements.cursor) {
           this.goalReached = true;
+        }
+        if(this.actionTarget === this.gridElements.ghost) {
+          if(this.levelid === 'tutorial') {
+            let introjs = introJs();
+            let options =
+              {
+                doneLabel: 'OK'
+              };
+            options.steps = [
+              {
+                element: document.getElementById('exec-button'),
+                intro: 'Bravo ! Tu as réussi à atteindre l\'objectif!<br>Appuie sur ce bouton pour valider et terminer le niveau'
+              }
+            ];
+            introjs.setOptions(options);
+            introjs.start();
+          }
         }
       }
     },
