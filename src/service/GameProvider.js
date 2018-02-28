@@ -148,6 +148,8 @@ const games = {
             }
           }
         },
+        usesLoop: true,
+        loopCount: 3,
         next: '3'
       },
       '3': {
@@ -191,6 +193,8 @@ const games = {
             }
           }
         },
+        usesLoop: true,
+        loopCount: 4,
         next: '4'
       }
     }

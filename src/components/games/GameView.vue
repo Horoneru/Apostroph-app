@@ -20,7 +20,8 @@
           <el-col :span="7">
             <div id="toolbar" ref="toolbar">
               <div v-ripple :class="['tool', { disabled: tool.disabled }]" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
-                <img :src="tool.icon" @click="tool.action" :style="tool.style"/>
+                <img v-if="!tool.customComponent" :src="tool.icon" @click="tool.action" :style="tool.style"/>
+                <component v-if="tool.customComponent" :is="tool.customComponent" :icon="tool.icon" :action="tool.action" :count="tool.count"></component>
               </div>
               <p v-if="!tools">Toolbar container</p>
             </div>
@@ -42,6 +43,7 @@ import { introJs } from 'intro.js';
 import 'intro.js/introjs.css';
 import '../../../src/assets/css/introjs-theme.css';
 import Ripple from 'fi-ripple';
+import LoopTool from './programming/LoopTool';
 export default {
   name: 'GameView',
   props: {
@@ -63,6 +65,7 @@ export default {
     }
   },
   directives: { Ripple },
+  components: { LoopTool },
   data () {
     return {
       leaveGameDialog: false
