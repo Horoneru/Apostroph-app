@@ -2,7 +2,7 @@
   <div>
     <a v-ripple class="el-icon-back back-button top-left-element" @click="leaveGameDialog = true"></a>
     <el-dialog title="Quitter ?" :visible.sync="leaveGameDialog">
-      <span>Es-tu sûr de quitter le niveau ?<br>
+      <span>Es-tu sûr de vouloir quitter le niveau ?<br>
             Ta progression sera perdue !
       </span>
       <span slot="footer" class="dialog-footer">
