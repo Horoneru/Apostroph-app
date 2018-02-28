@@ -10,9 +10,9 @@
     </el-dropdown-menu>
     </el-dropdown>
     <el-row>
-      <img src="../../static/assets/logo.png" />
+      <router-link to="/"><img src="../../static/assets/logo.png"/></router-link>
     </el-row>
-    <h2 class="subtitle">Choisissez un niveau</h2>
+    <h2 class="subtitle">Choisis un niveau</h2>
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around">
       <!-- Use template to avoid rendering a real tag. -->

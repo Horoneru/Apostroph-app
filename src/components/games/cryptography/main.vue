@@ -6,7 +6,7 @@
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
         </transition-group>
       </div>
-      <div slot="footer-left" v-if="levelData.usesQrcode">
+      <div slot="footer-left" v-if="levelData.usesQrcode && setupInit">
         <el-col :span="5">Clé de chiffrement : {{ cipherKey }}</el-col>
         <p v-html="helpText"></p>
       </div>
@@ -49,11 +49,13 @@ export default {
       tools: [
         {
           icon: '../../../../static/assets/left-arrow.png',
-          action: this.popBack
+          action: this.popBack,
+          disabled: true
         },
         {
           icon: '../../../../static/assets/right-arrow.png',
-          action: this.pushBack
+          action: this.pushBack,
+          disabled: true
         }
       ],
       levelData: games.cryptography.levels[this.levelid],
@@ -115,7 +117,7 @@ export default {
         options.steps = [
           {
             element: document.getElementById('check-button'),
-            intro: 'Bravo ! Tu as réussi à reconstituer l\'oeuvre !<br>Appuie sur ce bouton pour vérifier et terminer le niveau '
+            intro: 'Bravo ! Tu as réussi à reconstituer l\'oeuvre !<br>Appuie sur ce bouton pour vérifier et terminer le niveau'
           }
         ];
         introjs.setOptions(options);
@@ -189,6 +191,11 @@ export default {
         }
         this.arrangeArray(newArray);
         this.setupInit = true;
+
+        // WORKAROUND. I can't for the life of me get a computed toolStyle property
+        // Based on the value of setupInit
+        this.tools[0].disabled = false;
+        this.tools[1].disabled = false;
       }
     },
     arrangeArray: function(newArray) {
@@ -201,7 +208,7 @@ export default {
       else {
         this.$message({
           type: 'error',
-          message: 'Vous n\'avez pas reconstitué correctement l\'oeuvre'
+          message: 'Il semble que tu n\'as pas reconstitué correctement l\'oeuvre'
         });
       }
     },

@@ -2,7 +2,7 @@
   <div>
     <a v-ripple class="el-icon-back back-button top-left-element" @click="leaveGameDialog = true"></a>
     <el-dialog title="Quitter ?" :visible.sync="leaveGameDialog">
-      <span>Es-tu sûr de quitter le niveau ?<br>
+      <span>Es-tu sûr de vouloir quitter le niveau ?<br>
             Ta progression sera perdue !
       </span>
       <span slot="footer" class="dialog-footer">
@@ -19,7 +19,7 @@
           </el-col>
           <el-col :span="7">
             <div id="toolbar" ref="toolbar">
-              <div v-ripple class="tool" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
+              <div v-ripple :class="['tool', { disabled: tool.disabled }]" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
                 <img :src="tool.icon" @click="tool.action" :style="tool.style"/>
               </div>
               <p v-if="!tools">Toolbar container</p>
@@ -42,6 +42,7 @@ import { introJs } from 'intro.js';
 import 'intro.js/introjs.css';
 import '../../../src/assets/css/introjs-theme.css';
 import Ripple from 'fi-ripple';
+import ressources from '../../data/Ressources';
 export default {
   name: 'GameView',
   props: {
@@ -69,6 +70,7 @@ export default {
     };
   },
   mounted: function() {
+    this.preloadLevelCompleteRessources();
     if(this.tutorialSteps.length !== 0) {
       setTimeout(() => {
         var introjs = introJs();
@@ -124,7 +126,15 @@ export default {
       return filename.split('.')[0];
     },
     leaveGame: function() {
-      this.$router.push({ name: 'levelselect', params: { gameid: this.$store.state.currentGame }});
+      this.$router.push({
+        name: 'levelselect', params: { gameid: this.$store.state.currentGame }
+      });
+    },
+    preloadLevelCompleteRessources: function() {
+      ressources.levelComplete.forEach(element => {
+        let res = new Image();
+        res.src = element;
+      });
     }
   }
 };
@@ -151,6 +161,15 @@ export default {
 
   .tool:not(:last-child) {
     margin-bottom: 20%;
+  }
+
+  .tool img, .tool {
+    transition: all 1s ease-out;
+  }
+
+  .tool.disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
 
   footer {
