@@ -1,7 +1,14 @@
 <template>
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
-    <router-link style :to="{ name: 'menu' }" class="el-icon-back back-button" v-ripple>
+    <router-link style :to="{ name: 'menu' }" class="el-icon-back back-button top-left-element" v-ripple>
     </router-link>
+    <el-dropdown v-ripple class="top-right-element" trigger="click" @command="handleMenuCommand" :show-timeout="0" :hide-timeout="0">
+    <a class="el-icon-more more-button"></a>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item v-ripple command="intro"><i class="el-icon-info"></i><span>Introduction du jeu</span></el-dropdown-item>
+      <el-dropdown-item v-ripple command="reset"><i class="el-icon-refresh"></i><span>Réinitialiser les données de jeu</span></el-dropdown-item>
+    </el-dropdown-menu>
+    </el-dropdown>
     <el-row>
       <img src="../../static/assets/logo.png" />
     </el-row>
@@ -58,6 +65,16 @@ export default {
       // TODO maybe use the same gradient throughout every iteration of the theme
       // instead of a somehow smoother one for nav
       return 'gradient-' + this.game.theme + '-nav';
+    }
+  },
+  methods: {
+    handleMenuCommand: function(command) {
+      if(command === 'intro') {
+        this.$router.push({ name: 'gameintro', params: { gameid: this.gameid } });
+      }
+      else if(command === 'reset') {
+        this.$store.commit('reset', this.gameid);
+      }
     }
   }
 };

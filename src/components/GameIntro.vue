@@ -2,8 +2,7 @@
   <double-pane-layout :leftImage="'../../static/assets/logo-' + theme + '.png'" :title="title" imageAlign="middle" :contentClasses="themeClasses" @click.native="goToLevelSelect" v-ripple>
     <div slot="rightContent">
       <p v-html="desc"></p>
-      <h2 :class="[{ 'o-1': visibility.touchToContinue, 'o-0': !visibility.touchToContinue}, 'fade-enter-active', 'animated pulse']"
-      style="animation-iteration-count: infinite;">
+      <h2 :class="[{ 'o-1': visibility.touchToContinue, 'o-0': !visibility.touchToContinue}, 'fade-enter-active', 'animated pulse infinite']">
         Touchez pour continuer
       </h2>
         <img id="picto" :src="'../../static/assets/picto-' + gameid + '.png'">
@@ -61,7 +60,7 @@ export default {
   methods: {
     goToLevelSelect: function () {
       this.$store.commit('introDone', this.gameid);
-      this.$router.push({
+      this.$router.replace({
         name: 'levelselect',
         params: {
           gameid: this.gameid

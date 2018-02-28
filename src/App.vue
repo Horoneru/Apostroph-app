@@ -17,14 +17,22 @@ export default {
   watch: {
     '$route' (to, from) {
       // TODO Handle the possibility of directly going to the game
-      if (to.params.gameid) {
-        // Avoid sudden gradient changes.
-        // Do it after the game intro route set it's own theme
-        setTimeout(() => {
-          this.$store.commit('changeGame', to.params.gameid);
-        }, 500);
+      if (to.params.gameid || to.params.levelid) {
+        let game = to.params.gameid;
+
+        if(!game) {
+          if(to.path.includes('cryptography')) {
+            game = 'cryptography';
+          }
+          else if(to.path.includes('programming')) {
+            game = 'programming';
+          }
+        }
+
+        this.$store.commit('changeGame', game);
       }
-      else if(!to.path.includes('game') && !to.path.includes('about')) {
+
+      else if(!to.path.includes('about')) {
         this.$store.commit('changeGame', null);
       }
     }
@@ -103,8 +111,7 @@ hr {
 }
 
 .gradient-primary-color {
-  /* background: linear-gradient(180deg, #54f5ed, #65d8b9); */
-  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(90deg, #bf7feb, #00efe6);
 }
 
 .gradient-accent-color {
@@ -123,44 +130,72 @@ hr {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(195, 143, 230, 0.7));
 }
 
-.back-button {
-  position: absolute;
+.top-left-element {
+  position: absolute !important;
   margin: auto !important;
   top: 25px;
   left: 15px;
-  width: 50px;
-  height: 30px;
-  font-size: 32px !important;
-  color: rgb(240, 240, 240);
   text-decoration: none;
   z-index: 10;
 }
 
+.top-right-element {
+  position: absolute !important;
+  margin: auto !important;
+  right: 15px;
+  top: 27px;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.back-button {
+  width: 50px;
+  height: 30px;
+  font-size: 32px !important;
+  color: rgb(240, 240, 240);
+}
+
 .info-button {
-position: absolute !important;
-margin: auto !important;
-right: 15px;
-top: 27px;
-width: 50px;
-font-size: 32px !important;
-color: rgb(240, 240, 240);
-font-weight: bold;
-border: 3px solid rgb(240, 240, 240) !important;
-border-radius: 30px;
-height: 20px;
-text-decoration: none;
-z-index: 10;
-padding: 10px 0 19px 0;
+  width: 50px;
+  height: 20px;
+  font-size: 32px !important;
+  color: rgb(240, 240, 240);
+  font-weight: bold;
+  border: 3px solid rgb(240, 240, 240) !important;
+  border-radius: 30px;
+  padding: 10px 0 19px 0;
+}
+
+.more-button {
+  font-size: 32px;
+  color: rgb(240, 240, 240);
+}
+
+.el-dropdown-menu__item [class*=" el-icon-"], .el-dropdown-menu__item [class^="el-icon-"]{
+  margin-right: 10px;
 }
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .25s
 }
+
 .fade-enter, .fade-leave-to {
   opacity: 0
 }
 
 .menu-container {
     width: 40%;
+    flex-wrap: wrap;
+}
+
+/* Element CSS custom */
+
+.el-message__content {
+  font-size: 16px;
+}
+
+.el-button--primary.is-disabled, .el-button--primary.is-disabled:active, .el-button--primary.is-disabled:focus {
+  background-color: rgb(64, 158, 255, 0.2);
+  border-color: rgb(64, 158, 255, 0.2);
 }
 </style>

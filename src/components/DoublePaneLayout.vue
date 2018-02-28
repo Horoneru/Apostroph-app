@@ -1,5 +1,8 @@
 <template>
   <el-row class="h-100 w-100" type="flex" justify="center" :align="imageAlign" style="background-color: white;">
+    <!-- As we don't know from where the user could be coming from, let's just go back one step -->
+    <a v-ripple class="el-icon-back back-button top-left-element" style="color: #727272" @click="$router.go(-1)">
+    </a>
     <el-col :span="16">
       <img :src="leftImage" />
     </el-col>
@@ -14,6 +17,7 @@
 </template>
 
 <script>
+import Ripple from 'fi-ripple';
 export default {
   name: 'DoublePaneLayout',
   props: {
@@ -39,7 +43,8 @@ export default {
         ].indexOf(value) !== -1;
       }
     }
-  }
+  },
+  directives: { Ripple }
 };
 </script>
 
@@ -49,7 +54,7 @@ h1 {
 }
 
 .half-gutter {
-  margin: 10% auto auto auto;
+  margin: auto auto;
   max-width: 66%;
 }
 </style>

@@ -1,14 +1,23 @@
 <template>
   <div>
-    <router-link style :to="{ name: 'levelselect', params: { gameid: 'cryptography' }}" class="el-icon-back back-button">
-    </router-link>
-    <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialMode="tutorialMode" :tutorialSteps="tutorialSteps">
+    <game-view :tools="tools" :artwork="artwork" :artist="artist" :tutorialSteps="tutorialSteps">
       <div slot="playground">
-        <isotope :list="tab" :options="options" ref="isotope" class="p-5" v-images-loaded:on.progress="redrawLayout">
+        <transition-group class="m-auto" id="pieces-container" tag="div" name="pieces-list">
           <span v-for="el in tab" class="original-piece" :key="el.image"><img :src="el.image"></span>
-        </isotope>
+        </transition-group>
       </div>
+      <div slot="footer-left" v-if="levelData.usesQrcode">
+        <el-col :span="5">Clé de chiffrement : {{ cipherKey }}</el-col>
+        <p v-html="helpText"></p>
+      </div>
+      <el-row type="flex" justify="space-around" slot="footer-right">
+        <el-button v-ripple type="primary" @click="checkSuccess" :disabled="!setupInit" id="check-button">Vérifier</el-button>
+      </el-row>
     </game-view>
+    <el-dialog title="Scanneur de QR code" :visible.sync="qrCodeDialog">
+      <qrcode-reader v-loading="qrcodeReaderLoading"  @init="onInitQrCodeReader" @decode="onDecodeQrCode">
+      </qrcode-reader>
+    </el-dialog>
   </div>
 </template>
 
@@ -16,11 +25,11 @@
 import GameView from '../GameView';
 import games from '../../../service/GameProvider';
 import VueIntro from 'vue-introjs';
-import imagesLoaded from 'vue-images-loaded';
-import Isotope from 'vueisotope';
-import debounce from 'lodash-es/debounce';
 import utils from '../../../utils/cryptography';
 import validators from '../../../service/ValidatorProvider';
+import { introJs } from 'intro.js';
+import 'intro.js/introjs.css';
+import { QrcodeReader } from 'vue-qrcode-reader';
 export default {
   name: 'Cryptography',
   props: {
@@ -32,60 +41,87 @@ export default {
       }
     }
   },
-  directives: { imagesLoaded },
-  components: { GameView, Isotope, VueIntro },
+  components: { GameView, VueIntro, QrcodeReader },
   data () {
     return {
-      tutorialMode: false,
       setupInit: false,
-      tutorialSteps: [
-        {
-          element: null,
-          text: 'Ton aventure commence !'
-        },
-        {
-          element: 'playgroundStage',
-          text: 'Voici un exemple d\'une oeuvre.<br>' +
-          'Souviens toi de sa disposition car elle sera chiffrée à la prochaine étape !'
-        },
-        {
-          element: 'playgroundStage',
-          text: 'L\'exemple d’œuvre a été chiffrée. Voyons voir comment on peut la restaurer !'
-        },
-        {
-          element: 'toolbar',
-          text: 'Tu peux décaler chacun des blocs en appuyant sur l\'un des deux boutons directionnels ici !'
-        },
-        {
-          element: null,
-          text: 'À toi de jouer !'
-        }
-      ],
+      tutorialSteps: [],
       tools: [
         {
           icon: '../../../../static/assets/left-arrow.png',
-          action: debounce(this.popBack, 500, { maxWait: 700, leading: true })
+          action: this.popBack
         },
         {
-          action: debounce(this.pushBack, 500, { maxWait: 700, leading: true }),
-          icon: '../../../../static/assets/right-arrow.png'
+          icon: '../../../../static/assets/right-arrow.png',
+          action: this.pushBack
         }
-        // {
-        //   action: debounce(this.pushBack, 500, { maxWait: 700, leading: true }),
-        //   icon: '../../../../static/assets/apn-tool.png'
-        // }
       ],
       levelData: games.cryptography.levels[this.levelid],
       artist: games.cryptography.levels[this.levelid].artist,
       artwork: games.cryptography.levels[this.levelid].artwork,
       tab: [],
-      options: {
-        getSortData: {
-          id: 'el'
-        },
-        sortBy: 'el'
-      }
+      qrCodeDialog: false,
+      qrcodeReaderLoading: true,
+      cipherKey: '?',
+      distanceFromGoal: games.cryptography.levels[this.levelid].permutations.count
     };
+  },
+  computed: {
+    success: function() {
+      return this.tab.every((value, index) => value.id === index);
+    },
+    helpText: function() {
+      if(this.cipherKey === '?') {
+        return 'Utilise le bouton photo pour scanner le QR code et connaître la clé de chiffrement';
+      }
+      else {
+        let directionToGo = this.levelData.permutations.direction;
+        let distanceToGo = this.distanceFromGoal;
+
+        if(distanceToGo < 0) {
+          directionToGo = 'right';
+          distanceToGo = -distanceToGo;
+        }
+        if(distanceToGo >= 20) {
+          distanceToGo -= 20;
+          this.distanceFromGoal = Math.abs(this.distanceFromGoal);
+          this.distanceFromGoal -= 20;
+        }
+        if((distanceToGo > 10)) {
+          // We go the opposite direction, because it's more efficient
+          directionToGo = directionToGo === 'right' ? 'left' : 'right';
+          console.log(distanceToGo);
+          // The distance is lessened from the switch of direction
+          // i.e. : distanceFromGoal = 14 with directionToGo left. Then the distanceToGo is 6 when going right.
+          distanceToGo = Math.abs((distanceToGo - 20));
+        }
+
+        // Localized string before displaying it
+        directionToGo = directionToGo === 'right' ? 'droite' : 'gauche';
+        return distanceToGo === 0
+        ? '<strong>Tu as résolu ce niveau !</strong> Appuie sur le bouton Vérifier pour continuer.'
+        : `Avec cette clé, va <strong>${distanceToGo} fois à ${directionToGo}</strong> et tu pourras déchiffrer l'œuvre.`;
+      }
+    }
+  },
+  watch: {
+    success: function(val) {
+      if(this.levelid === 'tutorial' && val) {
+        let introjs = introJs();
+        let options =
+          {
+            doneLabel: 'OK'
+          };
+        options.steps = [
+          {
+            element: document.getElementById('check-button'),
+            intro: 'Bravo ! Tu as réussi à reconstituer l\'oeuvre !<br>Appuie sur ce bouton pour vérifier et terminer le niveau '
+          }
+        ];
+        introjs.setOptions(options);
+        introjs.start();
+      }
+    }
   },
   created: function() {
     for(let i = 0; i < 20; i++) {
@@ -95,15 +131,32 @@ export default {
           image: '../../../../static/assets/cryptography/' + this.levelid + '/img-' + i + '.jpg'
         });
     }
-    this.levelData.mixins.created(this);
-    if(this.tutorialMode) {
-      console.log('Launch tutorial');
+
+    const tutorialSteps = this.levelData.tutorialSteps;
+
+    if(tutorialSteps) {
+      this.tutorialSteps = this.tutorialSteps.concat(tutorialSteps);
     }
     else {
       // Delay the init so the user can see the original piece beforehand
       setTimeout(() => {
         this.arrayInit();
       }, 2000);
+    }
+
+    if(this.levelData.usesQrcode) {
+      this.tools.push({
+        action: () => {
+          this.qrCodeDialog = true;
+        },
+        icon: '../../../../static/assets/apn-tool.png'
+      });
+    }
+
+    if(this.levelData.mixins) {
+      if(this.levelData.mixins.created) {
+        this.levelData.mixins.created(this);
+      }
     }
   },
   mounted: function() {
@@ -114,12 +167,14 @@ export default {
     pushBack: function() {
       if(this.setupInit) {
         let newArray = utils.pushBack(this.tab);
+        this.distanceFromGoal += this.levelData.permutations.direction === 'right' ? -1 : 1;
         this.arrangeArray(newArray);
       }
     },
     popBack: function() {
       if(this.setupInit) {
         let newArray = utils.popBack(this.tab);
+        this.distanceFromGoal += this.levelData.permutations.direction === 'left' ? -1 : 1;
         this.arrangeArray(newArray);
       }
     },
@@ -137,34 +192,85 @@ export default {
       }
     },
     arrangeArray: function(newArray) {
-      // Isotope (le module pour les anims) ne voit pas la modif sinon.
-      this.tab.splice(0, 20);
-      setTimeout(() => {
-        this.tab = newArray;
-        this.checkArray();
-      }, 0);
+      this.tab = newArray;
     },
-    checkArray: function() {
-      if(this.tab.every((value, index) => value.id === index)) {
-        if(this.tutorialMode) {
-          this.$store.commit('tutorialDone', 'cryptography');
-        }
-        setTimeout(() => {
-          this.$router.push({ name: 'levelcomplete', params: { gameid: 'cryptography', level: this.levelid } });
-        }, 500);
+    checkSuccess: function() {
+      if(this.success) {
+        this.levelComplete();
+      }
+      else {
+        this.$message({
+          type: 'error',
+          message: 'Vous n\'avez pas reconstitué correctement l\'oeuvre'
+        });
       }
     },
-    redrawLayout: function() {
-      this.$refs.isotope.layout('masonry');
+    levelComplete: function() {
+      setTimeout(() => {
+        this.$router.push({ name: 'levelcomplete', params: { gameid: 'cryptography', level: this.levelid } });
+      }, 250);
     },
     tutorialStepChange: function(newStep) {
-      if(newStep === 2) {
+      if(newStep === 1 && this.levelid === 'tutorial') {
         this.arrayInit();
       }
     },
     tutorialFinished: function() {
-      if(!this.setupInit) {
-        this.arrayInit();
+      this.arrayInit();
+    },
+    onDecodeQrCode: function(content) {
+      // Keep it
+      console.log(content);
+      content = JSON.parse(content);
+      if(content.levelid === this.levelid) {
+        // Welllll... We had it all along but now the user knows, too
+        this.cipherKey = this.levelData.permutations.count;
+        this.qrCodeDialog = false;
+        this.$message({
+          type: 'success',
+          message: 'Le QR code a bien été scanné !'
+        });
+      }
+      else {
+        this.$message({
+          type: 'warning',
+          message: 'Ce QR code n\'appartient pas à ce niveau'
+        });
+      }
+    },
+
+    async onInitQrCodeReader(promise) {
+      try {
+        await promise;
+        // successfully initialized
+      }
+      catch (error) {
+        if (error.name === 'NotAllowedError') {
+          // user denied camera access permisson
+        }
+        else if (error.name === 'NotFoundError') {
+          // no suitable camera device installed
+        }
+        else if (error.name === 'NotSupportedError') {
+          // page is not served over HTTPS (or localhost)
+        }
+        else if (error.name === 'NotReadableError') {
+          // maybe camera is already in use
+        }
+        else if (error.name === 'OverconstrainedError') {
+          // passed constraints don't match any camera. Did you requested the front camera although there is none?
+        }
+        else {
+          // browser is probably lacking features (WebRTC, Canvas)
+        }
+
+        this.$message({
+          type: 'error',
+          message: 'Erreur : ' + error.name
+        });
+      }
+      finally {
+        this.qrcodeReaderLoading = false;
       }
     }
   }
@@ -173,10 +279,33 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#pieces-container {
+  height: 500px;
+  width: 400px;
+}
 .original-piece {
   display: block;
   float: left;
   width: 100px;
   height: 100px;
+}
+
+.el-button--primary {
+  background-color: var(--primary-color-inverse);
+  border-color: var(--primary-color-inverse);
+}
+
+.el-button--primary.is-disabled {
+  background-color: rgba(191, 127, 235, 0.2);
+  border-color: rgba(191, 127, 235, 0.2);
+}
+
+.el-button--primary:hover {
+  background-color: rgba(191, 127, 235, 0.5);
+}
+
+.pieces-list-move {
+  transition: transform .25s ease-out;
 }
 </style>

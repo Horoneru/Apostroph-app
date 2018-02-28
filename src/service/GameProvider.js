@@ -6,7 +6,199 @@ const games = {
     desc: 'La programmation, c’est quoi ?<br>' +
     'C’est simplement ce qui permet l’écriture de sites internets, de logiciels, comme le jeu auquel tu joues actuellement par exemple !<br>' +
     'Ici, on va se pencher sur le fonctionnement basique des algorithmes, rien de bien compliqué tu verras !<br>' +
-    'C’est parti !'
+    'C’est parti !',
+    levels: {
+      'tutorial': {
+        name: 'Tutoriel',
+        artwork: 'Sol-mur (sol)',
+        artist: artists.cane,
+        goal: '1',
+        start: '17',
+        tutorialSteps: [
+          {
+            element: 'playgroundStage',
+            text: 'Voici une oeuvre.<br>' +
+            'Ce jeu te permet de naviguer à l\'intérieur de celle-ci !'
+          },
+          {
+            element: 'up-arrow',
+            text: 'Tu peux avancer dans l\'oeuvre en utilisant le bouton directionnel ici !'
+          },
+          {
+            element: null,
+            text: 'Essaie d\'avancer 4 fois, puis appuies sur le bouton bleu "exécuter"'
+          },
+          {
+            element: null,
+            text: 'À toi de jouer !'
+          }
+        ],
+        next: '1'
+      },
+      '1': {
+        name: 'Niveau 1',
+        artwork: 'Sol-mur (mur)',
+        artist: artists.cane,
+        goal: '3',
+        start: '18',
+        walls: {
+          '1': {
+            position: {
+              down: true
+            }
+          },
+          '2': {
+            position: {
+              down: true
+            }
+          },
+          '5': {
+            position: {
+              left: true
+            }
+          },
+          '6': {
+            position: {
+              right: true
+            }
+          },
+          '9': {
+            position: {
+              left: true
+            }
+          },
+          '10': {
+            position: {
+              right: true
+            }
+          },
+          '13': {
+            position: {
+              left: true
+            }
+          },
+          '14': {
+            position: {
+              right: true
+            }
+          },
+          '17': {
+            position: {
+              up: true
+            }
+          },
+          '18': {
+            position: {
+              up: true
+            }
+          }
+        },
+        next: '2'
+      },
+      '2': {
+        name: 'Niveau 2',
+        artwork: 'Thira (partie 1)',
+        artist: artists.marden,
+        goal: '19',
+        start: '16',
+        walls: {
+          '1': {
+            position: {
+              down: true
+            }
+          },
+          '2': {
+            position: {
+              down: true
+            }
+          },
+          '5': {
+            position: {
+              left: true
+            }
+          },
+          '6': {
+            position: {
+              right: true
+            }
+          },
+          '9': {
+            position: {
+              left: true
+            }
+          },
+          '10': {
+            position: {
+              right: true
+            }
+          },
+          '14': {
+            position: {
+              right: true
+            }
+          },
+          '13': {
+            position: {
+              left: true
+            }
+          },
+          '17': {
+            position: {
+              left: true
+            }
+          },
+          '18': {
+            position: {
+              right: true
+            }
+          }
+        },
+        next: '3'
+      },
+      '3': {
+        name: 'Niveau 3',
+        artwork: 'Thira (partie 2)',
+        artist: artists.marden,
+        goal: '3',
+        start: '7',
+        walls: {
+          '2': {
+            position: {
+              left: true
+            }
+          },
+          '3': {
+            position: {
+              down: true
+            }
+          },
+          '6': {
+            position: {
+              left: true,
+              right: true
+            }
+          },
+          '10': {
+            position: {
+              left: true,
+              right: true
+            }
+          },
+          '14': {
+            position: {
+              left: true,
+              right: true
+            }
+          },
+          '18': {
+            position: {
+              left: true
+            }
+          }
+        },
+        next: '4'
+      }
+    }
   },
   cryptography: {
     name: 'Cryptographie',
@@ -24,11 +216,36 @@ const games = {
         },
         artwork: '- Tutoriel',
         artist: { name: '' },
-        mixins: {
-          created: (vm) => {
-            vm.tutorialMode = true;
+        tutorialSteps: [
+          {
+            element: 'playground-stage',
+            text: 'Voici un exemple d\'une oeuvre.<br>' +
+            'Souviens toi de sa disposition car elle sera chiffrée à la prochaine étape !'
+          },
+          {
+            element: 'playground-stage',
+            text: 'L\'exemple d’œuvre a été chiffrée. Voyons voir comment on peut la restaurer !'
+          },
+          {
+            element: 'toolbar',
+            text: 'Tu peux décaler chacun des blocs en appuyant sur l\'un des deux boutons directionnels ici !'
+          },
+          {
+            element: 'left-arrow',
+            text: 'Ce bouton déplace les blocs à gauche.<br>' +
+            'Cela <u>descend</u> le premier élément'
+          },
+          {
+            element: 'right-arrow',
+            text: 'Ce bouton déplace les blocs à droite.<br>' +
+            'Cela <u>monte</u> le dernier élément'
+          },
+          {
+            element: null,
+            text: 'À toi de jouer !'
           }
-        }
+        ],
+        next: '1'
       },
       '1': {
         name: 'Niveau 1',
@@ -38,10 +255,7 @@ const games = {
         },
         artwork: 'Construction du volume des couleurs',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        }
+        next: '2'
       },
       '2': {
         name: 'Niveau 2',
@@ -51,10 +265,8 @@ const games = {
         },
         artwork: 'Jeu chromatique 1',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        }
+        usesQrcode: true,
+        next: '3'
       },
       '3': {
         name: 'Niveau 3',
@@ -64,10 +276,8 @@ const games = {
         },
         artwork: 'l\'Harmonisateur n°3',
         artist: artists.lemonnier,
-        mixins: {
-          created: function() {
-          }
-        }
+        usesQrcode: true,
+        next: '4'
       }
     }
   }
