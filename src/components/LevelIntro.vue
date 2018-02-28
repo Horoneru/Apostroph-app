@@ -16,6 +16,7 @@ import games from '../service/GameProvider';
 import DoublePaneLayout from './DoublePaneLayout';
 import validators from '../service/ValidatorProvider';
 import Ripple from 'fi-ripple';
+import ressources from '../data/Ressources';
 export default {
   name: 'LevelIntro',
   components: { DoublePaneLayout },
@@ -41,6 +42,9 @@ export default {
       console.log('whoopsie there. Nope !');
       this.$router.replace({ name: 'menu' });
     }
+
+    this.preloadPictures();
+
     if(this.level.intro) {
       this.intro = this.level.intro;
       setTimeout(() => {
@@ -70,6 +74,17 @@ export default {
   methods: {
     goToLevel: function() {
       this.$router.replace({ name: this.gameid, params: { levelid: this.levelid } });
+    },
+    preloadPictures: function() {
+      ressources[this.gameid].forEach(element => {
+        let res = new Image();
+        res.src = element;
+      });
+
+      for(let i = 0; i < 20; i++) {
+        let res = new Image();
+        res.src = '/../static/assets/' + this.gameid + '/' + this.levelid + '/img-' + i + '.jpg'
+      }
     }
   }
 };

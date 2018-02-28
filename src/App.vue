@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import ressources from './data/ressources';
 export default {
   name: 'app',
   computed: {
@@ -36,6 +37,12 @@ export default {
         this.$store.commit('changeGame', null);
       }
     }
+  },
+  created: function() {
+    ressources.important.forEach(element => {
+      let res = new Image();
+      res.src = element;
+    });
   }
 };
 </script>

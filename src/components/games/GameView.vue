@@ -42,6 +42,7 @@ import { introJs } from 'intro.js';
 import 'intro.js/introjs.css';
 import '../../../src/assets/css/introjs-theme.css';
 import Ripple from 'fi-ripple';
+import ressources from '../../data/Ressources';
 export default {
   name: 'GameView',
   props: {
@@ -69,6 +70,7 @@ export default {
     };
   },
   mounted: function() {
+    this.preloadLevelCompleteRessources();
     if(this.tutorialSteps.length !== 0) {
       setTimeout(() => {
         var introjs = introJs();
@@ -126,6 +128,12 @@ export default {
     leaveGame: function() {
       this.$router.push({
         name: 'levelselect', params: { gameid: this.$store.state.currentGame }
+      });
+    },
+    preloadLevelCompleteRessources: function() {
+      ressources.levelComplete.forEach(element => {
+        let res = new Image();
+        res.src = element;
       });
     }
   }
