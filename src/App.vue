@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ressources from './data/ressources';
+import ressources from './data/Ressources';
 export default {
   name: 'app',
   computed: {
