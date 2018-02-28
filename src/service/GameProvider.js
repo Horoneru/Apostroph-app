@@ -210,7 +210,7 @@ const games = {
           count: 2
         },
         artwork: '- Tutoriel',
-        artist: { name: '' },
+        artist: artists.lemonnier,
         tutorialSteps: [
           {
             element: 'playground-stage',
@@ -271,8 +271,7 @@ const games = {
         },
         artwork: 'l\'Harmonisateur n°3',
         artist: artists.lemonnier,
-        usesQrcode: true,
-        next: '4'
+        usesQrcode: true
       }
     }
   }
