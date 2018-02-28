@@ -190,8 +190,7 @@ const games = {
               left: true
             }
           }
-        },
-        next: '4'
+        }
       }
     }
   },
