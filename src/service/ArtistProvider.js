@@ -4,10 +4,10 @@ const artists = {
     id: 'lemonnier',
     name: 'André Lemonnier',
     image: '../../static/assets/logo-color-inverse.png',
-    desc: 'André Lemmonier a une passion pour l\'imaginaire et la perception des couleurs.<br>' +
-    'Tout au long de sa vie, il expérimente, analyse, recherche, et classifie la couleur de manière scientifique.<br>' +
-    'C\'est donc avec le peinture qu\'il met en pratique ces recherches.<br>' +
-    'Son travail a permit aux praticiens de la couleur la possibilité de concevoir un nombre incalculable de combinaisons chromatiques.',
+    desc: 'André Lemmonier est quelqu\'un de passionné par l\'imaginaire et la perception des couleurs.<br>' + 
+    'Tout au long de sa vie. il expérimente, analyse. recherche, et classifie la couleur de manière scientifique. <br>' + 
+    ' C\'est donc avec le peinture qu\'il a pu mettre en pratique ces recherches. <br> ' + 
+    ' Son travail a permit aux praticiens de la couleur la possibilité de concevoir un nombre incalculable de combinaisons chromatiques.' ,
     theme: 'color-inverse'
   },
   marden: {
