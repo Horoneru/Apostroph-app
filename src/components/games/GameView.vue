@@ -2,7 +2,7 @@
   <div>
     <a v-ripple class="el-icon-back back-button top-left-element" @click="leaveGameDialog = true"></a>
     <el-dialog title="Quitter ?" :visible.sync="leaveGameDialog">
-      <span>Es-tu sûr de quitter le niveau ?<br>
+      <span>Es-tu sûr de vouloir quitter le niveau ?<br>
             Ta progression sera perdue !
       </span>
       <span slot="footer" class="dialog-footer">
@@ -44,6 +44,7 @@ import 'intro.js/introjs.css';
 import '../../../src/assets/css/introjs-theme.css';
 import Ripple from 'fi-ripple';
 import LoopTool from './programming/LoopTool';
+import ressources from '../../data/Ressources';
 export default {
   name: 'GameView',
   props: {
@@ -72,6 +73,7 @@ export default {
     };
   },
   mounted: function() {
+    this.preloadLevelCompleteRessources();
     if(this.tutorialSteps.length !== 0) {
       setTimeout(() => {
         var introjs = introJs();
@@ -129,6 +131,12 @@ export default {
     leaveGame: function() {
       this.$router.push({
         name: 'levelselect', params: { gameid: this.$store.state.currentGame }
+      });
+    },
+    preloadLevelCompleteRessources: function() {
+      ressources.levelComplete.forEach(element => {
+        let res = new Image();
+        res.src = element;
       });
     }
   }

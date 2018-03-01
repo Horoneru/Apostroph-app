@@ -28,7 +28,8 @@ const games = {
             text: 'Essaie d\'atteindre l\'objectif en bleu.<br>À toi de jouer !'
           }
         ],
-        next: '1'
+        next: '1',
+        expectedMoves: 4
       },
       '1': {
         name: 'Niveau 1',
@@ -88,7 +89,8 @@ const games = {
             }
           }
         },
-        next: '2'
+        next: '2',
+        expectedMoves: 7
       },
       '2': {
         name: 'Niveau 2',
@@ -160,6 +162,7 @@ const games = {
         ],
         usesLoop: true,
         loopCount: 3,
+        expectedMoves: 7,
         next: '3'
       },
       '3': {
@@ -205,7 +208,8 @@ const games = {
         },
         usesLoop: true,
         loopCount: 4,
-        next: '4'
+        next: '4',
+        expectedMoves: 8
       }
     }
   },
@@ -224,7 +228,7 @@ const games = {
           count: 2
         },
         artwork: '- Tutoriel',
-        artist: { name: '' },
+        artist: artists.lemonnier,
         tutorialSteps: [
           {
             element: 'playground-stage',
@@ -285,8 +289,7 @@ const games = {
         },
         artwork: 'l\'Harmonisateur n°3',
         artist: artists.lemonnier,
-        usesQrcode: true,
-        next: '4'
+        usesQrcode: true
       }
     }
   }

@@ -9,13 +9,21 @@ Vue.use(Vuex);
 const defaultState = {
   currentGame: null,
   cryptography: {
-    currentLevel: null,
-    tutorialDone: false,
+    scores: {
+      tutorial: null,
+      1: null,
+      2: null,
+      3: null
+    },
     introDone: false
   },
   programming: {
-    currentLevel: null,
-    tutorialDone: false,
+    scores: {
+      tutorial: null,
+      1: null,
+      2: null,
+      3: null
+    },
     introDone: false
   }
 };
@@ -31,24 +39,21 @@ export default new Vuex.Store({
   ],
   state: JSON.parse(JSON.stringify(defaultState)),
   getters: {
-    // See l-36
     currentTheme: function({ currentGame }) {
       return currentGame ? games[currentGame].theme : 'primary-color';
     }
   },
   mutations: {
-    // TODO : Do we even care...? Could be done all locally
     changeGame: function(state, currentGame) {
       state.currentGame = currentGame;
     },
-    tutorialDone: function(state, gameid) {
-      state[gameid].tutorialDone = true;
+    updateLevelScore: function(state, payload) {
+      state[payload.gameid].scores[payload.levelid] = payload.score;
     },
     introDone: function(state, gameid) {
       state[gameid].introDone = true;
     },
     reset: function(state, gameid) {
-      console.log(JSON.stringify(defaultState[gameid]));
       state[gameid] = JSON.parse(JSON.stringify(defaultState[gameid]));
     }
   }
