@@ -21,7 +21,11 @@ const games = {
           },
           {
             element: 'up-arrow',
-            text: 'Pour avancer, utilise le bouton directionnel ici !'
+            text: 'Pour avancer, utilise le bouton directionnel'
+          },
+          {
+            element: [document.getElementById('footer')],
+            text: 'Cette barre te montrera l\'historique de tes actions.'
           },
           {
             element: null,
@@ -37,6 +41,16 @@ const games = {
         artist: artists.cane,
         goal: '3',
         start: '18',
+        tutorialSteps: [
+          {
+            element: 'rotate-clockwise',
+            text: 'Ce bouton permet de faire une rotation dans le sens des aiguilles d\'une montre'
+          },
+          {
+            element: 'rotate-counter-clockwise',
+            text: 'Ce bouton permet de faire une rotation dans le sens inverse'
+          }
+        ],
         walls: {
           '1': {
             position: {
@@ -192,9 +206,14 @@ const games = {
               left: true
             }
           }
-        }
+        },
+        next: '4',
       }
-    }
+    },
+    congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu programmation. <br>'+
+    'A travers ces niveaux, tu as pu voir de façon simplifié la manière dont on exécute des instructions, '+
+    'représentés ici par les boutons des niveaux. <br>'+
+    'En plus de cela, tu as pu voir la technique de boucle permettant notamment de simplifier le code et de gagner du temps en répétant les mêmes instructions plusieurs fois.'
   },
   cryptography: {
     name: 'Cryptographie',
@@ -275,7 +294,13 @@ const games = {
         artist: artists.lemonnier,
         usesQrcode: true
       }
-    }
+    },
+    congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu cryptographie. <br>'+
+    'Ainsi, tu as vu les bases du chiffrement et notamment que les messages chiffrées (ici les oeuvres) '+
+    'peuvent être déchiffrées gràce à une clé de chiffrement (représentée ici par le QR code) qui indique '+
+    'de manière plus ou moins simple le décalage des caractères ou des formes. <br>'+
+    'Ces niveaux se rapprochent particulièrement du chiffrement de César que nous avons voulu vous introduire '+
+    'de part sa simplicité et son histoire.'
   }
 };
 
