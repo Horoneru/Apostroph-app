@@ -24,7 +24,7 @@ const games = {
             text: 'Pour avancer, utilise le bouton directionnel'
           },
           {
-            element: [document.getElementById('footer')],
+            element: 'footer',
             text: 'Cette barre te montrera l\'historique de tes actions.'
           },
           {
@@ -227,10 +227,11 @@ const games = {
         expectedMoves: 9
       }
     },
-    congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu programmation. <br>'+
-    'A travers ces niveaux, tu as pu voir de façon simplifié la manière dont on exécute des instructions, '+
+    congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>programmation</strong>. <br>'+
+    'A travers ces niveaux, tu as pu voir de façon simplifié la manière dont on exécute des <strong>instructions</strong>, '+
     'représentés ici par les boutons des niveaux. <br>'+
-    'En plus de cela, tu as pu voir la technique de boucle permettant notamment de simplifier le code et de gagner du temps en répétant les mêmes instructions plusieurs fois.'
+    'En plus de cela, tu as pu voir la <strong>technique de boucle</strong> permettant notamment de <strong>simplifier</strong> '+
+    'le code et de <strong>gagner du temps</strong> en répétant les mêmes instructions plusieurs fois.'
   },
   cryptography: {
     name: 'Cryptographie',
@@ -312,11 +313,11 @@ const games = {
         usesQrcode: true
       }
     },
-    congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu cryptographie. <br>'+
-    'Ainsi, tu as vu les bases du chiffrement et notamment que les messages chiffrées (ici les oeuvres) '+
-    'peuvent être déchiffrées gràce à une clé de chiffrement (représentée ici par le QR code) qui indique '+
-    'de manière plus ou moins simple le décalage des caractères ou des formes. <br>'+
-    'Ces niveaux se rapprochent particulièrement du chiffrement de César que nous avons voulu vous introduire '+
+    congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>cryptographie</strong>. <br>'+
+    'Ainsi, tu as vu les bases du <strong>chiffrement</strong> et notamment que les messages chiffrées (ici les oeuvres) '+
+    'peuvent être déchiffrées gràce à une <strong>clé de chiffrement</strong> (représentée ici par le QR code) qui indique '+
+    'de manière plus ou moins simple le <strong>décalage</strong> des caractères ou des formes. <br>'+
+    'Ces niveaux se rapprochent particulièrement du <strong>chiffrement de César</strong> que nous avons voulu vous introduire '+
     'de part sa simplicité et son histoire.'
   }
 };
