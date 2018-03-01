@@ -150,6 +150,18 @@ const games = {
             }
           }
         },
+        tutorialSteps: [
+          {
+            element: 'loop',
+            text: 'Utilise ce bouton pour répéter une instruction'
+          },
+          {
+            element: 'loop',
+            text: 'Il crée une boucle.<br>Cela permet de faire plusieurs actions en une seule fois !'
+          }
+        ],
+        usesLoop: true,
+        loopCount: 3,
         expectedMoves: 7,
         next: '3'
       },
@@ -194,6 +206,9 @@ const games = {
             }
           }
         },
+        usesLoop: true,
+        loopCount: 4,
+        next: '4',
         expectedMoves: 8
       }
     }

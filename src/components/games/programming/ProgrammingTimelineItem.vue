@@ -1,7 +1,18 @@
 <template>
 <div>
 <el-col class="timeline-item">
-  <el-row type="flex" :class="['timeline-item-container flex-column', { 'animated flash infinite' : active } ]">
+  <template v-if="count != 1">
+    <el-row type="flex" :class="['timeline-item-container flex-column', { 'animated flash infinite' : active } ]">
+      <p class="timeline-item-index">{{ index }}</p>
+      <span class="timeline-item-content">
+        <el-badge :value="count">
+          <img class="timeline-item-icon" :src="icon">
+        </el-badge>
+        <small class="timeline-item-move"> {{ text }}</small>
+      </span>
+    </el-row>
+  </template>
+  <el-row v-else type="flex" :class="['timeline-item-container flex-column', { 'animated flash infinite' : active } ]">
     <p class="timeline-item-index">{{ index }}</p>
     <span class="timeline-item-content">
         <img class="timeline-item-icon" :src="icon">
@@ -31,6 +42,10 @@ export default {
     text: {
       required: true,
       type: String
+    },
+    count: {
+      required: true,
+      type: Number
     }
   }
 };

@@ -7,7 +7,7 @@
         <span class="grid-element" id="ghost" :style="gridElements.ghost.style"></span>
         <span class="grid-element animated pulse infinite el-icon-location" id="goal" :style="gridElements.goal.style"></span>
       </div>
-      <programing-timeline-item slot="footer-left" v-for="(el, index) in actionHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active"/>
+      <programing-timeline-item slot="footer-left" v-for="(el, index) in actionHistory" :key="index" :index="index" :text="el.text" :icon="el.icon" :active="el.active" :count="el.count"/>
       <el-row type="flex" justify="space-around" slot="footer-right">
         <el-button v-ripple type="primary" id="exec-button" :disabled="actionHistory.length === 0 || blockUserInput" @click="executeMoves">Exécuter</el-button>
         <el-button v-ripple type="text" id="reset-button" v-show="actionHistory.length !== 0 && !blockUserInput" @click="resetDialogVisible = true" icon="el-icon-delete"></el-button>
@@ -64,7 +64,8 @@ export default {
               value: this.$data.direction,
               text: this.$data.direction,
               icon: '../../../../static/assets/' + this.$data.direction + '-arrow.png',
-              active: false
+              active: false,
+              count: this.loopActivated ? this.loopCount : 1
             });
           }
         },
@@ -76,7 +77,8 @@ export default {
               value: 'clockwise',
               text: 'rotate',
               icon: '../../../../static/assets/programming/rotate-clockwise.png',
-              active: false
+              active: false,
+              count: this.loopActivated ? this.loopCount : 1
             });
           }
         },
@@ -88,7 +90,8 @@ export default {
               value: 'counter-clockwise',
               text: 'rotate',
               icon: '../../../../static/assets/programming/rotate-counter-clockwise.png',
-              active: false
+              active: false,
+              count: this.loopActivated ? this.loopCount : 1
             });
           }
         }
@@ -156,6 +159,9 @@ export default {
       blockUserInput: false,
       resetDialogVisible: false,
       maxActions: 14,
+      loopActivated: false,
+      loopCount: null,
+      backAndForthMoveHappening: false,
       tries: 0
     };
   },
@@ -179,6 +185,24 @@ export default {
     const tutorialSteps = this.levelData.tutorialSteps;
     if(tutorialSteps) {
       this.tutorialSteps = this.tutorialSteps.concat(tutorialSteps);
+    }
+
+    if(this.levelData.usesLoop) {
+      this.loopCount = this.levelData.loopCount;
+      this.tools.push({
+        icon: '../../../../static/assets/programming/loop.png',
+        action: () => {
+          this.userInput({
+            type: 'loop',
+            value: null,
+            text: 'loop',
+            icon: '../../../../static/assets/programming/loop.png',
+            active: false
+          });
+        },
+        customComponent: 'LoopTool',
+        count: this.loopCount
+      });
     }
 
     this.tools[0].style.transform = 'rotate(' + this.cursorDegrees + ' deg)';
@@ -216,19 +240,14 @@ export default {
     userInput: function(actionObject) {
       if(this.actionHistory.length !== this.maxActions) {
         if(!this.blockUserInput) {
-          if(actionObject.type === 'move') {
-            this.move();
+          this.executeAction(actionObject);
+          if(actionObject.type === 'loop') {
+            this.loopActivated = !this.loopActivated;
           }
-          else if(actionObject.type === 'directionChange') {
-            if(actionObject.value === 'clockwise') {
-              this.rotate(this.cursorDegrees + 90);
-            }
-            else {
-              this.rotate(this.cursorDegrees - 90);
-            }
+          if(actionObject.value !== null) {
+            this.loopActivated = false;
+            this.actionHistory.push(actionObject);
           }
-
-          this.actionHistory.push(actionObject);
         }
       }
       else {
@@ -248,7 +267,7 @@ export default {
         this.actionTarget.style[moveInfo.property] = currentPos + moveAmount + 'px';
         this.checkPosition();
       }
-      else {
+      else if(!this.backAndForthMoveHappening) {
         this.backAndForthMove(currentPos, moveInfo);
       }
     },
@@ -258,21 +277,28 @@ export default {
 
       // Block moves to avoid the user moving while temporarily not in the grid
       this.blockUserInput = true;
+      this.backAndForthMoveHappening = true;
       this.actionTarget.style[moveInfo.property] = originalPos + moveInfo.errorAmount + 'px';
       // Go back, set a low timeout to have a quick motion
       setTimeout(() => {
         this.actionTarget.style[moveInfo.property] = originalPos + 'px';
         this.blockUserInput = originalBlockState;
+        this.backAndForthMoveHappening = false;
       }, 150);
     },
     canMove: function(moveInfo) {
       const currentRow = this.getGridPosition(this.actionTarget.style);
+      const range = Array.from({length: 20}, (x, i) => i);
+      if(!range.includes(currentRow)) {
+        console.log('WTF');
+        return false;
+      }
       // If there is a wall on the side of the row we have to go to when moving
       if(this.tab[currentRow].wall.position[this.direction]) {
         return false;
       }
 
-      const destinationCoordinates = this.actionTarget.style;
+      const destinationCoordinates = JSON.parse(JSON.stringify(this.actionTarget.style));
       destinationCoordinates[moveInfo.property] =
         parseInt(destinationCoordinates[moveInfo.property]) + moveInfo.amount + 'px';
       const destinationRow = this.getGridPosition(destinationCoordinates);
@@ -311,6 +337,25 @@ export default {
 
       return newDirection;
     },
+    executeAction: function(actionObject) {
+      if(actionObject.type === 'move') {
+        for(let i = 0; i < actionObject.count; i++) {
+          this.move();
+        }
+      }
+      else if(actionObject.type === 'directionChange') {
+        if(actionObject.value === 'clockwise') {
+          for(let i = 0; i < actionObject.count; i++) {
+            this.rotate(this.cursorDegrees + 90);
+          }
+        }
+        else {
+          for(let i = 0; i < actionObject.count; i++) {
+            this.rotate(this.cursorDegrees - 90);
+          }
+        }
+      }
+    },
     executeMoves: function() {
       this.reset('soft');
       this.actionTarget = this.gridElements.cursor;
@@ -318,20 +363,7 @@ export default {
       const executeFunction = (times) => {
         const move = this.actionHistory[times];
         move.active = true;
-        if(move.type === 'directionChange') {
-          if(move.value === 'clockwise') {
-            this.rotate(this.cursorDegrees + 90);
-          }
-          else {
-            this.rotate(this.cursorDegrees - 90);
-          }
-        }
-        else if(move.type === 'move') {
-          this.move();
-        }
-        else if(move.type === 'loop') {
-          // TODO do loop logic !
-        }
+        this.executeAction(move);
         if(times !== this.actionHistory.length - 1) {
           setTimeout(() => {
             move.active = false;
