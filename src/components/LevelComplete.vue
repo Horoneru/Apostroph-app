@@ -45,7 +45,7 @@
     },
     computed: {
       scoreText: function() {
-        let text = "";
+        let text = '';
         const score = this.gameUserData.scores[this.levelid];
 
         // Naughty guy didn't finish the level
@@ -71,7 +71,7 @@
             text += '<br>Besoin d\'aide ? Scanne le Qr code !';
           }
           else if(this.game.levels[this.levelid].usesLoop) {
-            text += '<br><strong>Conseil:</strong> Utilise les boucles pour réduire au maximum le nombre d\'instructions.'
+            text += '<br><strong>Conseil:</strong> Utilise les boucles pour réduire au maximum le nombre d\'instructions.';
           }
         }
         return text;
