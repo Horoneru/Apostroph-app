@@ -12,7 +12,7 @@
       <div class="btn-lvl-complete animated fadeInUpBig">
         <router-link v-ripple tag="a" :to="{ name: 'aboutartist', params: { artistid: game.levels[levelid].artist.id } }"><el-button type="text"><img src="../../static/assets/artiste.png"></el-button></router-link>
         <router-link v-ripple tag="a" :to="{ name: 'levelselect', params: { gameid } }"><el-button type="text"><img src="../../static/assets/home.png"></el-button></router-link>
-        <router-link v-ripple tag="a" :to="{ name: 'levelintro', params: { gameid, 'levelid': game.levels[levelid].next } }"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
+        <router-link v-ripple tag="a" :to="nextLink"><el-button type="text"><img src="../../static/assets/suite.png"></el-button></router-link>
       </div>
     </div>
   </el-row>
@@ -45,7 +45,7 @@
     },
     computed: {
       scoreText: function() {
-        let text = "";
+        let text = '';
         const score = this.gameUserData.scores[this.levelid];
 
         // Naughty guy didn't finish the level
@@ -71,10 +71,33 @@
             text += '<br>Besoin d\'aide ? Scanne le Qr code !';
           }
           else if(this.game.levels[this.levelid].usesLoop) {
-            text += '<br><strong>Conseil:</strong> Utilise les boucles pour réduire au maximum le nombre d\'instructions.'
+            text += '<br><strong>Conseil:</strong> Utilise les boucles pour réduire au maximum le nombre d\'instructions.';
           }
         }
         return text;
+      },
+      nextLink: function() {
+        let link = {};
+        if(this.game.levels[this.levelid].next) {
+          link = {
+            name: 'levelintro',
+            params: {
+              gameid: this.gameid,
+              'levelid': this.game.levels[this.levelid].next
+            }
+          };
+        }
+        // Finished all the levels
+        else {
+          link = {
+            name: 'thankyou',
+            params: {
+              context: this.gameid
+            }
+          };
+        }
+
+        return link;
       }
     }
   };

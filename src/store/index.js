@@ -25,7 +25,8 @@ const defaultState = {
       3: null
     },
     introDone: false
-  }
+  },
+  seenFinalCredits: false
 };
 
 export default new Vuex.Store({
@@ -55,6 +56,10 @@ export default new Vuex.Store({
     },
     reset: function(state, gameid) {
       state[gameid] = JSON.parse(JSON.stringify(defaultState[gameid]));
+      state.seenFinalCredits = false;
+    },
+    seenFinalCredits: function(state) {
+      state.seenFinalCredits = true;
     }
   }
 });
