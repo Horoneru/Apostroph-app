@@ -192,14 +192,9 @@ const games = {
               left: true
             }
           }
-        },
-        next: '4',
+        }
       }
-    },
-    congratulationText: 'Toute l\’équipe d\’Apostroph te remercie d\’avoir joué à notre application.<br>'+
-    'Nous espérons que tu aies apprécié, tout en ayant pu apprendre quelques notions de code.<br>'+
-    'A bientôt !<br>'+
-    'Apostroph'
+    }
   },
   cryptography: {
     name: 'Cryptographie',
