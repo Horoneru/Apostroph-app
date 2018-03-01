@@ -2,7 +2,7 @@
   <el-row class="h-100 w-100 flex-column" type="flex" justify="center" align="middle">
   <router-link :to="{ name: 'aboutapp' }" class="info-button top-right-element" v-ripple>i</router-link>
       <el-row>
-        <img src="../../static/assets/logo.png"/>
+        <router-link to="/"><img src="../../static/assets/logo.png"/></router-link>
         <h2 class="teaser">Le code tout simplement</h2>
       </el-row>
       <div>
@@ -19,6 +19,23 @@ export default {
   data () {
     return {
     };
+  },
+  created: function() {
+    const cryptographyLevelsScores = this.$store.state.cryptography.scores;
+    const programmingLevelsScores = this.$store.state.programming.scores;
+
+    const cryptoAllDone = Object.keys(cryptographyLevelsScores).every(function(key) {
+      return (cryptographyLevelsScores[key] !== null);
+    });
+
+    const progAllDone = Object.keys(programmingLevelsScores).every(function(key) {
+      return (programmingLevelsScores[key] !== null);
+    });
+
+    if(cryptoAllDone && progAllDone && !this.$store.state.seenFinalCredits) {
+      this.$store.commit('seenFinalCredits');
+      this.$router.replace({ name: 'thankyou', params: { context: 'app' } });
+    }
   }
 };
 </script>
