@@ -33,7 +33,8 @@ const games = {
           }
         ],
         outro: 'Ce que tu as exécuté correspond à une procédure.',
-        next: '1'
+        next: '1',
+        expectedMoves: 4
       },
       '1': {
         name: 'Niveau 1',
@@ -103,7 +104,8 @@ const games = {
             }
           }
         },
-        next: '2'
+        next: '2',
+        expectedMoves: 7
       },
       '2': {
         name: 'Niveau 2',
@@ -164,6 +166,19 @@ const games = {
           }
         },
         outro: 'Tu viens de voir les boucles qui t\'ont permis de répéter une instruction plusieurs fois.',
+        tutorialSteps: [
+          {
+            element: 'loop',
+            text: 'Utilise ce bouton pour répéter une instruction'
+          },
+          {
+            element: 'loop',
+            text: 'Il crée une boucle.<br>Cela permet de faire plusieurs actions en une seule fois !'
+          }
+        ],
+        usesLoop: true,
+        loopCount: 3,
+        expectedMoves: 7,
         next: '3'
       },
       '3': {
@@ -207,7 +222,9 @@ const games = {
             }
           }
         },
-        next: '4',
+        usesLoop: true,
+        loopCount: 4,
+        expectedMoves: 9
       }
     },
     congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu programmation. <br>'+

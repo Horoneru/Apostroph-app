@@ -30,7 +30,7 @@ const artists = {
     'comme si, au fil du temps, il voulait montrer que sa peinture était vivante.<br>' +
     'Cela rend son travail rempli de curiosité.',
     theme: 'accent-color'
-  },
+  }
 };
 
 export default artists;
