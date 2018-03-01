@@ -227,11 +227,11 @@ const games = {
         expectedMoves: 9
       }
     },
-    congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>programmation</strong>. <br>'+
-    'A travers ces niveaux, tu as pu voir de façon simplifié la manière dont on exécute des <strong>instructions</strong>, '+
-    'représentés ici par les boutons des niveaux. <br>'+
-    'En plus de cela, tu as pu voir la <strong>technique de boucle</strong> permettant notamment de <strong>simplifier</strong> '+
-    'le code et de <strong>gagner du temps</strong> en répétant les mêmes instructions plusieurs fois.'
+    congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>programmation</strong>. <br>'+
+    'A travers ces niveaux, tu as pu voir de façon simplifié la manière dont on exécute des <br> '+
+    '<strong>instructions</strong>, représentés ici par les boutons des niveaux. <br>'+
+    'En plus de cela, tu as pu voir la <strong>technique de boucle</strong> permettant notamment de <strong>simplifier</strong> le code <br>'+
+    'et de <strong>gagner du temps</strong> en répétant les mêmes instructions plusieurs fois.'
   },
   cryptography: {
     name: 'Cryptographie',
@@ -313,12 +313,12 @@ const games = {
         usesQrcode: true
       }
     },
-    congratulationText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>cryptographie</strong>. <br>'+
-    'Ainsi, tu as vu les bases du <strong>chiffrement</strong> et notamment que les messages chiffrées (ici les oeuvres) '+
-    'peuvent être déchiffrées gràce à une <strong>clé de chiffrement</strong> (représentée ici par le QR code) qui indique '+
-    'de manière plus ou moins simple le <strong>décalage</strong> des caractères ou des formes. <br>'+
-    'Ces niveaux se rapprochent particulièrement du <strong>chiffrement de César</strong> que nous avons voulu vous introduire '+
-    'de part sa simplicité et son histoire.'
+    congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>cryptographie</strong>. <br>'+
+    'Ainsi, tu as vu les bases du <strong>chiffrement</strong> et notamment que les messages chiffrées (ici les oeuvres) <br>'+
+    'peuvent être déchiffrées gràce à une <strong>clé de chiffrement</strong> (représentée ici par le QR code) <br> '+
+    'qui indique de manière plus ou moins simple le <strong>décalage</strong> des caractères ou des formes. <br>'+
+    'Ces niveaux se rapprochent particulièrement du <strong>chiffrement de César</strong> que nous <br>'+
+    'avons voulu vous introduire de part sa simplicité et son histoire.'
   }
 };
 
