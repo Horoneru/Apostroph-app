@@ -28,6 +28,7 @@ const games = {
             text: 'Essaie d\'atteindre l\'objectif en bleu.<br>À toi de jouer !'
           }
         ],
+        outro: 'Ce que tu as exécuté correspond à une procédure.',
         next: '1'
       },
       '1': {
@@ -148,6 +149,7 @@ const games = {
             }
           }
         },
+        outro: 'Tu viens de voir les boucles qui t\'ont permis de répéter une instruction plusieurs fois.',
         next: '3'
       },
       '3': {
@@ -191,9 +193,13 @@ const games = {
             }
           }
         },
-        next: '4'
+        next: '4',
       }
-    }
+    },
+    congratulationText: 'Toute l\’équipe d\’Apostroph te remercie d\’avoir joué à notre application.<br>'+
+    'Nous espérons que tu aies apprécié, tout en ayant pu apprendre quelques notions de code.<br>'+
+    'A bientôt !<br>'+
+    'Apostroph'
   },
   cryptography: {
     name: 'Cryptographie',
@@ -250,6 +256,7 @@ const games = {
         },
         artwork: 'Construction du volume des couleurs',
         artist: artists.lemonnier,
+        outro:'Tu as maintenant une clé de chiffrement, représentée par le QR code, qui va te permettre de déchiffrer l\'oeuvre',
         next: '2'
       },
       '2': {
