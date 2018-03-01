@@ -83,7 +83,7 @@ export default {
 
       for(let i = 0; i < 20; i++) {
         let res = new Image();
-        res.src = '/../static/assets/' + this.gameid + '/' + this.levelid + '/img-' + i + '.jpg'
+        res.src = '/../static/assets/' + this.gameid + '/' + this.levelid + '/img-' + i + '.jpg';
       }
     }
   }

@@ -155,7 +155,8 @@ export default {
       goalReached: false,
       blockUserInput: false,
       resetDialogVisible: false,
-      maxActions: 14
+      maxActions: 14,
+      tries: 0
     };
   },
   created: function() {
@@ -342,11 +343,10 @@ export default {
           // It also feels more natural in case of a mistake
           setTimeout(() => {
             if(this.goalReached) {
-              setTimeout(() => {
-                this.$router.push({ name: 'levelcomplete', params: { gameid: 'programming', levelid: this.levelid } });
-              }, 250);
+              this.levelComplete();
             }
             else {
+              this.tries++;
               this.reset('hard');
               this.blockUserInput = false;
             }
@@ -355,6 +355,17 @@ export default {
       };
 
       executeFunction(0);
+    },
+    levelComplete: function() {
+      this.$store.commit({
+        type: 'updateLevelScore',
+        gameid: 'programming',
+        levelid: this.levelid,
+        score: this.levelData.expectedMoves - (this.actionHistory.length + this.tries)
+      });
+      setTimeout(() => {
+        this.$router.push({ name: 'levelcomplete', params: { gameid: 'programming', levelid: this.levelid } });
+      }, 250);
     },
     reset: function(mode) {
       this.cursorDegrees = 0;

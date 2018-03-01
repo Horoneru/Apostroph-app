@@ -65,7 +65,9 @@ export default {
       qrCodeDialog: false,
       qrcodeReaderLoading: true,
       cipherKey: '?',
-      distanceFromGoal: games.cryptography.levels[this.levelid].permutations.count
+      distanceFromGoal: games.cryptography.levels[this.levelid].permutations.count,
+      tries: 0,
+      moves: 0
     };
   },
   computed: {
@@ -200,6 +202,9 @@ export default {
     },
     arrangeArray: function(newArray) {
       this.tab = newArray;
+      if(this.setupInit) {
+        this.moves++;
+      }
     },
     checkSuccess: function() {
       if(this.success) {
@@ -210,9 +215,16 @@ export default {
           type: 'error',
           message: 'Il semble que tu n\'as pas reconstitué correctement l\'oeuvre'
         });
+        this.tries++;
       }
     },
     levelComplete: function() {
+      this.$store.commit({
+        type: 'updateLevelScore',
+        gameid: 'cryptography',
+        levelid: this.levelid,
+        score: this.levelData.permutations.count - (this.moves + this.tries)
+      });
       setTimeout(() => {
         this.$router.push({ name: 'levelcomplete', params: { gameid: 'cryptography', level: this.levelid } });
       }, 250);
