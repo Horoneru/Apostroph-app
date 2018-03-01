@@ -17,8 +17,8 @@
     <el-row class="menu-container" type="flex" justify="space-around">
       <!-- Use template to avoid rendering a real tag. -->
       <!-- Because there's only a difference in wrapper -->
-      <!-- Assume there is always a tutorial and make it always the first entry -->
-      <template v-if="!this.$store.state[this.gameid].tutorialDone">
+      <!-- Assume there is always a tutorial and make it al ways the first entry -->
+      <template v-if="gameUserData.scores.tutorial === null">
       <el-badge is-dot>
         <nav-button text="Tutoriel" :to="{ name: 'levelintro', params: { gameid, levelid: 'tutorial' } }"
         :classes="[gameNavTheme, 'level-nav']" :icon="game.levels.tutorial.icon">
@@ -57,7 +57,8 @@ export default {
   },
   data: function() {
     return {
-      game: games[this.gameid]
+      game: games[this.gameid],
+      gameUserData: this.$store.state[this.gameid]
     };
   },
   computed: {
