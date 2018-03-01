@@ -28,7 +28,8 @@ const games = {
             text: 'Essaie d\'atteindre l\'objectif en bleu.<br>À toi de jouer !'
           }
         ],
-        next: '1'
+        next: '1',
+        expectedMoves: 4
       },
       '1': {
         name: 'Niveau 1',
@@ -88,7 +89,8 @@ const games = {
             }
           }
         },
-        next: '2'
+        next: '2',
+        expectedMoves: 7
       },
       '2': {
         name: 'Niveau 2',
@@ -148,6 +150,7 @@ const games = {
             }
           }
         },
+        expectedMoves: 7,
         next: '3'
       },
       '3': {
@@ -190,7 +193,8 @@ const games = {
               left: true
             }
           }
-        }
+        },
+        expectedMoves: 8
       }
     }
   },
