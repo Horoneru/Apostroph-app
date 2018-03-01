@@ -11,6 +11,7 @@ import LevelIntro from '@/components/LevelIntro';
 import LevelComplete from '@/components/LevelComplete';
 import AboutArtist from '@/components/AboutArtist';
 import AboutApp from '@/components/AboutApp';
+import Thankyou from '@/components/Thankyou';
 
 Vue.use(Router);
 
@@ -72,6 +73,12 @@ export default new Router({
       path: '/about/:artistid',
       name: 'aboutartist',
       component: AboutArtist,
+      props: true
+    },
+    {
+      path: '/:context/thankyou',
+      name: 'thankyou',
+      component: Thankyou,
       props: true
     }
   ]
