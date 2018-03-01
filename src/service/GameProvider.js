@@ -209,7 +209,7 @@ const games = {
         usesLoop: true,
         loopCount: 4,
         next: '4',
-        expectedMoves: 8
+        expectedMoves: 9
       }
     }
   },
