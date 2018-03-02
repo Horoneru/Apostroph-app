@@ -101,6 +101,14 @@ export default {
           else {
             intro.element = this.$parent.$refs[tutorial.element];
           }
+
+          if(intro.element) {
+            // If it's a vue component
+            if(intro.element.$el) {
+              intro.element = intro.element.$el;
+            }
+          }
+
           steps.push(intro);
         });
 
