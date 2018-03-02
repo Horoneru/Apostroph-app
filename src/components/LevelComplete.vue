@@ -7,6 +7,7 @@
       <h1 v-if="levelid !== 'tutorial'">Niveau {{ levelid }} terminé</h1>
       <h1 v-else>Tutoriel terminé ! </h1>
       <p v-html="scoreText"></p>
+      <p style="margin-top:30px;" v-if="game.levels[levelid].outro" v-html="game.levels[levelid].outro"></p>
       </div>
       <hr class="animated flip">
       <div class="btn-lvl-complete animated fadeInUpBig">
