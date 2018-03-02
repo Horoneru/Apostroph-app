@@ -17,23 +17,19 @@ const games = {
         tutorialSteps: [
           {
             element: 'playgroundStage',
-            text: 'Voici une oeuvre.<br>' +
-            'Ce jeu te permet de naviguer à l\'intérieur de celle-ci !'
+            text: 'Ce jeu te permet de naviguer à l\'intérieur des oeuvres'
           },
           {
             element: 'up-arrow',
-            text: 'Tu peux avancer dans l\'oeuvre en utilisant le bouton directionnel ici !'
+            text: 'Pour avancer, utilise le bouton directionnel ici !'
           },
           {
             element: null,
-            text: 'Essaie d\'avancer 4 fois, puis appuies sur le bouton bleu "exécuter"'
-          },
-          {
-            element: null,
-            text: 'À toi de jouer !'
+            text: 'Essaie d\'atteindre l\'objectif en bleu.<br>À toi de jouer !'
           }
         ],
-        next: '1'
+        next: '1',
+        expectedMoves: 4
       },
       '1': {
         name: 'Niveau 1',
@@ -93,7 +89,8 @@ const games = {
             }
           }
         },
-        next: '2'
+        next: '2',
+        expectedMoves: 7
       },
       '2': {
         name: 'Niveau 2',
@@ -153,6 +150,19 @@ const games = {
             }
           }
         },
+        tutorialSteps: [
+          {
+            element: 'loop',
+            text: 'Utilise ce bouton pour répéter une instruction'
+          },
+          {
+            element: 'loop',
+            text: 'Il crée une boucle.<br>Cela permet de faire plusieurs actions en une seule fois !'
+          }
+        ],
+        usesLoop: true,
+        loopCount: 3,
+        expectedMoves: 7,
         next: '3'
       },
       '3': {
@@ -196,7 +206,10 @@ const games = {
             }
           }
         },
-        next: '4'
+        usesLoop: true,
+        loopCount: 4,
+        next: '4',
+        expectedMoves: 9
       }
     }
   },
@@ -215,7 +228,7 @@ const games = {
           count: 2
         },
         artwork: '- Tutoriel',
-        artist: { name: '' },
+        artist: artists.lemonnier,
         tutorialSteps: [
           {
             element: 'playground-stage',
@@ -276,8 +289,7 @@ const games = {
         },
         artwork: 'l\'Harmonisateur n°3',
         artist: artists.lemonnier,
-        usesQrcode: true,
-        next: '4'
+        usesQrcode: true
       }
     }
   }

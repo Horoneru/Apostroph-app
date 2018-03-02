@@ -3,9 +3,9 @@
     <router-link style :to="{ name: 'home' }" v-ripple class="el-icon-back back-button top-left-element">
     </router-link>
     <el-row>
-      <img src="../../static/assets/logo.png" />
+      <router-link to="/"><img src="../../static/assets/logo.png"/></router-link>
     </el-row>
-    <h2 class="subtitle">Choisissez un mini jeu</h2>
+    <h2 class="subtitle">Choisis un mini jeu</h2>
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around" >
       <nav-button text="Cryptographie" :to="getRoute('cryptography')"

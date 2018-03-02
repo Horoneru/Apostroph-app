@@ -10,15 +10,15 @@
     </el-dropdown-menu>
     </el-dropdown>
     <el-row>
-      <img src="../../static/assets/logo.png" />
+      <router-link to="/"><img src="../../static/assets/logo.png"/></router-link>
     </el-row>
-    <h2 class="subtitle">Choisissez un niveau</h2>
+    <h2 class="subtitle">Choisis un niveau</h2>
     <hr>
     <el-row class="menu-container" type="flex" justify="space-around">
       <!-- Use template to avoid rendering a real tag. -->
       <!-- Because there's only a difference in wrapper -->
-      <!-- Assume there is always a tutorial and make it always the first entry -->
-      <template v-if="!this.$store.state[this.gameid].tutorialDone">
+      <!-- Assume there is always a tutorial and make it al ways the first entry -->
+      <template v-if="gameUserData.scores.tutorial === null">
       <el-badge is-dot>
         <nav-button text="Tutoriel" :to="{ name: 'levelintro', params: { gameid, levelid: 'tutorial' } }"
         :classes="[gameNavTheme, 'level-nav']" :icon="game.levels.tutorial.icon">
@@ -57,7 +57,8 @@ export default {
   },
   data: function() {
     return {
-      game: games[this.gameid]
+      game: games[this.gameid],
+      gameUserData: this.$store.state[this.gameid]
     };
   },
   computed: {
