@@ -8,7 +8,7 @@
       <p>Appuie maintenant sur l'action que tu veut répéter <strong>{{ count }} fois</strong></p>
     </el-popover>
     <el-badge :value="count">
-      <img :src="icon" @click="action" v-popover:popoverl/>
+      <img :src="icon" @click.prevent="action" v-popover:popoverl/>
     </el-badge>
 </div>
 </template>

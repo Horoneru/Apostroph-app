@@ -20,7 +20,7 @@
           <el-col :span="7">
             <div id="toolbar" ref="toolbar">
               <div v-ripple :class="['tool', { disabled: tool.disabled }]" v-for="tool in tools" :key="tool.icon" :ref="getToolRef(tool)">
-                <img v-if="!tool.customComponent" :src="tool.icon" @click="tool.action" :style="tool.style"/>
+                <img v-if="!tool.customComponent" :src="tool.icon" @click.prevent="tool.action" :style="tool.style"/>
                 <component v-if="tool.customComponent" :is="tool.customComponent" :icon="tool.icon" :action="tool.action" :count="tool.count"></component>
               </div>
               <p v-if="!tools">Toolbar container</p>
