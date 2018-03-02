@@ -16,7 +16,7 @@ const games = {
         start: '17',
         tutorialSteps: [
           {
-            element: 'playgroundStage',
+            element: 'playground-stage',
             text: 'Ce jeu te permet de naviguer à l\'intérieur des oeuvres'
           },
           {
@@ -32,7 +32,9 @@ const games = {
             text: 'Essaie d\'atteindre l\'objectif en bleu.<br>À toi de jouer !'
           }
         ],
-        outro: 'Ce que tu as exécuté correspond à une procédure.',
+        outro: 'Ce que tu as exécuté correspond à une série de procédures en programmation.<br>' +
+               'Par exemple: `move` correspond à une instruction de procédure `move`, permettant de bouger <br>.' +
+               'Essaie toujours d\'atteindre l\'objectif avec le moins de procédures !',
         next: '1',
         expectedMoves: 4
       },
@@ -165,7 +167,9 @@ const games = {
             }
           }
         },
-        outro: 'Tu viens de voir les boucles qui t\'ont permis de répéter une instruction plusieurs fois.',
+        outro: 'Tu viens de voir les boucles qui t\'ont permis de répéter une instruction plusieurs fois.<br>' +
+        'Utilisées à bon escient, elles te permettront de donner une solution plus optimale.<br>' +
+        'N\'hésite pas à les utiliser !',
         tutorialSteps: [
           {
             element: 'loop',
@@ -227,10 +231,10 @@ const games = {
         expectedMoves: 9
       }
     },
-    congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>programmation</strong>. <br>'+
-    'A travers ces niveaux, tu as pu voir de façon simplifié la manière dont on exécute des <br> '+
-    '<strong>instructions</strong>, représentés ici par les boutons des niveaux. <br>'+
-    'En plus de cela, tu as pu voir la <strong>technique de boucle</strong> permettant notamment de <strong>simplifier</strong> le code <br>'+
+    congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>programmation</strong>. <br>' +
+    'À travers ces niveaux, tu as pu voir de façon simplifiée la manière dont on exécute des <br> ' +
+    '<strong>instructions</strong>, représentés ici par les boutons des niveaux. <br>' +
+    'En plus de cela, tu as pu voir la <strong>technique de boucle</strong> permettant notamment de <strong>simplifier</strong> le code <br>' +
     'et de <strong>gagner du temps</strong> en répétant les mêmes instructions plusieurs fois.'
   },
   cryptography: {
@@ -239,7 +243,7 @@ const games = {
     desc: 'La cryptographie, c’est quoi ?<br>' +
     'Rien de très compliqué ! Cela consiste simplement au remplacement de caractères, de formes, par d’autres.<br>' +
     'Grâce à notre jeu, tu vas pouvoir apprendre rapidement le fonctionnement basique du chiffrement ! <br>' +
-    '<em>Amuse toi !</em>',
+    'C’est parti !',
     levels: {
       'tutorial': {
         name: 'Tutoriel',
@@ -298,6 +302,16 @@ const games = {
         },
         artwork: 'Jeu chromatique 1',
         artist: artists.lemonnier,
+        tutorialSteps: [
+          {
+            element: 'apn-tool',
+            text: 'Ce bouton te permettra de connaître la clé de chiffrement en scannant le QR code associé à l\'oeuvre'
+          },
+          {
+            element: null,
+            text: 'Si tu es bloqué, Utilise le QR code pour obtenir de l\'aide !'
+          }
+        ],
         usesQrcode: true,
         intro: 'À travers ce niveau, tu vas pouvoir voir précisemment le fonctionnement du chiffrement. <br> ' +
         'En effet, tu vas devoir déchiffrer l\'oeuvre grâce au QR code que nous fournissons qui représente la clé de chiffrement. <br> ' +
@@ -315,11 +329,11 @@ const games = {
         usesQrcode: true
       }
     },
-    congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>cryptographie</strong>. <br>'+
-    'Ainsi, tu as vu les bases du <strong>chiffrement</strong> et notamment que les messages chiffrées (ici les oeuvres) <br>'+
-    'peuvent être déchiffrées gràce à une <strong>clé de chiffrement</strong> (représentée ici par le QR code) <br> '+
-    'qui indique de manière plus ou moins simple le <strong>décalage</strong> des caractères ou des formes. <br>'+
-    'Ces niveaux se rapprochent particulièrement du <strong>chiffrement de César</strong> que nous <br>'+
+    congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>cryptographie</strong>. <br>' +
+    'Ainsi, tu as vu les bases du <strong>chiffrement</strong> et notamment que les messages chiffrées (ici les oeuvres) <br>' +
+    'peuvent être déchiffrées gràce à une <strong>clé de chiffrement</strong> (représentée ici par le QR code) <br> ' +
+    'qui indique de manière plus ou moins simple le <strong>décalage</strong> des caractères ou des formes. <br>' +
+    'Ces niveaux se rapprochent particulièrement du <strong>chiffrement de César</strong> que nous <br>' +
     'avons voulu vous introduire de part sa simplicité et son histoire.'
   }
 };
