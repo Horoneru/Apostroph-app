@@ -100,4 +100,8 @@ export default {
     transform: scale(1.05);
   }
 
+  h3 {
+    font-size: 16px;
+  }
+
 </style>
