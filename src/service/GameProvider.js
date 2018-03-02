@@ -288,7 +288,6 @@ const games = {
         },
         artwork: 'Construction du volume des couleurs',
         artist: artists.lemonnier,
-        outro:'Tu as maintenant une clé de chiffrement, représentée par le QR code, qui va te permettre de déchiffrer l\'oeuvre',
         next: '2'
       },
       '2': {
@@ -300,6 +299,9 @@ const games = {
         artwork: 'Jeu chromatique 1',
         artist: artists.lemonnier,
         usesQrcode: true,
+        intro: 'À travers ce niveau, tu vas pouvoir voir précisemment le fonctionnement du chiffrement. <br> ' +
+        'En effet, tu vas devoir déchiffrer l\'oeuvre grâce au QR code que nous fournissons qui représente la clé de chiffrement. <br> ' +
+        'Celle-ci permet de voir le décallage qui a été effectué lors du chiffrement de l\'oeuvre ',
         next: '3'
       },
       '3': {
