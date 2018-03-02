@@ -13,6 +13,7 @@
 
 <script>
 import Ripple from 'fi-ripple';
+import Utils from '../utils/utils';
 export default {
   name: 'Home',
   directives: { Ripple },
@@ -23,14 +24,8 @@ export default {
   created: function() {
     const cryptographyLevelsScores = this.$store.state.cryptography.scores;
     const programmingLevelsScores = this.$store.state.programming.scores;
-
-    const cryptoAllDone = Object.keys(cryptographyLevelsScores).every(function(key) {
-      return (cryptographyLevelsScores[key] !== null);
-    });
-
-    const progAllDone = Object.keys(programmingLevelsScores).every(function(key) {
-      return (programmingLevelsScores[key] !== null);
-    });
+    const cryptoAllDone = Utils.gameAllDone(cryptographyLevelsScores);
+    const progAllDone = Utils.gameAllDone(programmingLevelsScores);
 
     if(cryptoAllDone && progAllDone && !this.$store.state.seenFinalCredits) {
       this.$store.commit('seenFinalCredits');
