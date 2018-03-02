@@ -9,7 +9,7 @@
     <el-col :class="[this.contentClasses, 'h-100']">
       <h1>{{ title }}</h1>
       <hr class="mx-auto">
-      <p class="half-gutter">
+      <p :class="{ 'half-gutter': useGutter }">
         <slot name="rightContent"></slot>
       </p>
     </el-col>
@@ -42,6 +42,10 @@ export default {
           'bottom'
         ].indexOf(value) !== -1;
       }
+    },
+    useGutter: {
+      type: Boolean,
+      default: true
     }
   },
   directives: { Ripple }
