@@ -145,7 +145,7 @@ export default {
       // Delay the init so the user can see the original piece beforehand
       setTimeout(() => {
         this.arrayInit();
-      }, 2000);
+      }, 4000);
     }
 
     if(this.levelData.usesQrcode) {
