@@ -9,7 +9,7 @@
       </div>
       <div id="equipe">
         <h2>Notre équipe</h2>
-        <el-row type="flex" :gutter="2" justify="center" class="mb-4">
+        <el-row type="flex" :gutter="1" justify="center" class="mb-4">
           <el-col v-ripple :span="10" class="team-col">
             <h3>Quentin Delpy « <pre>Horoneru</pre> »</h3>
             <p><small><em>Développeur Full-Stack / Chef de projet</em></small></p>
@@ -28,7 +28,7 @@
             </a>
           </el-col>
         </el-row>
-        <el-row type="flex" :gutter="2" justify="center">
+        <el-row type="flex" :gutter="1" justify="center">
           <el-col v-ripple :span="10" class="team-col">
             <h3>Nicolaï Magniadas « <pre>Niki Loma</pre> »</h3>
             <p><small><em>Web-Designer</em></small></p>
@@ -71,7 +71,7 @@ export default {
 <style scoped>
   pre {
     display: inline;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: normal;
   }
 
