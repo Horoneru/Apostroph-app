@@ -214,4 +214,12 @@ hr {
 .el-badge__checkmark--perfect > .el-badge__content {
   background-color: #67C23A;
 }
+
+.el-badge__checkmark--color-inverse > .el-badge__content {
+  background-color: var(--primary-color-inverse);
+}
+
+.el-badge__checkmark--accent-color > .el-badge__content {
+  background-color: rgb(0, 133, 189, 0.7);
+}
 </style>
