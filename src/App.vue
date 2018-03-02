@@ -205,4 +205,13 @@ hr {
   background-color: rgb(64, 158, 255, 0.2);
   border-color: rgb(64, 158, 255, 0.2);
 }
+
+.el-badge__checkmark > .el-badge__content {
+  top: 0 !important;
+  right: 10px !important;
+}
+
+.el-badge__checkmark--perfect > .el-badge__content {
+  background-color: #67C23A;
+}
 </style>

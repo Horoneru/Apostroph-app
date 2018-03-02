@@ -19,21 +19,35 @@
       <!-- Because there's only a difference in wrapper -->
       <!-- Assume there is always a tutorial and make it al ways the first entry -->
       <template v-if="gameUserData.scores.tutorial === null">
-      <el-badge is-dot>
-        <nav-button text="Tutoriel" :to="{ name: 'levelintro', params: { gameid, levelid: 'tutorial' } }"
-        :classes="[gameNavTheme, 'level-nav']" :icon="game.levels.tutorial.icon">
-        </nav-button>
-      </el-badge>
+        <el-badge is-dot>
+          <nav-button text="Tutoriel" :to="{ name: 'levelintro', params: { gameid, levelid: 'tutorial' } }"
+          :classes="[gameNavTheme, 'level-nav']" :icon="game.levels.tutorial.icon">
+          </nav-button>
+        </el-badge>
       </template>
       <template v-else>
-        <nav-button text="Tutoriel" :to="{ name: 'levelintro', params: { gameid, levelid: 'tutorial' } }"
-        :classes="[gameNavTheme, 'level-nav']" :icon="game.levels.tutorial.icon">
-        </nav-button>
+        <el-badge value="✓" :class="getBadgeClasses(gameUserData.scores.tutorial)">
+          <nav-button text="Tutoriel" :to="{ name: 'levelintro', params: { gameid, levelid: 'tutorial' } }"
+          :classes="[gameNavTheme, 'level-nav']" :icon="game.levels.tutorial.icon">
+          </nav-button>
+        </el-badge>
       </template>
-      <nav-button v-for="(level, levelId) in game.levels" v-if="levelId != 'tutorial'"
-      :key="levelId" :text="level.name" :to="{ name: 'levelintro', params: { gameid, levelid: levelId } }"
-      :classes="gameNavTheme" :icon="level.icon">
-      </nav-button>
+      <template v-for="(level, levelId) in game.levels" v-if="levelId !== 'tutorial'">
+        <template v-if="gameUserData.scores[levelId] !== null">
+          <el-badge value="✓" :key="levelId" :class="getBadgeClasses(gameUserData.scores[levelId])">
+            <nav-button
+            :text="level.name" :to="{ name: 'levelintro', params: { gameid, levelid: levelId } }"
+            :classes="gameNavTheme" :icon="level.icon">
+            </nav-button>
+          </el-badge>
+        </template>
+        <template v-else>
+          <nav-button
+          :text="level.name" :key="levelId" :to="{ name: 'levelintro', params: { gameid, levelid: levelId } }"
+          :classes="gameNavTheme" :icon="level.icon">
+          </nav-button>
+        </template>
+      </template>
     </el-row>
   </el-row>
 </template>
@@ -76,6 +90,15 @@ export default {
       else if(command === 'reset') {
         this.$store.commit('reset', this.gameid);
       }
+    },
+    getBadgeClasses: function(score) {
+      let classes = ['el-badge__checkmark'];
+
+      if(score === 0) {
+        classes.push('el-badge__checkmark--perfect');
+      }
+
+      return classes;
     }
   }
 };
