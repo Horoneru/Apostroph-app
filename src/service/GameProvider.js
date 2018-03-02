@@ -33,7 +33,7 @@ const games = {
           }
         ],
         outro: 'Ce que tu as exécuté correspond à une série de procédures en programmation.<br>' +
-               'Par exemple: `move` correspond à une instruction de procédure `move`, permettant de bouger <br>.' +
+               'Par exemple: `move` correspond à une instruction de procédure `move`, permettant de bouger.<br>' +
                'Essaie toujours d\'atteindre l\'objectif avec le moins de procédures !',
         next: '1',
         expectedMoves: 4
@@ -231,9 +231,9 @@ const games = {
         expectedMoves: 9
       }
     },
-    congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>programmation</strong>. <br>' +
-    'À travers ces niveaux, tu as pu voir de façon simplifiée la manière dont on exécute des <br> ' +
-    '<strong>instructions</strong>, représentés ici par les boutons des niveaux. <br>' +
+    congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>programmation</strong>.<br>' +
+    'À travers ces niveaux, tu as pu voir de façon simplifiée la manière dont on exécute des <br>' +
+    '<strong>instructions</strong>, représentés ici par les boutons des niveaux.<br>' +
     'En plus de cela, tu as pu voir la <strong>technique de boucle</strong> permettant notamment de <strong>simplifier</strong> le code <br>' +
     'et de <strong>gagner du temps</strong> en répétant les mêmes instructions plusieurs fois.'
   },
@@ -315,7 +315,7 @@ const games = {
         usesQrcode: true,
         intro: 'À travers ce niveau, tu vas pouvoir voir précisemment le fonctionnement du chiffrement. <br> ' +
         'En effet, tu vas devoir déchiffrer l\'oeuvre grâce au QR code que nous fournissons qui représente la clé de chiffrement. <br> ' +
-        'Celle-ci permet de voir le décallage qui a été effectué lors du chiffrement de l\'oeuvre ',
+        'Celle-ci permet de voir le décalage qui a été effectué lors du chiffrement de l\'oeuvre ',
         next: '3'
       },
       '3': {
@@ -330,11 +330,11 @@ const games = {
       }
     },
     congratulationsText: 'Bien joué ! Tu as terminé tous les niveaux du mini-jeu <strong>cryptographie</strong>. <br>' +
-    'Ainsi, tu as vu les bases du <strong>chiffrement</strong> et notamment que les messages chiffrées (ici les oeuvres) <br>' +
-    'peuvent être déchiffrées gràce à une <strong>clé de chiffrement</strong> (représentée ici par le QR code) <br> ' +
-    'qui indique de manière plus ou moins simple le <strong>décalage</strong> des caractères ou des formes. <br>' +
+    'Ainsi, tu as vu les bases du <strong>chiffrement</strong> et notamment que les messages chiffrés (ici les oeuvres) <br>' +
+    'peuvent être déchiffrés gràce à une <strong>clé de chiffrement</strong> (représentée ici par le QR code) <br> ' +
+    'qui indique le <strong>décalage</strong> des caractères ou des formes.<br>' +
     'Ces niveaux se rapprochent particulièrement du <strong>chiffrement de César</strong> que nous <br>' +
-    'avons voulu vous introduire de part sa simplicité et son histoire.'
+    'avons voulu vous introduire de par sa simplicité et son histoire.'
   }
 };
 
